@@ -1,0 +1,140 @@
+
+name: Discord Notification
+
+on:
+  issues:
+    types: [opened]
+
+  pull_request:
+    types: [opened, reopened, ready_for_review, closed]
+
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          EVENT_NAME: ${{ github.event_name }}
+          ACTION: ${{ github.event.action }}
+          REPOSITORY: ${{ github.repository }}
+
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
+
+          REVIEWER: ${{ github.event.review.user.login }}
+          REVIEW_STATE: ${{ github.event.review.state }}
+          REVIEW_BODY: ${{ github.event.review.body }}
+
+        run: |
+          TITLE=""
+          DESCRIPTION=""
+          URL=""
+          AUTHOR=""
+          AUTHOR_LABEL="작성자"
+
+          if [ "$EVENT_NAME" = "issues" ]; then
+            TITLE="📌 새로운 이슈가 등록되었어요!"
+            DESCRIPTION="$ISSUE_TITLE"
+            URL="$ISSUE_URL"
+            AUTHOR="$ISSUE_AUTHOR"
+
+          elif [ "$EVENT_NAME" = "pull_request" ]; then
+            case "$ACTION" in
+              opened)
+                TITLE="🚀 새로운 PR이 등록되었어요!"
+                ;;
+              reopened)
+                TITLE="🔄 PR이 다시 열렸어요!"
+                ;;
+              ready_for_review)
+                TITLE="✅ PR이 리뷰 준비를 마쳤어요!"
+                ;;
+              closed)
+                if [ "$PR_MERGED" = "true" ]; then
+                  TITLE="🎉 PR이 머지되었어요!"
+                else
+                  exit 0
+                fi
+                ;;
+            esac
+
+            DESCRIPTION="$PR_TITLE"
+            URL="$PR_URL"
+            AUTHOR="$PR_AUTHOR"
+
+          elif [ "$EVENT_NAME" = "pull_request_review" ]; then
+            TITLE="👀 새로운 리뷰가 등록되었어요!"
+            URL="$PR_URL"
+            AUTHOR="$REVIEWER"
+            AUTHOR_LABEL="리뷰어"
+
+            case "$REVIEW_STATE" in
+              approved)
+                DESCRIPTION="리뷰 결과: 승인"
+                ;;
+              changes_requested)
+                DESCRIPTION="리뷰 결과: 수정 요청"
+                ;;
+              commented)
+                DESCRIPTION="리뷰 결과: 코멘트"
+                ;;
+              *)
+                DESCRIPTION="리뷰 결과: $REVIEW_STATE"
+                ;;
+            esac
+
+            if [ -n "$REVIEW_BODY" ]; then
+              DESCRIPTION="$DESCRIPTION
+
+          $REVIEW_BODY"
+            fi
+          fi
+
+          if [ -z "$TITLE" ]; then
+            exit 0
+          fi
+
+          jq -n \
+            --arg title "$TITLE" \
+            --arg description "$DESCRIPTION" \
+            --arg url "$URL" \
+            --arg author "$AUTHOR" \
+            --arg author_label "$AUTHOR_LABEL" \
+            --arg repository "$REPOSITORY" \
+            '{
+              embeds: [{
+                title: $title,
+                url: $url,
+                description: $description,
+                color: 16763904,
+                fields: [
+                  {
+                    name: "Repository",
+                    value: $repository,
+                    inline: true
+                  },
+                  {
+                    name: $author_label,
+                    value: $author,
+                    inline: true
+                  }
+                ]
+              }]
+            }' > payload.json
+
+          curl --fail-with-body \
+            -H "Content-Type: application/json" \
+            -X POST \
+            -d @payload.json \
+            "$DISCORD_WEBHOOK_URL"
