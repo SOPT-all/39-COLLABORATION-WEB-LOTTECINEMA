@@ -47,58 +47,58 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
 
 ## 🚀 Tech Stack
 
-| 카테고리 | 기술 스택 |
-| --- | --- |
-| **UI Library** | ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white&style=for-the-badge) |
-| **Language** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white&style=for-the-badge) |
-| **Build Tool** | ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white&style=for-the-badge) |
-| **Package Manager** | ![Pnpm](https://img.shields.io/badge/Pnpm-F69220?logo=pnpm&logoColor=white&style=for-the-badge) |
-| **Server State Management** | ![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?logo=reactquery&logoColor=white&style=for-the-badge) |
-| **Styling** | ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) |
-| **SVG / API Docs** | ![SVGR](https://img.shields.io/badge/SVGR-FFB13B?style=for-the-badge&logo=svg&logoColor=black) ![Swagger TypeScript API](https://img.shields.io/badge/Swagger_TypeScript_API-85EA2D?logo=swagger&logoColor=black&style=for-the-badge) |
-| **API Mocking** | ![MSW](https://img.shields.io/badge/MSW-FF6A33?logo=mockserviceworker&logoColor=white&style=for-the-badge) |
-| **Version Control** | ![Git](https://img.shields.io/badge/Git-F05033?logo=git&logoColor=white&style=for-the-badge) ![GitHub](https://img.shields.io/badge/GitHub-121011?logo=github&logoColor=white&style=for-the-badge) |
-| **CI/CD** | ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=white&style=for-the-badge) |
-| **Deployment** | ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white&style=for-the-badge) |
-| **Git Hooks** | ![Husky](https://img.shields.io/badge/Husky-000000?logo=git&logoColor=white&style=for-the-badge) |
-| **Formatting** | ![ESLint](https://img.shields.io/badge/ESLint-4B3263?logo=eslint&logoColor=white&style=for-the-badge) ![Prettier](https://img.shields.io/badge/Prettier-1A2C34?logo=prettier&logoColor=F7BA3E&style=for-the-badge) |
-| **Cooperation** | ![Notion](https://img.shields.io/badge/Notion-000000?logo=notion&logoColor=white&style=for-the-badge) ![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white&style=for-the-badge) ![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white&style=for-the-badge) |  
+| 카테고리                    | 기술 스택                                                                                                                                                                                                                                                                                                         |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **UI Library**              | ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white&style=for-the-badge)                                                                                                                                                                                                                |
+| **Language**                | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white&style=for-the-badge)                                                                                                                                                                                                 |
+| **Build Tool**              | ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white&style=for-the-badge)                                                                                                                                                                                                                   |
+| **Package Manager**         | ![Pnpm](https://img.shields.io/badge/Pnpm-F69220?logo=pnpm&logoColor=white&style=for-the-badge)                                                                                                                                                                                                                   |
+| **Server State Management** | ![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?logo=reactquery&logoColor=white&style=for-the-badge)                                                                                                                                                                                       |
+| **Styling**                 | ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)                                                                                                                                                                                          |
+| **SVG / API Docs**          | ![SVGR](https://img.shields.io/badge/SVGR-FFB13B?style=for-the-badge&logo=svg&logoColor=black) ![Swagger TypeScript API](https://img.shields.io/badge/Swagger_TypeScript_API-85EA2D?logo=swagger&logoColor=black&style=for-the-badge)                                                                             |
+| **API Mocking**             | ![MSW](https://img.shields.io/badge/MSW-FF6A33?logo=mockserviceworker&logoColor=white&style=for-the-badge)                                                                                                                                                                                                        |
+| **Version Control**         | ![Git](https://img.shields.io/badge/Git-F05033?logo=git&logoColor=white&style=for-the-badge) ![GitHub](https://img.shields.io/badge/GitHub-121011?logo=github&logoColor=white&style=for-the-badge)                                                                                                                |
+| **CI/CD**                   | ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=white&style=for-the-badge)                                                                                                                                                                                    |
+| **Deployment**              | ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white&style=for-the-badge)                                                                                                                                                                                                             |
+| **Git Hooks**               | ![Husky](https://img.shields.io/badge/Husky-000000?logo=git&logoColor=white&style=for-the-badge)                                                                                                                                                                                                                  |
+| **Formatting**              | ![ESLint](https://img.shields.io/badge/ESLint-4B3263?logo=eslint&logoColor=white&style=for-the-badge) ![Prettier](https://img.shields.io/badge/Prettier-1A2C34?logo=prettier&logoColor=F7BA3E&style=for-the-badge)                                                                                                |
+| **Cooperation**             | ![Notion](https://img.shields.io/badge/Notion-000000?logo=notion&logoColor=white&style=for-the-badge) ![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white&style=for-the-badge) ![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white&style=for-the-badge) |
 
 <br/>
 
 ## 📁 Directory Structure
 
-````
+```
 39-COLLABORATION-WEB-LOTTECINEMA
 └── src
     ├── app
     │   ├── layout          # 공통 레이아웃 관리
     │   ├── router          # 페이지 라우팅 설정
-    │   ├── App.tsx         
-    │   └── main.tsx        
+    │   ├── App.tsx
+    │   └── main.tsx
     │
     ├── pages
     │   ├── home
-    │   │   ├── api         
-    │   │   ├── hooks       
+    │   │   ├── api
+    │   │   ├── hooks
     │   │   └── home-page.tsx
     │   │
     │   ├── booking
-    │   │   ├── api         
-    │   │   ├── components  
-    │   │   ├── hooks       
+    │   │   ├── api
+    │   │   ├── components
+    │   │   ├── hooks
     │   │   └── booking-page.tsx
     │   │
     │   ├── seat-selection
-    │   │   ├── api         
-    │   │   ├── components  
-    │   │   ├── hooks       
+    │   │   ├── api
+    │   │   ├── components
+    │   │   ├── hooks
     │   │   └── seat-selection-page.tsx
     │   │
     │   └── payment
-    │       ├── api         
-    │       ├── components 
-    │       ├── hooks       
+    │       ├── api
+    │       ├── components
+    │       ├── hooks
     │       └── payment-page.tsx
     │
     └── shared
@@ -110,36 +110,36 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
         ├── types           # 공통 타입
         ├── components      # 공통 컴포넌트
         └── utils           # 공통 유틸리티 함수
-````
+```
 
 ## 🗂️ Convention
 
 ### 🌿 Git Branch
 
-| 브랜치 | 용도 |
-| --- | --- |
-| `main` | 배포용 브랜치 |
-| `develop` | 개발용 브랜치 |
-| `feat/기능명/#issue-number` | 기능 개발 |
+| 브랜치                      | 용도          |
+| --------------------------- | ------------- |
+| `main`                      | 배포용 브랜치 |
+| `develop`                   | 개발용 브랜치 |
+| `feat/기능명/#issue-number` | 기능 개발     |
 
 ### 🚀 개발 프로세스
 
 ### 🔖 Commit Convention
 
-| 태그 | 내용 |
-| --- | --- |
-| `init` | 초기 세팅 |
-| `feat` | 새로운 기능 추가 |
-| `fix` | 버그 수정 |
-| `docs` | 문서 수정 |
-| `style` | 스타일 코드 변경 |
-| `type` | 타입 수정 |
-| `refactor` | 리팩토링 |
-| `chore` | 기타 작업 |
-| `test` | 테스트 코드 |
-| `rename` | 파일 또는 폴더명 수정 |
-| `remove` | 파일 또는 폴더 삭제 |
-| `hotfix` | 긴급 수정 |
+| 태그       | 내용                  |
+| ---------- | --------------------- |
+| `init`     | 초기 세팅             |
+| `feat`     | 새로운 기능 추가      |
+| `fix`      | 버그 수정             |
+| `docs`     | 문서 수정             |
+| `style`    | 스타일 코드 변경      |
+| `type`     | 타입 수정             |
+| `refactor` | 리팩토링              |
+| `chore`    | 기타 작업             |
+| `test`     | 테스트 코드           |
+| `rename`   | 파일 또는 폴더명 수정 |
+| `remove`   | 파일 또는 폴더 삭제   |
+| `hotfix`   | 긴급 수정             |
 
 **예시:** `init: 프로젝트 초기 세팅`
 
@@ -153,6 +153,7 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
 - **Named Export를 기본으로 사용하기**
   - 불러올 때 이름을 강제할 수 있어 자동 완성 확보 및 리팩토링 시 이름 변경이 용이함
 - 자식 요소가 없는 컴포넌트는 Self-closing 태그 사용하기 (`<Component />`)
+
 </details>
 
 <details>
@@ -167,6 +168,7 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
 - Boolean 변수는 `is` 접두사 사용하기
   - 예: `isActive`
 - 문자열 조합은 템플릿 리터럴 사용하기
+
 </details>
 
 <details>
@@ -176,15 +178,15 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
 
 - 어떤 일을 하는지 명확히 묘사하기 (동사 + 명사 형식)
 
-| 접두사 | 사용 목적 | 예시 |
-| --- | --- | --- |
-| `get` | 값을 가져옴 | `getUserInfo` |
-| `create` | 새로운 값을 생성함 | `createMovieData` |
-| `check` | 조건이나 상태를 검사함 | `checkPassword` |
-| `convert` | 값을 다른 형태로 변환함 | `convertDateFormat` |
-| `handle` | 이벤트를 처리함 | `handleSubmit` |
-| `is` | Boolean 상태를 나타냄 | `isLoading` |
-| `has` | 특정 값이나 속성의 존재 여부 | `hasPermission` |
+| 접두사    | 사용 목적                    | 예시                |
+| --------- | ---------------------------- | ------------------- |
+| `get`     | 값을 가져옴                  | `getUserInfo`       |
+| `create`  | 새로운 값을 생성함           | `createMovieData`   |
+| `check`   | 조건이나 상태를 검사함       | `checkPassword`     |
+| `convert` | 값을 다른 형태로 변환함      | `convertDateFormat` |
+| `handle`  | 이벤트를 처리함              | `handleSubmit`      |
+| `is`      | Boolean 상태를 나타냄        | `isLoading`         |
+| `has`     | 특정 값이나 속성의 존재 여부 | `hasPermission`     |
 
 **이벤트 핸들링**
 
