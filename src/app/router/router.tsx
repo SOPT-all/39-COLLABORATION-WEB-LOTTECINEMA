@@ -7,6 +7,7 @@ import { ROUTE_PATH } from "./path";
 export const router = createBrowserRouter([
     {
         Component: RootLayout,
+        HydrateFallback: () => null,
         children: [
             {
                 path: ROUTE_PATH.HOME,
