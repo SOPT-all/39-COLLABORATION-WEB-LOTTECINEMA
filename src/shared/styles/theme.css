@@ -25,4 +25,8 @@
   /* Seat */
   --color-seat-available: #417652;
   --color-seat-default: #1eaffd;
+
+  /* Font */
+  --font-noto-sans: 'Noto Sans', 'Noto Sans KR', sans-serif;
+  --font-noto-sans-kr: 'Noto Sans KR', sans-serif;
 }
