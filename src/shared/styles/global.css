@@ -1,3 +1,19 @@
 @import 'tailwindcss';
 @import './theme.css';
 @import './typography.css';
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: var(--font-noto-sans-kr);
+    color: var(--color-gray-1000);
+    background-color: var(--color-gray-000);
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
