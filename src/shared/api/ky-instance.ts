@@ -1,5 +1,7 @@
 import ky, { type Options } from 'ky';
 
+import type { ApiSuccess } from '@shared/types/api';
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const REQUEST_TIMEOUT = 10_000;
 
@@ -10,9 +12,15 @@ const kyInstance = ky.create({
 });
 
 export const http = {
-  get: <T>(url: string, options?: Options) =>
-    kyInstance.get(url, options).json<T>(),
+  get: async <T>(url: string, options?: Options) => {
+    const response = await kyInstance.get(url, options).json<ApiSuccess<T>>();
+    return response.data;
+  },
 
-  post: <T, B = unknown>(url: string, body?: B, options?: Options) =>
-    kyInstance.post(url, { ...options, json: body }).json<T>(),
+  post: async <T, B>(url: string, body: B, options?: Options) => {
+    const response = await kyInstance
+      .post(url, { ...options, json: body })
+      .json<ApiSuccess<T>>();
+    return response.data;
+  },
 };
