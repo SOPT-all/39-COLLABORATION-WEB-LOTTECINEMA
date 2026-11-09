@@ -2,9 +2,9 @@ name: Auto Label
 
 on:
   issues:
-    types: [opened, edited, assigned, unassigned, reopened]
+    types: [opened, edited, reopened]
   pull_request:
-    types: [opened, edited, assigned, unassigned, reopened]
+    types: [opened, edited, reopened]
 
 permissions:
   issues: write
@@ -50,7 +50,7 @@ jobs:
               Chore: '🖌️ Chore',
             };
 
-            // 2. 담당자 GitHub 계정과 라벨 매핑
+            // 2. 작성자 GitHub 계정과 라벨 매핑
             const members = {
               'chaewon41': '🐅 채원',
               'zzos0014': '🐒 지민',
@@ -74,15 +74,12 @@ jobs:
               labelsToAdd.push(typeLabels[match[1]]);
             }
 
-            // 5. 담당자 라벨 결정 (Issue / PR 공통)
-            const assignees = issue.assignees ?? [];
+            // 5. 작성자 기준 이름 라벨 결정 (Issue / PR 공통)
+            const author = issue.user.login;
+            const authorLabel = members[author];
 
-            for (const assignee of assignees) {
-              const memberLabel = members[assignee.login];
-
-              if (memberLabel) {
-                labelsToAdd.push(memberLabel);
-              }
+            if (authorLabel) {
+              labelsToAdd.push(authorLabel);
             }
 
             // 6. 기존 라벨 조회
