@@ -1,9 +1,10 @@
 import { StrictMode } from 'react'
+
+import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRoot } from 'react-dom/client'
 
 import { queryClient } from '@shared/api/query-client'
-import { QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import App from './App'
 
