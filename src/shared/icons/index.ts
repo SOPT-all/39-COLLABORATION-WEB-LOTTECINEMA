@@ -33,7 +33,6 @@ export { default as PlusGrayIcon } from './assets/icon_plus_gray.svg?react';
 export { default as Seat3Icon } from './assets/ic_seat3.svg?react';
 export { default as Seat5Icon } from './assets/ic_seat5.svg?react';
 export { default as Seat7Icon } from './assets/ic_seat7.svg?react';
-export { default as SeatIcon } from './assets/Seat.svg?react';
 
 export { default as SeatCompletedLgIcon } from './assets/seat_completed_l.svg?react';
 export { default as SeatCompletedSmIcon } from './assets/seat_completed_s.svg?react';
