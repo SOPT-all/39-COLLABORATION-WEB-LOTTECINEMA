@@ -13,7 +13,18 @@
     background-color: var(--color-gray-000);
   }
 
+  #root {
+    width: 375px;
+    min-height: 100dvh;
+    margin: 0 auto;
+    background-color: var(--color-gray-100);
+  }
+
   button {
     cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
   }
 }
