@@ -8,7 +8,6 @@ import { queryClient } from '@shared/api/query-client'
 
 import App from './App'
 
-// 개발 환경에서 MSW 실행
 async function enableMocking() {
   if (!import.meta.env.DEV || import.meta.env.VITE_ENABLE_MSW !== 'true') {
     return
