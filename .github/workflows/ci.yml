@@ -12,7 +12,6 @@ permissions:
   contents: read
 
 jobs:
-  # TODO: #12 ESLint 설정이 끝나면 pnpm lint 단계 추가하기
   build:
     runs-on: ubuntu-latest
 
@@ -31,6 +30,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Format check
+        run: pnpm format:check
 
       - name: Build
         run: pnpm build

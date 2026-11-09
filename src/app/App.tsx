@@ -1,5 +1,5 @@
 function App() {
-  return <>LOTTE CINEMA</>;
+  return <>LOTTE CINEMA</>
 }
 
 export default App
