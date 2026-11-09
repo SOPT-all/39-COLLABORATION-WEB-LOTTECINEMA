@@ -1,6 +1,6 @@
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query'
 
-const IS_PROD = import.meta.env.PROD;
+const IS_PROD = import.meta.env.PROD
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,4 +14,4 @@ export const queryClient = new QueryClient({
       retry: false,
     },
   },
-});
+})
