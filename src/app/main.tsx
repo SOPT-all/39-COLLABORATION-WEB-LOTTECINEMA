@@ -13,14 +13,17 @@ async function enableMocking() {
     return
   }
 
-  const { worker } = await import('@shared/mocks/browser')
+  try {
+    const { worker } = await import('@shared/mocks/browser')
 
-  await worker.start({
-    onUnhandledFrame: 'bypass',
-  })
+    await worker.start({
+      onUnhandledFrame: 'bypass',
+    })
+  } catch (error) {
+    console.error('MSW 실행에 실패했습니다.', error)
+  }
 }
 
-// MSW 실행이 완료된 후 앱 렌더링
 enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
