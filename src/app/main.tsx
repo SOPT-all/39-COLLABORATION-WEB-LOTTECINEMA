@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRoot } from 'react-dom/client'
 
 import { queryClient } from '@shared/api/query-client'
+import '@shared/styles/global.css'
 
 import App from './App'
 
