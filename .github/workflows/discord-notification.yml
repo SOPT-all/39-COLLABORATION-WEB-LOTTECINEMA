@@ -1,0 +1,182 @@
+name: Discord Notification
+
+on:
+  issues:
+    types: [opened]
+
+  pull_request:
+    types: [opened, reopened, ready_for_review, closed]
+
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Notification
+        shell: bash
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+          EVENT_NAME: ${{ github.event_name }}
+          ACTION: ${{ github.event.action }}
+          REPOSITORY: ${{ github.repository }}
+
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
+
+          REVIEWER: ${{ github.event.review.user.login }}
+          REVIEW_STATE: ${{ github.event.review.state }}
+          REVIEW_BODY: ${{ github.event.review.body }}
+
+        run: |
+          TITLE=""
+          DESC=""
+          URL=""
+          AUTHOR=""
+          COLOR=3447003
+          REVIEW_LABEL=""
+
+          if [ "$EVENT_NAME" = "issues" ]; then
+            TITLE="📌 새로운 이슈가 등록되었어요!"
+            DESC="$ISSUE_BODY"
+            URL="$ISSUE_URL"
+            AUTHOR="$ISSUE_AUTHOR"
+            COLOR=15158332
+
+          elif [ "$EVENT_NAME" = "pull_request" ]; then
+            case "$ACTION" in
+              opened)
+                TITLE="🚀 새로운 PR이 등록되었어요!"
+                COLOR=3066993
+                ;;
+              reopened)
+                TITLE="🔄 PR이 다시 열렸어요!"
+                COLOR=3447003
+                ;;
+              ready_for_review)
+                TITLE="✅ PR이 리뷰 준비를 마쳤어요!"
+                COLOR=5763719
+                ;;
+              closed)
+                if [ "$PR_MERGED" = "true" ]; then
+                  TITLE="🎉 PR이 머지되었어요!"
+                  COLOR=65280
+                else
+                  exit 0
+                fi
+                ;;
+            esac
+
+            DESC="$PR_BODY"
+            URL="$PR_URL"
+            AUTHOR="$PR_AUTHOR"
+
+          elif [ "$EVENT_NAME" = "pull_request_review" ]; then
+            TITLE="👀 새로운 리뷰가 등록되었어요!"
+            DESC="$REVIEW_BODY"
+            URL="$PR_URL"
+            AUTHOR="$REVIEWER"
+
+            case "$REVIEW_STATE" in
+              approved)
+                REVIEW_LABEL="APPROVED"
+                COLOR=5763719
+                ;;
+              changes_requested)
+                REVIEW_LABEL="CHANGES REQUESTED"
+                COLOR=15158332
+                ;;
+              commented)
+                REVIEW_LABEL="COMMENTED"
+                COLOR=3447003
+                ;;
+              *)
+                REVIEW_LABEL="$REVIEW_STATE"
+                COLOR=9807270
+                ;;
+            esac
+          fi
+
+          if [ -z "$TITLE" ]; then
+            exit 0
+          fi
+
+          DESC="${DESC:-내용이 없습니다.}"
+
+          # 본문은 최대 200자까지만 표시
+          CLEAN_DESC=$(jq -nr --arg desc "$DESC" '$desc[0:200]')
+
+          # Discord Embed에 표시할 추가 정보
+          FIELDS=$(jq -n \
+            --arg repo "$REPOSITORY" \
+            --arg event "$ACTION" \
+            --arg review "$REVIEW_LABEL" \
+            '[
+              {
+                name: "Repository",
+                value: $repo,
+                inline: true
+              },
+              {
+                name: "Event",
+                value: $event,
+                inline: true
+              }
+            ] + (
+              if $review != "" then
+                [{
+                  name: "Review Status",
+                  value: $review,
+                  inline: true
+                }]
+              else
+                []
+              end
+            )')
+
+          # Discord 메시지 생성
+          jq -n \
+            --arg title "$TITLE" \
+            --arg url "$URL" \
+            --arg desc "$CLEAN_DESC" \
+            --arg author "$AUTHOR" \
+            --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --argjson color "$COLOR" \
+            --argjson fields "$FIELDS" \
+            '{
+              embeds: [
+                {
+                  title: $title,
+                  url: $url,
+                  description: $desc,
+                  color: $color,
+                  author: {
+                    name: $author,
+                    icon_url: ("https://github.com/" + $author + ".png")
+                  },
+                  fields: $fields,
+                  footer: {
+                    text: "GitHub Actions Automation"
+                  },
+                  timestamp: $timestamp
+                }
+              ]
+            }' > payload.json
+
+          # Discord Webhook 전송
+          curl --fail-with-body \
+            -H "Content-Type: application/json" \
+            -X POST \
+            -d @payload.json \
+            "$DISCORD_WEBHOOK_URL"

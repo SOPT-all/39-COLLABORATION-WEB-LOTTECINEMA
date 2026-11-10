@@ -1,0 +1,113 @@
+name: Auto Label
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+  pull_request:
+    types: [opened, edited, reopened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  auto-label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add labels automatically
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // 0. 제목 변경 여부 확인
+            // Issue / PR 모두 제목이 변경된 경우에만 edited 이벤트 실행
+            if (
+              context.payload.action === 'edited' &&
+              !context.payload.changes?.title
+            ) {
+              console.log('제목 변경이 아니므로 라벨 자동화를 건너뜁니다.');
+              return;
+            }
+
+            const { owner, repo } = context.repo;
+
+            const issue =
+              context.payload.issue ??
+              context.payload.pull_request;
+
+            const issue_number = issue.number;
+
+            // 1. 업무 유형 라벨 매핑
+            const typeLabels = {
+              Init: '⚙️ Init',
+              Feat: '⭐ Feat',
+              Style: '🎨 Style',
+              Docs: '📚 Docs',
+              Refactor: '🔄 Refactor',
+              API: '🔗 API',
+              Fix: '🔧 Fix',
+              Deploy: '🚀 Deploy',
+              Chore: '🖌️ Chore',
+            };
+
+            // 2. 작성자 GitHub 계정과 라벨 매핑
+            const members = {
+              'chaewon41': '🐅 채원',
+              'zzos0014': '🐒 지민',
+              'a1rhun': '🦕 기훈',
+              'nueisx': '🦦 시은',
+            };
+
+            // 3. 자동화 대상 라벨 목록
+            const managedLabels = [
+              ...Object.values(typeLabels),
+              ...Object.values(members),
+            ];
+
+            // 4. 제목에서 업무 유형 추출
+            const title = issue.title;
+            const match = title.match(/^\[([A-Za-z]+)\]/);
+
+            const labelsToAdd = [];
+
+            if (match && typeLabels[match[1]]) {
+              labelsToAdd.push(typeLabels[match[1]]);
+            }
+
+            // 5. 작성자 기준 이름 라벨 결정 (Issue / PR 공통)
+            const author = issue.user.login;
+            const authorLabel = members[author];
+
+            if (authorLabel) {
+              labelsToAdd.push(authorLabel);
+            }
+
+            // 6. 기존 라벨 조회
+            const { data: currentLabels } =
+              await github.rest.issues.listLabelsOnIssue({
+                owner,
+                repo,
+                issue_number,
+              });
+
+            // 7. 기존 자동화 라벨 제거
+            for (const label of currentLabels) {
+              if (managedLabels.includes(label.name)) {
+                await github.rest.issues.removeLabel({
+                  owner,
+                  repo,
+                  issue_number,
+                  name: label.name,
+                });
+              }
+            }
+
+            // 8. 새로운 자동화 라벨 부착
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number,
+                labels: [...new Set(labelsToAdd)],
+              });
+            }
