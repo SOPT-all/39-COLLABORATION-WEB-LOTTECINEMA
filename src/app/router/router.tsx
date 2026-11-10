@@ -36,6 +36,17 @@ export const router = createBrowserRouter([
           return { Component: PaymentPage }
         },
       },
+      ...(import.meta.env.DEV
+        ? [
+            {
+              path: ROUTE_PATH.STYLEGUIDE,
+              lazy: async () => {
+                const { StyleguidePage } = await import('@pages/styleguide/styleguide-page')
+                return { Component: StyleguidePage }
+              },
+            },
+          ]
+        : []),
     ],
   },
 ])
