@@ -5,11 +5,20 @@ import { cn } from '@shared/utils/cn'
 interface BottomSheetProps {
   isOpen: boolean
   onClose: () => void
+  header?: ReactNode
   children: ReactNode
+  footer?: ReactNode
   className?: string
 }
 
-export const BottomSheet = ({ isOpen, onClose, children, className }: BottomSheetProps) => {
+export const BottomSheet = ({
+  isOpen,
+  onClose,
+  header,
+  children,
+  footer,
+  className,
+}: BottomSheetProps) => {
   if (!isOpen) {
     return null
   }
@@ -26,7 +35,9 @@ export const BottomSheet = ({ isOpen, onClose, children, className }: BottomShee
         role='dialog'
         aria-modal='true'
         className={cn('relative w-full overflow-hidden rounded-t-2xl bg-gray-000', className)}>
+        {header}
         {children}
+        {footer}
       </div>
     </div>
   )
