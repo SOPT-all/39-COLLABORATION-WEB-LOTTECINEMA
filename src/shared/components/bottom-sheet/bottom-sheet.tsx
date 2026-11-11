@@ -25,7 +25,7 @@ export const BottomSheet = ({ isOpen, onClose, children, className }: BottomShee
       <div
         role='dialog'
         aria-modal='true'
-        className={cn('relative w-full rounded-t-2xl bg-gray-000', className)}>
+        className={cn('relative w-full overflow-hidden rounded-t-2xl bg-gray-000', className)}>
         {children}
       </div>
     </div>
