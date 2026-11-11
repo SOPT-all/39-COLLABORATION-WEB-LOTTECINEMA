@@ -40,9 +40,12 @@ export const BottomSheet = ({
       <div
         role='dialog'
         aria-modal='true'
-        className={cn('relative w-full overflow-hidden rounded-t-2xl bg-gray-000', className)}>
+        className={cn(
+          'relative flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-2xl bg-gray-000',
+          className,
+        )}>
         {header}
-        {children}
+        <div className='min-h-0 flex-1 overflow-y-auto'>{children}</div>
         {footer}
       </div>
     </div>
