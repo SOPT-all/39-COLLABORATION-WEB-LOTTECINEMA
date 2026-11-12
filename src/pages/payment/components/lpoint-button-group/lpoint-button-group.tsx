@@ -6,7 +6,7 @@ interface LPointButtonGroupProps {
   className?: string
 }
 
-const buttonStyle = 'flex flex-1 items-center justify-center gap-1 px-2.5 py-2.75'
+const buttonStyle = 'flex flex-1 items-center justify-center gap-1 py-3'
 
 export const LPointButtonGroup = ({
   onLookupClick,
