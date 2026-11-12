@@ -2,16 +2,16 @@ import { Fragment } from 'react'
 
 import { cn } from '@shared/utils/cn'
 
-type PopularTabs = '전체' | '상영중' | '개봉예정'
-type OnlyLotteTabs = '롯시픽' | '롯시플'
+type PopularTab = '전체' | '상영중' | '개봉예정'
+type OnlyLotteTab = '롯시픽' | '롯시플'
 
-interface MovieFilterTabsProps<T extends PopularTabs | OnlyLotteTabs> {
+interface MovieFilterTabsProps<T extends PopularTab | OnlyLotteTab> {
   tabs: T[]
   selectedTab: T
   onTabChange: (tab: T) => void
 }
 
-const MovieFilterTabs = <T extends PopularTabs | OnlyLotteTabs>({
+const MovieFilterTabs = <T extends PopularTab | OnlyLotteTab>({
   tabs,
   selectedTab,
   onTabChange,
