@@ -28,7 +28,7 @@ export const SeatSelectionShowcase = () => {
           onClick={() => setIsSelected((prev) => !prev)}
           status={isSelected ? 'selected' : 'default'}
         />{' '}
-        <span className='typo-c1-r text-gray-700'>좌석 선택 테스트</span>
+        <span className='typo-c1-r text-gray-700'>클릭 시 선택 토글</span>
       </div>
     </ShowcaseSection>
   )
