@@ -6,7 +6,7 @@ import type { SeatStatus } from '../../types/seat'
 
 interface SeatButtonProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  'children' | 'type'
+  'children' | 'type' | 'disabled' | 'aria-pressed'
 > {
   label: string
   status: SeatStatus
@@ -23,12 +23,16 @@ const seatStatusStyle: Record<SeatStatus, string> = {
 }
 
 export const SeatButton = ({ label, status, className, ...buttonProps }: SeatButtonProps) => {
-  // completed, disabled 상태에서는 숨김
-  const isLabelHidden = status === 'completed' || status === 'disabled'
+  // completed, disabled 상태에서는 라벨 숨김 및 선택 불가
+  const isUnavailable = status === 'completed' || status === 'disabled'
+  const unavailableText = status === 'completed' ? '예매완료' : '선택불가'
 
   return (
     <button
       type='button'
+      aria-label={isUnavailable ? `${label} ${unavailableText}` : undefined}
+      aria-pressed={status === 'selected' ? true : false}
+      disabled={isUnavailable}
       className={cn(
         // gap: 피그마 2px(선 중심 기준) - 선 두께 절반 0.5px
         'flex h-[22px] w-[28px] flex-col items-center justify-center gap-[1.5px] rounded-t-lg rounded-br-xs typo-c1-r text-gray-000',
@@ -37,7 +41,7 @@ export const SeatButton = ({ label, status, className, ...buttonProps }: SeatBut
       )}
       {...buttonProps}>
       <span className={cn('h-px w-[9px] bg-gray-000', status === 'disabled' && 'invisible')} />
-      <span className={cn(isLabelHidden && 'invisible')}>{label}</span>
+      <span className={cn(isUnavailable && 'invisible')}>{label}</span>
     </button>
   )
 }
