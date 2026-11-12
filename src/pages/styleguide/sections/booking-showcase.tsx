@@ -1,4 +1,5 @@
 import { DateItem } from '@pages/booking/components/date-item/date-item'
+import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 
 import { ShowcaseSection } from './showcase-section'
@@ -36,6 +37,20 @@ export const BookingShowcase = () => (
           ))}
         </div>
       ))}
+    </div>
+
+    {/* MovieBanner: action 영역에 영화 변경 드롭다운이 들어갈 자리 */}
+    <div className='col-span-2 flex flex-col items-center gap-3'>
+      <div className='w-[375px]'>
+        <MovieBanner
+          action={
+            <span className='rounded-md border border-gray-000 px-3 py-2 typo-c2-m text-gray-000'>
+              영화 변경
+            </span>
+          }
+        />
+      </div>
+      <span className='text-center typo-c1-r text-gray-700'>MovieBanner</span>
     </div>
   </ShowcaseSection>
 )
