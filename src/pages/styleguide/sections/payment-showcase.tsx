@@ -1,4 +1,4 @@
-import { ResetButton } from '@shared/components/reset-button/reset-button'
+import { ResetButton } from '@pages/payment/components/reset-button/reset-button'
 
 import { ShowcaseSection } from './showcase-section'
 
