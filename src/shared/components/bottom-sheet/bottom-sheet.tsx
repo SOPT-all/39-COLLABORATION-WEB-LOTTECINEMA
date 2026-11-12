@@ -10,6 +10,7 @@ interface BottomSheetProps {
   footer?: ReactNode
   isBackdropClosable?: boolean
   className?: string
+  ariaLabel: string
 }
 
 export const BottomSheet = ({
@@ -20,6 +21,7 @@ export const BottomSheet = ({
   footer,
   isBackdropClosable = true,
   className,
+  ariaLabel,
 }: BottomSheetProps) => {
   if (!isOpen) {
     return null
@@ -40,13 +42,14 @@ export const BottomSheet = ({
       <div
         role='dialog'
         aria-modal='true'
+        aria-label={ariaLabel}
         className={cn(
           'relative flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-2xl bg-gray-000',
           className,
         )}>
         {header}
         <div className='min-h-0 flex-1 overflow-y-auto'>{children}</div>
-        {footer}
+        {footer && <div className='shrink-0 px-[22px] pt-4 pb-5'>{footer}</div>}
       </div>
     </div>
   )
