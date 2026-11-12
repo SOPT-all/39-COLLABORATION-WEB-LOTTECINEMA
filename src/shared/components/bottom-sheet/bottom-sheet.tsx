@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
 
 import { cn } from '@shared/utils/cn'
@@ -23,6 +24,23 @@ export const BottomSheet = ({
   className,
   ariaLabel,
 }: BottomSheetProps) => {
+  const dialogRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!isOpen) {
+      return
+    }
+
+    const previousFocusedElement =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null
+
+    dialogRef.current?.focus()
+
+    return () => {
+      previousFocusedElement?.focus()
+    }
+  }, [isOpen])
+
   if (!isOpen) {
     return null
   }
@@ -40,11 +58,13 @@ export const BottomSheet = ({
         <div aria-hidden='true' className='absolute inset-0 bg-gray-1000/60' />
       )}
       <div
+        ref={dialogRef}
         role='dialog'
         aria-modal='true'
         aria-label={ariaLabel}
+        tabIndex={-1}
         className={cn(
-          'relative flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-2xl bg-gray-000',
+          'relative flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-2xl bg-gray-000 outline-none',
           className,
         )}>
         {header}
