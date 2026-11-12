@@ -4,6 +4,8 @@ import { ShowcaseSection } from './showcase-section'
 
 export const PaymentShowcase = () => (
   <ShowcaseSection title='Payment'>
-    <PayButton />
+    <div className='col-span-2'>
+      <PayButton />
+    </div>
   </ShowcaseSection>
 )

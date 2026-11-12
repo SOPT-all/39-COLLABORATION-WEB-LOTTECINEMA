@@ -6,7 +6,7 @@ export const PayButton = (props: PayButtonProps) => {
   return (
     <button
       type='button'
-      className='flex h-16 w-[140px] items-center justify-center bg-primary typo-b2-m text-gray-000'
+      className='inline-flex h-16 items-center justify-center bg-primary px-[41.5px] typo-b2-m text-gray-000'
       {...props}>
       결제하기
     </button>
