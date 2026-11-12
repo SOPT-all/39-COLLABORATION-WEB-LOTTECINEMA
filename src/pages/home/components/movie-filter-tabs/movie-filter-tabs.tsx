@@ -21,13 +21,14 @@ const MovieFilterTabs = <T extends PopularTabs | OnlyLotteTabs>({
       {tabs.map((tab, index) => (
         <Fragment key={tab}>
           <button
+            type='button'
             className={cn('typo-c3-m', selectedTab === tab ? 'text-gray-1000' : 'text-gray-700')}
             onClick={() => onTabChange(tab)}>
             {tab}
           </button>
 
           {index < tabs.length - 1 && (
-            <div className='h-[7px] w-px shrink-0 rounded-[1px] bg-gray-600 opacity-100' />
+            <div className='h-[7px] w-px shrink-0 rounded-[1px] bg-gray-600' />
           )}
         </Fragment>
       ))}
