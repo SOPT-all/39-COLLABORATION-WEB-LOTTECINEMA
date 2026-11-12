@@ -34,8 +34,7 @@ export const SeatButton = ({ label, status, className, ...buttonProps }: SeatBut
       aria-pressed={status === 'selected' ? true : false}
       disabled={isUnavailable}
       className={cn(
-        // gap: 피그마 2px(선 중심 기준) - 선 두께 절반 0.5px
-        'flex h-[22px] w-[28px] flex-col items-center justify-center gap-[1.5px] rounded-t-lg rounded-br-xs typo-c1-r text-gray-000',
+        'flex h-[22px] w-[28px] flex-col items-center justify-center gap-[2px] rounded-t-lg rounded-br-xs typo-c1-r text-gray-000',
         seatStatusStyle[status],
         className,
       )}
