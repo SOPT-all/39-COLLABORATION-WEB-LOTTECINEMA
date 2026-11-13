@@ -2,6 +2,7 @@ import { ColorSection } from './foundations/color-section'
 import { TypographySection } from './foundations/typography-section'
 import { BookingShowcase } from './sections/booking-showcase'
 import { CommonShowcase } from './sections/common-showcase'
+import { HomeShowcase } from './sections/home-showcase'
 import { PaymentShowcase } from './sections/payment-showcase'
 import { SeatSelectionShowcase } from './sections/seat-selection-showcase'
 
@@ -24,6 +25,7 @@ export const StyleguidePage = () => (
           <h2 className='m-0 typo-t2-b'>Components</h2>
           <div className='mt-10 space-y-8'>
             <CommonShowcase />
+            <HomeShowcase />
             <BookingShowcase />
             <SeatSelectionShowcase />
             <PaymentShowcase />
