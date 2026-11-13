@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { DateItem } from '@pages/booking/components/date-item/date-item'
+import { RegionItem } from '@pages/booking/components/region-item/region-item'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { Showtime } from '@pages/booking/types/showtime'
@@ -27,8 +28,15 @@ const showtimes: Showtime[] = [
   },
 ]
 
+const exampleRegions = [
+  { name: 'MY 영화관', theaterCount: 1 },
+  { name: '서울', theaterCount: 21 },
+  { name: '경기/인천', theaterCount: 40 },
+]
+
 export const BookingShowcase = () => {
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
+  const [selectedRegion, setSelectedRegion] = useState(exampleRegions[0].name)
 
   return (
     <ShowcaseSection title='Booking'>
@@ -72,6 +80,22 @@ export const BookingShowcase = () => {
           ? '상영 시간을 눌러 showtimeId 전달을 확인해보세요.'
           : `선택된 showtimeId: ${selectedShowtimeId}`}
       </p>
+
+      {/* RegionItem: 지역을 누르면 선택 상태가 바뀜 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <div className='w-[145px]'>
+          {exampleRegions.map(({ name, theaterCount }) => (
+            <RegionItem
+              key={name}
+              name={name}
+              theaterCount={theaterCount}
+              isSelected={selectedRegion === name}
+              onClick={() => setSelectedRegion(name)}
+            />
+          ))}
+        </div>
+        <p className='m-0 typo-c2-m text-gray-600'>선택된 지역: {selectedRegion}</p>
+      </div>
     </ShowcaseSection>
   )
 }
