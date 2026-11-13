@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { DateItem } from '@pages/booking/components/date-item/date-item'
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
+import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { Showtime } from '@pages/booking/types/showtime'
 
@@ -28,8 +29,11 @@ const showtimes: Showtime[] = [
   },
 ]
 
+const exampleTheaters = ['가산디지털', '가양', '강동']
+
 export const BookingShowcase = () => {
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
+  const [clickedTheater, setClickedTheater] = useState<string | null>(null)
 
   return (
     <ShowcaseSection title='Booking'>
@@ -86,6 +90,20 @@ export const BookingShowcase = () => {
           />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieBanner</span>
+      </div>
+
+      {/* TheaterItem: 영화관을 누르면 부모에게 클릭이 전달됨 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <div className='w-[230px]'>
+          {exampleTheaters.map((name) => (
+            <TheaterItem key={name} name={name} onClick={() => setClickedTheater(name)} />
+          ))}
+        </div>
+        <p className='m-0 min-h-4 typo-c2-m text-gray-600' aria-live='polite'>
+          {clickedTheater === null
+            ? '영화관을 눌러 클릭 전달을 확인해보세요.'
+            : `누른 영화관: ${clickedTheater}`}
+        </p>
       </div>
     </ShowcaseSection>
   )
