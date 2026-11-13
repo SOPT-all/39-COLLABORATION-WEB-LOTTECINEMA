@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { DateItem } from '@pages/booking/components/date-item/date-item'
+import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { Showtime } from '@pages/booking/types/showtime'
@@ -72,6 +73,20 @@ export const BookingShowcase = () => {
           ? '상영 시간을 눌러 showtimeId 전달을 확인해보세요.'
           : `선택된 showtimeId: ${selectedShowtimeId}`}
       </p>
+
+      {/* MovieBanner: action 영역에 영화 변경 드롭다운이 들어갈 자리 */}
+      <div className='col-span-2 flex flex-col items-center gap-3'>
+        <div className='w-[375px]'>
+          <MovieBanner
+            action={
+              <span className='rounded-md border border-gray-000 px-3 py-2 typo-c2-m text-gray-000'>
+                영화 변경
+              </span>
+            }
+          />
+        </div>
+        <span className='text-center typo-c1-r text-gray-700'>MovieBanner</span>
+      </div>
     </ShowcaseSection>
   )
 }
