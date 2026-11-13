@@ -11,34 +11,39 @@ interface ButtonProps extends ComponentPropsWithRef<'button'> {
   size?: ButtonSize
 }
 
+const baseStyles = 'inline-flex items-center justify-center'
+
 const variantStyles = {
   primary: 'bg-gray-000 text-primary border border-primary',
   secondary: 'bg-gray-000 text-gray-600 border border-gray-600',
   dark: 'bg-gray-600 text-gray-000 border border-gray-600',
-  cta: 'bg-primary text-gray-000 w-[331px] h-[47px] rounded',
+  cta: 'bg-primary text-gray-000 w-full h-[47px] rounded typo-b2-m',
 }
 
 const sizeStyles = {
-  small: 'w-[74px] h-[36px] rounded-lg',
-  medium: 'w-[156px] h-[42px] rounded-lg',
+  small: 'h-9 min-w-[74px] px-2 rounded-lg typo-c3-m',
+  medium: 'h-[42px] min-w-[156px] px-3 rounded-lg typo-c3-m',
 }
 
-function Button({
+export const Button = ({
   children,
   variant,
   size = 'medium',
   className,
   type = 'button',
   ...rest
-}: ButtonProps) {
+}: ButtonProps) => {
   return (
     <button
       type={type}
       {...rest}
-      className={cn(variantStyles[variant], variant === 'cta' ? '' : sizeStyles[size], className)}>
+      className={cn(
+        baseStyles,
+        variantStyles[variant],
+        variant === 'cta' ? '' : sizeStyles[size],
+        className,
+      )}>
       {children}
     </button>
   )
 }
-
-export default Button
