@@ -35,7 +35,7 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
       {isOpen && (
         <ul
           id={listId}
-          className='absolute top-10 right-0 z-10 max-h-[99px] w-[165px] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)]'>
+          className='absolute top-10 right-0 z-10 max-h-[99px] w-[165px] [scrollbar-width:none] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'>
           {movies.map(({ movieId, title }) => (
             <li
               key={movieId}
