@@ -2,6 +2,7 @@ import { ColorSection } from './foundations/color-section'
 import { TypographySection } from './foundations/typography-section'
 import { BookingShowcase } from './sections/booking-showcase'
 import { CommonShowcase } from './sections/common-showcase'
+import { HomeShowcase } from './sections/home-showcase'
 import { PaymentShowcase } from './sections/payment-showcase'
 import { SeatSelectionShowcase } from './sections/seat-selection-showcase'
 
@@ -27,6 +28,7 @@ export const StyleguidePage = () => (
             <BookingShowcase />
             <SeatSelectionShowcase />
             <PaymentShowcase />
+            <HomeShowcase />
           </div>
         </section>
       </div>
