@@ -12,10 +12,12 @@ export const DateSelector = ({ dates, selectedDate, onDateSelect }: DateSelector
     role='group'
     aria-label='관람 날짜 선택'
     className='flex items-center justify-between px-5 pt-3 pb-2'>
-    {dates.map(({ date, ...dateItemProps }) => (
+    {dates.map(({ date, day, dayLabel, dayType }) => (
       <DateItem
         key={date}
-        {...dateItemProps}
+        day={day}
+        dayLabel={dayLabel}
+        dayType={dayType}
         selected={date === selectedDate}
         onClick={() => onDateSelect(date)}
       />
