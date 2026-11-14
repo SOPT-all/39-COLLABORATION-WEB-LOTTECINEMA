@@ -2,8 +2,11 @@ import { useState } from 'react'
 
 import { DateItem } from '@pages/booking/components/date-item/date-item'
 import { DateSelector } from '@pages/booking/components/date-selector/date-selector'
+import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
+import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
+import type { Showtime } from '@pages/booking/types/showtime'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -37,9 +40,24 @@ const createDateOptions = (): BookingDate[] =>
     }
   })
 
+const showtimes: Showtime[] = [
+  {
+    showtimeId: 5001,
+    startAt: '2026-11-09T13:25:00+09:00',
+    endAt: '2026-11-09T15:14:00+09:00',
+    screenName: '1관',
+    formatType: '2D',
+    languageType: 'DUBBED',
+    totalSeatCount: 91,
+    reservedSeatCount: 1,
+    availableSeatCount: 90,
+  },
+]
+
 export const BookingShowcase = () => {
   const [dates] = useState(createDateOptions)
   const [selectedDate, setSelectedDate] = useState(dates[0].date)
+  const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
 
   return (
     <ShowcaseSection title='Booking'>
@@ -75,6 +93,34 @@ export const BookingShowcase = () => {
             ))}
           </div>
         ))}
+      </div>
+
+      {showtimes.map((showtime) => (
+        <ShowtimeCard
+          key={showtime.showtimeId}
+          showtime={showtime}
+          onSelect={setSelectedShowtimeId}
+        />
+      ))}
+
+      <p className='col-span-2 m-0 min-h-4 typo-c2-m text-gray-600' aria-live='polite'>
+        {selectedShowtimeId === null
+          ? '상영 시간을 눌러 showtimeId 전달을 확인해보세요.'
+          : `선택된 showtimeId: ${selectedShowtimeId}`}
+      </p>
+
+      {/* MovieBanner: action 영역에 영화 변경 드롭다운이 들어갈 자리 */}
+      <div className='col-span-2 flex flex-col items-center gap-3'>
+        <div className='w-[375px]'>
+          <MovieBanner
+            action={
+              <span className='rounded-md border border-gray-000 px-3 py-2 typo-c2-m text-gray-000'>
+                영화 변경
+              </span>
+            }
+          />
+        </div>
+        <span className='text-center typo-c1-r text-gray-700'>MovieBanner</span>
       </div>
     </ShowcaseSection>
   )
