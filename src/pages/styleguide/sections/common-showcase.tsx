@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { BottomSheet } from '@shared/components/bottom-sheet/bottom-sheet'
+import { Button } from '@shared/components/button/button'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -10,6 +11,15 @@ export const CommonShowcase = () => {
 
   return (
     <ShowcaseSection title='Common'>
+      {/* Button 컴포넌트 */}
+      <Button variant='primary'>Primary</Button>
+      <Button variant='secondary'>Secondary</Button>
+      <Button variant='dark'>Dark</Button>
+      <Button variant='primary' size='small'>
+        Small
+      </Button>
+      <Button variant='cta'>CTA</Button>
+
       {/* BottomSheet: 배경 터치로 닫히는 경우와 닫히지 않는 경우 */}
       <div className='flex flex-col items-center gap-3'>
         <button type='button' onClick={() => setIsBackdropClosableOpen(true)}>
