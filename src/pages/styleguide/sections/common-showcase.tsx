@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { BottomSheet } from '@shared/components/bottom-sheet/bottom-sheet'
+import { Header } from '@shared/components/header/header'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -10,6 +11,14 @@ export const CommonShowcase = () => {
 
   return (
     <ShowcaseSection title='Common'>
+      {/* Header: main / sub variant */}
+      <div className='col-span-2 flex flex-col gap-3 bg-gray-100 p-3'>
+        {/* 스타일가이드에서는 sticky를 해제해 예시끼리 겹치지 않게 한다 */}
+        <Header variant='main' className='static' />
+        <Header variant='sub' title='인원 / 좌석선택' className='static' />
+        <span className='typo-c1-r text-gray-700'>Header (main / sub)</span>
+      </div>
+
       {/* BottomSheet: 배경 터치로 닫히는 경우와 닫히지 않는 경우 */}
       <div className='flex flex-col items-center gap-3'>
         <button type='button' onClick={() => setIsBackdropClosableOpen(true)}>
