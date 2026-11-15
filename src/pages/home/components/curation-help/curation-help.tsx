@@ -60,7 +60,7 @@ export const CurationHelp = () => {
       {isOpen && (
         <div
           id={tooltipId}
-          className='absolute top-full right-0 z-30 mt-2 flex w-max max-w-[min(262px,calc(100vw-32px))] flex-col gap-2.5 rounded-xl bg-gray-000 p-3'>
+          className='absolute top-full right-0 z-30 mt-2 flex w-max max-w-[min(262px,calc(100vw-32px))] flex-col gap-2.5 rounded-lg bg-gray-000 p-3 shadow-[0_0_8px_0_rgba(0,0,0,0.12)]'>
           {CURATION_ITEMS.map(({ id, Icon, sentences }) => (
             <section key={id} className='flex flex-col items-start gap-1'>
               <span className='flex h-5 w-9 items-center justify-center rounded-[4px] border-[0.5px] border-gray-100'>
