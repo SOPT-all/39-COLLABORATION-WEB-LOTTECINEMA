@@ -1,7 +1,6 @@
 export interface Cinema {
   cinemaId: number
   cinemaName: string
-  hasShowtimes: boolean
 }
 
 export interface BookingRegion {

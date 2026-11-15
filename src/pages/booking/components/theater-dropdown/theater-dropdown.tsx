@@ -15,7 +15,7 @@ interface TheaterDropdownProps {
 
 const CLOSED_STATE: DropdownState = { step: 'closed' }
 const PANEL_CLASS =
-  'pointer-events-auto w-[166px] [scrollbar-width:none] overflow-x-hidden overflow-y-auto rounded-[10px] bg-gray-000 shadow-[0_0_2px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'
+  'pointer-events-auto w-[166px] [scrollbar-width:none] overflow-x-hidden overflow-y-auto rounded-[10px] bg-gray-000 shadow-[0_0_4px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'
 
 interface DropdownItemProps {
   children: string
@@ -81,10 +81,7 @@ export const TheaterDropdown = ({ regions, className }: TheaterDropdownProps) =>
         영화관 변경
         <ArrowDownIcon
           aria-hidden='true'
-          className={cn(
-            'size-4 transition-transform duration-300 ease-linear',
-            isOpen && 'rotate-180',
-          )}
+          className={cn('size-4 transition-transform duration-300 ease-in', isOpen && 'rotate-180')}
         />
       </button>
 
