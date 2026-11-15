@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { DateItem } from '@pages/booking/components/date-item/date-item'
 import { DateSelector } from '@pages/booking/components/date-selector/date-selector'
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
+import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
@@ -15,6 +16,16 @@ const dateItemGroups = [
   { label: '토요일', day: 28, dayLabel: '토', dayType: 'saturday' },
   { label: '일요일', day: 1, dayLabel: '일', dayType: 'sunday' },
 ] as const
+
+const exampleMovies = [
+  { movieId: 1, title: '최종면접' },
+  { movieId: 2, title: '하트 오브 비스트' },
+  { movieId: 3, title: '낮과 밤은 서로에게' },
+  { movieId: 4, title: '스크롤 확인용 1' },
+  { movieId: 5, title: '스크롤 확인용 2' },
+  { movieId: 6, title: '스크롤 확인용 3' },
+  { movieId: 7, title: '아주아주아주아주 긴~ 영화 제목이 들어왔을 때 말줄임 테스트..' },
+]
 
 const formatDate = (date: Date) => {
   const year = date.getFullYear()
@@ -121,6 +132,14 @@ export const BookingShowcase = () => {
           />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieBanner</span>
+      </div>
+
+      {/* MovieDropdown: 영화가 4개 이상이면 목록 스크롤 */}
+      <div className='col-span-2 flex flex-col items-center gap-3'>
+        <div className='flex h-[188px] w-[375px] items-start justify-end bg-gray-700 pt-4 pr-5'>
+          <MovieDropdown movies={exampleMovies} />
+        </div>
+        <span className='text-center typo-c1-r text-gray-700'>MovieDropdown</span>
       </div>
     </ShowcaseSection>
   )
