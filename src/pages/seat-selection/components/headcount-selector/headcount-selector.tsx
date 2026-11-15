@@ -1,7 +1,7 @@
-import { CountStepper } from '@pages/seat-selection/components/count-stepper/count-stepper'
-import type { Headcount, HeadcountType } from '@pages/seat-selection/types/headcount'
-
 import { cn } from '@shared/utils/cn'
+
+import type { Headcount, HeadcountType } from '../../types/headcount'
+import { CountStepper } from '../count-stepper/count-stepper'
 
 const HEADCOUNT_OPTIONS: { type: HeadcountType; label: string }[] = [
   { type: 'adult', label: '성인' },
