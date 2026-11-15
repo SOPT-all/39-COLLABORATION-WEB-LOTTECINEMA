@@ -4,6 +4,7 @@ import { BookingSummaryCard } from '@pages/payment/components/booking-summary-ca
 import { LPointButtonGroup } from '@pages/payment/components/lpoint-button-group/lpoint-button-group'
 import { PayButton } from '@pages/payment/components/pay-button/pay-button'
 import { PaymentMethodGroup } from '@pages/payment/components/payment-method-group/payment-method-group'
+import { PriceSummaryCard } from '@pages/payment/components/price-summary-card/price-summary-card'
 import { ResetButton } from '@pages/payment/components/reset-button/reset-button'
 import type { PaymentMethod } from '@pages/payment/types/payment-method'
 
@@ -14,8 +15,9 @@ export const PaymentShowcase = () => {
 
   return (
     <ShowcaseSection title='Payment'>
-      {/* 결제 버튼 */}
-      <div className='col-span-2'>
+      {/* 가격 요약 카드와 결제 버튼 */}
+      <div className='col-span-2 flex items-center gap-2'>
+        <PriceSummaryCard ticketAmount={30000} discountAmount={0} finalAmount={30000} />
         <PayButton />
       </div>
       {/* ResetButton의 기본 상태와 비활성 상태 */}
