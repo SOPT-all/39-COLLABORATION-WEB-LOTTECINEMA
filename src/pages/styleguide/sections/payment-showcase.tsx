@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 import { DiscountButton } from '@pages/payment/components/discount-button/discount-button'
 import { LPointButtonGroup } from '@pages/payment/components/lpoint-button-group/lpoint-button-group'
+import { PayButton } from '@pages/payment/components/pay-button/pay-button'
 import { PaymentMethodGroup } from '@pages/payment/components/payment-method-group/payment-method-group'
+import { PriceSummaryCard } from '@pages/payment/components/price-summary-card/price-summary-card'
 import { ResetButton } from '@pages/payment/components/reset-button/reset-button'
 import type { PaymentMethod } from '@pages/payment/types/payment-method'
 
@@ -21,10 +23,16 @@ export const PaymentShowcase = () => {
 
   return (
     <ShowcaseSection title='Payment'>
+      {/* 가격 요약 카드와 결제 버튼 */}
+      <div className='col-span-2 flex items-center gap-2'>
+        <PriceSummaryCard ticketAmount={30000} discountAmount={0} finalAmount={30000} />
+        <PayButton />
+      </div>
+
       {/* ResetButton의 기본 상태와 비활성 상태 */}
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>초기화 버튼</h4>
-        <div role='group' aria-label='초기화 버튼 예시' className='col-span-2 flex gap-6'>
+        <div role='group' aria-label='초기화 버튼 예시' className='flex gap-6'>
           {[false, true].map((disabled) => (
             <div key={String(disabled)} className='flex flex-col items-center gap-3'>
               <ResetButton disabled={disabled} />
