@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { CountStepper } from '@pages/seat-selection/components/count-stepper/count-stepper'
 import { MiniSeat } from '@pages/seat-selection/components/mini-seat/mini-seat'
 import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-button'
 import type { SeatStatus } from '@pages/seat-selection/types/seat'
@@ -10,6 +11,8 @@ const SEAT_STATUSES: SeatStatus[] = ['default', 'completed', 'selected', 'disabl
 
 export const SeatSelectionShowcase = () => {
   const [isSelected, setIsSelected] = useState(false)
+  const [adultCount, setAdultCount] = useState(0)
+  const [teenCount, setTeenCount] = useState(0)
 
   return (
     <ShowcaseSection title='Seat Selection'>
@@ -61,6 +64,21 @@ export const SeatSelectionShowcase = () => {
             onClick={() => setIsSelected((prev) => !prev)}
             status={isSelected ? 'selected' : 'default'}
           />
+        </div>
+      </div>
+
+      {/* count-stepper */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>CountStepper</h4>
+        <CountStepper label='성인' count={adultCount} onChange={setAdultCount} max={8} />
+      </div>
+
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>
+          count-stepper 부모 컴포넌트 고정(width:330px)
+        </h4>
+        <div className='w-[330px]'>
+          <CountStepper label='청소년' count={teenCount} onChange={setTeenCount} max={8} />
         </div>
       </div>
     </ShowcaseSection>
