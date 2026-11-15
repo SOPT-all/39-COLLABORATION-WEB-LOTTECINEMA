@@ -14,6 +14,9 @@
   --color-gray-900: #333333;
   --color-gray-1000: #000000;
 
+  /* Text */
+  --color-text-link: #2aa3fe;
+
   /* Brand */
   --color-primary: #ff243e;
   --color-secondary: #fff0f0;
