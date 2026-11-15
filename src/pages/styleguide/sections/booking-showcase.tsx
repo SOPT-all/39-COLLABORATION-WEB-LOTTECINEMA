@@ -5,9 +5,11 @@ import { DateSelector } from '@pages/booking/components/date-selector/date-selec
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
+import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
 import type { Showtime } from '@pages/booking/types/showtime'
+import type { BookingRegion } from '@pages/booking/types/theater'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -65,6 +67,31 @@ const showtimes: Showtime[] = [
   },
 ]
 
+const theaterDropdownRegions: BookingRegion[] = [
+  {
+    regionId: 1,
+    regionName: '서울',
+    cinemas: [
+      { cinemaId: 1, cinemaName: '가산디지털' },
+      { cinemaId: 2, cinemaName: '가양' },
+      { cinemaId: 3, cinemaName: '강동' },
+      { cinemaId: 4, cinemaName: '건대입구' },
+      { cinemaId: 5, cinemaName: '김포공항' },
+      { cinemaId: 6, cinemaName: '노원' },
+      { cinemaId: 7, cinemaName: '도곡' },
+      { cinemaId: 8, cinemaName: '독산' },
+      { cinemaId: 9, cinemaName: '서울대입구' },
+    ],
+  },
+  { regionId: 2, regionName: '경기/인천', cinemas: [] },
+  { regionId: 3, regionName: '충청/대전', cinemas: [] },
+  { regionId: 4, regionName: '전라/광주', cinemas: [] },
+  { regionId: 5, regionName: '경북/대구', cinemas: [] },
+  { regionId: 6, regionName: '경남/부산/울산', cinemas: [] },
+  { regionId: 7, regionName: '강원', cinemas: [] },
+  { regionId: 8, regionName: '제주', cinemas: [] },
+]
+
 export const BookingShowcase = () => {
   const [dates] = useState(createDateOptions)
   const [selectedDate, setSelectedDate] = useState(dates[0].date)
@@ -72,6 +99,14 @@ export const BookingShowcase = () => {
 
   return (
     <ShowcaseSection title='Booking'>
+      {/* TheaterDropdown */}
+      <div className='col-span-2 min-h-[360px]'>
+        <TheaterDropdown regions={theaterDropdownRegions} />
+        <p className='mt-3 typo-c2-m text-gray-700'>
+          지역과 영화관 목록을 둘러보는 UI 예시입니다. 영화관 선택은 조회 조건을 변경하지 않습니다.
+        </p>
+      </div>
+
       {/* TheaterTypeTabs */}
       <div className='col-span-2'>
         <TheaterTypeTabs />
