@@ -2,14 +2,14 @@ import type { ComponentPropsWithRef, ReactNode } from 'react'
 
 import { cn } from '@shared/utils/cn'
 
-type ButtonVariant = 'primary' | 'secondary' | 'dark' | 'cta'
 type ButtonSize = 'small' | 'medium'
 
-interface ButtonProps extends ComponentPropsWithRef<'button'> {
+type ButtonProps = ComponentPropsWithRef<'button'> & {
   children: ReactNode
-  variant: ButtonVariant
-  size?: ButtonSize
-}
+} & (
+    | { variant: 'cta'; size?: never }
+    | { variant: 'primary' | 'secondary' | 'dark'; size?: ButtonSize }
+  )
 
 const baseStyles = 'inline-flex items-center justify-center'
 
@@ -28,7 +28,7 @@ const sizeStyles = {
 export const Button = ({
   children,
   variant,
-  size = 'medium',
+  size,
   className,
   type = 'button',
   ...rest
@@ -40,7 +40,7 @@ export const Button = ({
       className={cn(
         baseStyles,
         variantStyles[variant],
-        variant === 'cta' ? '' : sizeStyles[size],
+        variant !== 'cta' && sizeStyles[size ?? 'medium'],
         className,
       )}>
       {children}
