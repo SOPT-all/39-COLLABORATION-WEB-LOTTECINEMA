@@ -6,7 +6,7 @@ import moviePoster3 from '@pages/home/assets/movie-poster-3.svg'
 import moviePoster4 from '@pages/home/assets/movie-poster-4.svg'
 import moviePoster5 from '@pages/home/assets/movie-poster-5.svg'
 import moviePoster6 from '@pages/home/assets/movie-poster-6.svg'
-import MovieFilterTabs from '@pages/home/components/movie-filter-tabs/movie-filter-tabs'
+import { MovieFilterTabs } from '@pages/home/components/movie-filter-tabs/movie-filter-tabs'
 import { PopularMovieCard } from '@pages/home/components/popular-movie-card/popular-movie-card'
 
 import { ShowcaseSection } from './showcase-section'
