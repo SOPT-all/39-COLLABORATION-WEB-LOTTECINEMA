@@ -39,7 +39,7 @@ const MainHeaderContent = () => {
         </Link>
       </div>
 
-      <div className='flex items-center gap-0.5 pt-[10.5px] pb-[5.5px]'>
+      <div className='flex items-center gap-0.5 py-2'>
         <button type='button' aria-label='티켓' className={MAIN_ICON_BUTTON_STYLE}>
           <TicketIcon className='size-6' aria-hidden />
         </button>
@@ -64,7 +64,7 @@ const SubHeaderContent = ({ title }: { title: string }) => {
         className={cn('justify-self-start', SUB_ICON_BUTTON_STYLE)}>
         <BackIcon className='size-6' aria-hidden />
       </button>
-      <h1 className='m-0 truncate typo-t1-r'>{title}</h1>
+      <h1 className='truncate typo-t1-r'>{title}</h1>
       <Link
         to={ROUTE_PATH.HOME}
         aria-label='홈으로 이동'
