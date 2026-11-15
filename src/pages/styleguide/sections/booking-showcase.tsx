@@ -24,6 +24,7 @@ const exampleMovies = [
   { movieId: 4, title: '스크롤 확인용 1' },
   { movieId: 5, title: '스크롤 확인용 2' },
   { movieId: 6, title: '스크롤 확인용 3' },
+  { movieId: 7, title: '아주아주아주아주 긴~ 영화 제목이 들어왔을 때 말줄임 테스트..' },
 ]
 
 const formatDate = (date: Date) => {

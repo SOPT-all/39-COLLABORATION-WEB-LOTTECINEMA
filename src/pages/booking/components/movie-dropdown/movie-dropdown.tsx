@@ -1,12 +1,9 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
+
+import type { Movie } from '@pages/booking/types/movie'
 
 import { ArrowDownIcon } from '@shared/icons'
 import { cn } from '@shared/utils/cn'
-
-interface Movie {
-  movieId: number
-  title: string
-}
 
 interface MovieDropdownProps {
   movies: Movie[]
@@ -17,8 +14,23 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const listId = useId()
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handlePointerDown = (e: PointerEvent) => {
+      if (!wrapperRef.current?.contains(e.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    return () => document.removeEventListener('pointerdown', handlePointerDown)
+  }, [isOpen])
+
   return (
-    <div className={cn('relative', className)}>
+    <div ref={wrapperRef} className={cn('relative', className)}>
       <button
         type='button'
         aria-expanded={isOpen}
@@ -40,7 +52,7 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
             <li
               key={movieId}
               className='flex h-[33px] items-center px-[15px] typo-b1-r text-gray-000'>
-              {title}
+              <span className='truncate'>{title}</span>
             </li>
           ))}
         </ul>
