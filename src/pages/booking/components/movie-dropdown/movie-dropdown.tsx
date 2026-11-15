@@ -30,13 +30,13 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
   }, [isOpen])
 
   return (
-    <div ref={wrapperRef} className={cn('relative', className)}>
+    <div ref={wrapperRef} className={cn('relative inline-flex', className)}>
       <button
         type='button'
         aria-expanded={isOpen}
         aria-controls={listId}
         onClick={() => setIsOpen((prev) => !prev)}
-        className='flex h-9 w-[99px] items-center justify-center gap-1.5 rounded-[8px] border-[1.5px] border-gray-600 bg-gray-1000/60 px-3 py-2 typo-c3-m text-gray-000'>
+        className='inline-flex h-9 items-center justify-center gap-1.5 rounded-[8px] border-[1.5px] border-gray-600 bg-gray-1000/60 px-3 py-2 typo-c3-m text-gray-000'>
         영화 변경
         <ArrowDownIcon
           aria-hidden='true'
@@ -47,7 +47,7 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
       {isOpen && (
         <ul
           id={listId}
-          className='absolute top-10 right-0 z-10 max-h-[99px] w-[165px] [scrollbar-width:none] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'>
+          className='absolute top-full right-0 z-10 mt-1 max-h-[99px] w-[165px] [scrollbar-width:none] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'>
           {movies.map(({ movieId, title }) => (
             <li
               key={movieId}

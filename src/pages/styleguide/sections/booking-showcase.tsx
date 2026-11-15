@@ -136,7 +136,7 @@ export const BookingShowcase = () => {
 
       {/* MovieDropdown: 영화가 4개 이상이면 목록 스크롤 */}
       <div className='col-span-2 flex flex-col items-center gap-3'>
-        <div className='flex h-[188px] w-[375px] justify-end bg-gray-700 pt-4 pr-5'>
+        <div className='flex h-[188px] w-[375px] items-start justify-end bg-gray-700 pt-4 pr-5'>
           <MovieDropdown movies={exampleMovies} />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieDropdown</span>
