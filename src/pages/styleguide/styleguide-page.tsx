@@ -25,6 +25,7 @@ export const StyleguidePage = () => (
           <h2 className='m-0 typo-t2-b'>Components</h2>
           <div className='mt-10 space-y-8'>
             <CommonShowcase />
+            <HomeShowcase />
             <BookingShowcase />
             <SeatSelectionShowcase />
             <PaymentShowcase />
