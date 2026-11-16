@@ -39,7 +39,7 @@ export const TheaterSelector = ({
       <div
         role='group'
         aria-label='영화관 선택'
-        className='flex-1 overflow-y-auto border-t border-gray-200 bg-gray-100'>
+        className='flex-1 [scrollbar-width:none] overflow-y-auto border-t border-gray-200 bg-gray-100 [&::-webkit-scrollbar]:hidden'>
         {selectedRegion?.cinemas.map(({ cinemaId, cinemaName }) => (
           <TheaterItem key={cinemaId} name={cinemaName} onClick={() => onTheaterSelect(cinemaId)} />
         ))}
