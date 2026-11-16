@@ -33,7 +33,7 @@ const ExclusiveMovieCard = ({ posterUrl, title, ageRating, category }: Exclusive
         {category === '롯시픽' ? <BadgeLottePickIcon /> : <BadgeLottePlIcon />}
       </div>
 
-      <div className='absolute right-[6px] bottom-[8px] left-[6px] flex items-center gap-[4px]'>
+      <div className='absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 px-1.5 py-2'>
         <span className='shrink-0'>{AGE_RATING_ICONS[ageRating]}</span>
         <span className='min-w-0 truncate typo-b1-r text-gray-000'>{title}</span>
       </div>
