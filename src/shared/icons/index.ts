@@ -25,8 +25,8 @@ export { default as MyIcon } from './assets/ic-my.svg?react'
 export { default as MyPageIcon } from './assets/ic-mypage.svg?react'
 
 // action
-export { default as MinusBrandIcon } from './assets/ic-minus_brand.svg?react'
-export { default as PlusBrandIcon } from './assets/ic-plus_brand.svg?react'
+export { default as MinusBrandIcon } from './assets/ic_minus_brand.svg?react'
+export { default as PlusBrandIcon } from './assets/ic_plus_brand.svg?react'
 export { default as PlusGrayIcon } from './assets/icon-plus-gray.svg?react'
 export { default as ResetIcon } from './assets/ic-reset.svg?react'
 
@@ -62,9 +62,9 @@ export { default as LotteCinemaLogo } from './assets/logo-lottecinema.svg?react'
 export { default as TossLogo } from './assets/logo-txt-toss2.svg?react'
 
 // common
-export { default as EventIcon } from './assets/ic_event.svg?react'
-export { default as QuestionIcon } from './assets/ic_question.svg?react'
-export { default as ShowtimeIcon } from './assets/ic_showtime.svg?react'
+export { default as EventIcon } from './assets/ic-event.svg?react'
+export { default as QuestionIcon } from './assets/ic-question.svg?react'
+export { default as ShowtimeIcon } from './assets/ic-showtime.svg?react'
 
 // tooltip
 export { default as TooltipIcon } from './assets/tooltip.svg?react'
