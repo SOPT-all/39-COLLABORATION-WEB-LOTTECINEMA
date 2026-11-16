@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
 
 import { Button } from '@shared/components/button/button'
-import { cn } from '@shared/utils/cn'
+
+import pagination1 from '../../assets/pagination-1.svg'
+import pagination2 from '../../assets/pagination-2.svg'
+import pagination3 from '../../assets/pagination-3.svg'
+import pagination4 from '../../assets/pagination-4.svg'
+import pagination5 from '../../assets/pagination-5.svg'
 
 export interface HeroSlide {
   id: number
@@ -23,6 +28,8 @@ const AGE_RATING_LABELS = {
   '15': '15세이상',
   '19': '19세이상',
 }
+
+const PAGINATION_IMAGES = [pagination1, pagination2, pagination3, pagination4, pagination5]
 
 export const HeroCarousel = ({ slides }: HeroCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -87,17 +94,15 @@ export const HeroCarousel = ({ slides }: HeroCarouselProps) => {
       <div
         role='group'
         aria-label={`전체 ${slides.length}개 배너 중 ${currentIndex + 1}번째 배너`}
-        className='absolute inset-x-0 bottom-3 flex items-center justify-center gap-1'>
-        {slides.map((item, index) => (
-          <span
-            key={item.id}
+        className='absolute inset-x-0 bottom-3 flex items-center justify-center'>
+        {PAGINATION_IMAGES[currentIndex] && (
+          <img
+            src={PAGINATION_IMAGES[currentIndex]}
+            alt=''
             aria-hidden='true'
-            className={cn(
-              'h-[5px] rounded-full',
-              currentIndex === index ? 'w-4 bg-primary' : 'w-[5px] bg-gray-200',
-            )}
+            className='h-[5px] w-[52px]'
           />
-        ))}
+        )}
       </div>
     </article>
   )
