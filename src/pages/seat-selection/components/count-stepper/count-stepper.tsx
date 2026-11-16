@@ -1,4 +1,4 @@
-import { MinusIcon, PlusIcon } from '@shared/icons'
+import { MinusBrandIcon, PlusBrandIcon } from '@shared/icons'
 import { cn } from '@shared/utils/cn'
 
 interface CountStepperProps {
@@ -34,7 +34,7 @@ export const CountStepper = ({
           className={buttonStyle}
           disabled={isMin}
           aria-label={`${label} 인원 줄이기`}>
-          <MinusIcon aria-hidden className='h-px w-[9px]' />
+          <MinusBrandIcon aria-hidden className='size-3' />
         </button>
         <span className='self-start typo-b2-m text-gray-1000' aria-live='polite'>
           {count}
@@ -46,7 +46,7 @@ export const CountStepper = ({
           className={buttonStyle}
           disabled={isMax}
           aria-label={`${label} 인원 늘리기`}>
-          <PlusIcon aria-hidden className='size-[9px]' />
+          <PlusBrandIcon aria-hidden className='size-3' />
         </button>
       </div>
     </div>

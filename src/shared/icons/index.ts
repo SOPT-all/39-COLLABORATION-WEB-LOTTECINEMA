@@ -25,8 +25,8 @@ export { default as MyIcon } from './assets/ic_my.svg?react'
 export { default as MyPageIcon } from './assets/ic_MyPage.svg?react'
 
 // action
-export { default as MinusIcon } from './assets/ic_minus.svg?react'
-export { default as PlusIcon } from './assets/ic_plus.svg?react'
+export { default as MinusBrandIcon } from './assets/ic_minus_brand.svg?react'
+export { default as PlusBrandIcon } from './assets/ic_plus_brand.svg?react'
 export { default as PlusGrayIcon } from './assets/icon_plus_gray.svg?react'
 export { default as ResetIcon } from './assets/ic_reset.svg?react'
 
