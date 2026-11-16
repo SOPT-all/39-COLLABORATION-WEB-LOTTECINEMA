@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { DiscountButton } from '@pages/payment/components/discount-button/discount-button'
+import { BookingSummaryCard } from '@pages/payment/components/booking-summary-card/booking-summary-card'
 import { LPointButtonGroup } from '@pages/payment/components/lpoint-button-group/lpoint-button-group'
 import { PayButton } from '@pages/payment/components/pay-button/pay-button'
 import { PaymentMethodGroup } from '@pages/payment/components/payment-method-group/payment-method-group'
@@ -28,7 +29,6 @@ export const PaymentShowcase = () => {
         <PriceSummaryCard ticketAmount={30000} discountAmount={0} finalAmount={30000} />
         <PayButton />
       </div>
-
       {/* ResetButton의 기본 상태와 비활성 상태 */}
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>초기화 버튼</h4>
@@ -43,13 +43,11 @@ export const PaymentShowcase = () => {
           ))}
         </div>
       </div>
-
       {/* 결제 수단 버튼 그룹 */}
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>결제 수단 버튼</h4>
         <PaymentMethodGroup value={paymentMethod} onChange={setPaymentMethod} />
       </div>
-
       {/* L.point 버튼 그룹 */}
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>LPoint 버튼</h4>
@@ -69,7 +67,12 @@ export const PaymentShowcase = () => {
               onClick={() => setSelectedDiscount((prev) => (prev === label ? null : label))}
             />
           ))}
-        </div>
+        </div> 
+      </div>
+      
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>LPoint 버튼</h4>
+        <BookingSummaryCard />
       </div>
     </ShowcaseSection>
   )
