@@ -14,7 +14,7 @@ const MOVIES = [
     id: 2,
     posterUrl: '/poster-2.jpg',
     title: '그대, 별처럼',
-    ageRating: '15',
+    ageRating: '15세',
     category: '롯시픽',
   },
   {
@@ -28,7 +28,7 @@ const MOVIES = [
     id: 4,
     posterUrl: '/poster-4.jpg',
     title: '변이',
-    ageRating: '19',
+    ageRating: '청불',
     category: '롯시픽',
   },
   {
@@ -52,8 +52,7 @@ export const HomeShowcase = () => {
     <ShowcaseSection title='Home'>
       <div className='col-span-2'>
         <p className='mb-3 typo-b2-b'>ExclusiveMovieCard</p>
-
-        <div className='flex flex-wrap gap-4'>
+        <div className='flex [scrollbar-width:none] gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
           {MOVIES.map((movie) => (
             <ExclusiveMovieCard key={movie.id} {...movie} />
           ))}
