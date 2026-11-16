@@ -98,7 +98,7 @@ export const BookingShowcase = () => {
 
       {/* RegionItem: 지역을 누르면 선택 상태가 바뀜 */}
       <div className='col-span-2 flex flex-col gap-3'>
-        <div className='w-[145px]'>
+        <div className='w-[145px] border-t border-gray-200'>
           {exampleRegions.map(({ name, theaterCount }) => (
             <RegionItem
               key={name}

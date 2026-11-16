@@ -18,10 +18,10 @@ export const RegionItem = ({
   return (
     <button
       type='button'
-      aria-pressed={isSelected}
+      aria-current={isSelected ? 'true' : undefined}
       onClick={onClick}
       className={cn(
-        'flex h-12 w-full items-center gap-1 border-y border-gray-200 px-[18px] py-4 text-left active:bg-gray-300',
+        'flex h-12 w-full items-center gap-1 border-b border-gray-200 px-[18px] text-left active:bg-gray-300',
         isSelected ? 'bg-gray-100' : 'bg-gray-000',
         className,
       )}>
