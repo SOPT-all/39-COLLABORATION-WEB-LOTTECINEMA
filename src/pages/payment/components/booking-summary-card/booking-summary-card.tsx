@@ -12,7 +12,6 @@ export const BookingSummaryCard = ({ className }: BookingSummaryCardProps) => {
     <section
       aria-label='예매 정보'
       className={cn('flex items-start bg-gray-000 px-4.5 py-4', className)}>
-
       <div className='relative h-[82px] w-[76px] shrink-0'>
         <img src={chiikawaPoster} alt='' className='h-full w-[57px] rounded-sm object-cover' />
         <BadgeAgeAllIcon
