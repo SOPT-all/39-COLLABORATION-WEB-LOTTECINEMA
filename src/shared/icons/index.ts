@@ -65,3 +65,6 @@ export { default as TossLogo } from './assets/logo_txt_toss2.svg?react'
 export { default as EventIcon } from './assets/ic_event.svg?react'
 export { default as QuestionIcon } from './assets/ic_question.svg?react'
 export { default as ShowtimeIcon } from './assets/ic_showtime.svg?react'
+
+// tooltip
+export { default as TooltipIcon } from './assets/tooltip.svg?react'
