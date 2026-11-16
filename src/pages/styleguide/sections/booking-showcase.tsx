@@ -94,7 +94,7 @@ export const BookingShowcase = () => {
 
       {/* TheaterItem: 영화관을 누르면 부모에게 클릭이 전달됨 */}
       <div className='col-span-2 flex flex-col gap-3'>
-        <div className='w-[230px]'>
+        <div className='w-[230px] border-t border-gray-200'>
           {exampleTheaters.map((name) => (
             <TheaterItem key={name} name={name} onClick={() => setClickedTheater(name)} />
           ))}
