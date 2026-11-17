@@ -1,26 +1,26 @@
 import { useState } from 'react'
 
 import { BookingSummaryCard } from '@pages/payment/components/booking-summary-card/booking-summary-card'
-import { DiscountButton } from '@pages/payment/components/discount-button/discount-button'
-import { LPointButtonGroup } from '@pages/payment/components/lpoint-button-group/lpoint-button-group'
+import { DiscountPointSection } from '@pages/payment/components/discount-point-section/discount-point-section'
 import { PayButton } from '@pages/payment/components/pay-button/pay-button'
 import { PaymentMethodGroup } from '@pages/payment/components/payment-method-group/payment-method-group'
 import { PriceSummaryCard } from '@pages/payment/components/price-summary-card/price-summary-card'
 import { ResetButton } from '@pages/payment/components/reset-button/reset-button'
+import type { DiscountOption } from '@pages/payment/types/discount-option'
 import type { PaymentMethod } from '@pages/payment/types/payment-method'
 
 import { ShowcaseSection } from './showcase-section'
 
-const DISCOUNT_OPTIONS = [
-  { label: 'VIP', count: 0 },
-  { label: '관람권', count: 1 },
-  { label: '할인권', count: 0 },
-  { label: '제휴포인트/할인' },
+const DISCOUNT_OPTIONS: DiscountOption[] = [
+  { id: 'vip', label: 'VIP', count: 0, disabled: true },
+  { id: 'ticket', label: '관람권', count: 1, disabled: true },
+  { id: 'coupon', label: '할인권', count: 0, disabled: true },
+  { id: 'partner', label: '제휴포인트/할인', disabled: true },
 ]
 
 export const PaymentShowcase = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
-  const [selectedDiscount, setSelectedDiscount] = useState<string | null>(null)
+  const [isResetDisabled, setIsResetDisabled] = useState(true)
 
   return (
     <ShowcaseSection title='Payment'>
@@ -48,25 +48,16 @@ export const PaymentShowcase = () => {
         <h4 className='m-0 typo-c2-m text-gray-1000'>결제 수단 버튼</h4>
         <PaymentMethodGroup value={paymentMethod} onChange={setPaymentMethod} />
       </div>
-      {/* L.point 버튼 그룹 */}
+      {/* 할인/포인트 섹션: 조회 및 초기화 상태 확인용 */}
       <div className='col-span-2 flex flex-col gap-3'>
-        <h4 className='m-0 typo-c2-m text-gray-1000'>LPoint 버튼</h4>
-        <LPointButtonGroup />
-      </div>
-
-      {/* discount 버튼 그룹 */}
-      <div className='col-span-2 flex flex-col gap-3'>
-        <h4 className='m-0 typo-c2-m text-gray-1000'>discount 버튼</h4>
-        <div className='flex gap-3'>
-          {DISCOUNT_OPTIONS.map(({ label, count }) => (
-            <DiscountButton
-              key={label}
-              label={label}
-              count={count}
-              selected={selectedDiscount === label}
-              onClick={() => setSelectedDiscount((prev) => (prev === label ? null : label))}
-            />
-          ))}
+        <h4 className='m-0 typo-c2-m text-gray-1000'>할인/포인트 섹션</h4>
+        <div className='w-[375px]'>
+          <DiscountPointSection
+            options={DISCOUNT_OPTIONS}
+            isResetDisabled={isResetDisabled}
+            onLPointLookup={() => setIsResetDisabled(false)}
+            onReset={() => setIsResetDisabled(true)}
+          />
         </div>
       </div>
 
