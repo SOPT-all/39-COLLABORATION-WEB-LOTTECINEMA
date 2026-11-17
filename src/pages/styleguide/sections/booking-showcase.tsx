@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { DateItem } from '@pages/booking/components/date-item/date-item'
 import { DateSelector } from '@pages/booking/components/date-selector/date-selector'
+import { MovieBannerSection } from '@pages/booking/components/movie-banner-section/movie-banner-section'
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
 import { RegionItem } from '@pages/booking/components/region-item/region-item'
@@ -217,6 +218,14 @@ export const BookingShowcase = () => {
           <MovieDropdown movies={exampleMovies} />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieDropdown</span>
+      </div>
+
+      {/* MovieBannerSection: 배너 + 영화 변경 드롭다운 조립 */}
+      <div className='col-span-2 flex flex-col items-center gap-3'>
+        <div className='w-[375px]'>
+          <MovieBannerSection movies={exampleMovies} />
+        </div>
+        <span className='text-center typo-c1-r text-gray-700'>MovieBannerSection</span>
       </div>
     </ShowcaseSection>
   )
