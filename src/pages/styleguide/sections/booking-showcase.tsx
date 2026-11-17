@@ -3,10 +3,15 @@ import { useState } from 'react'
 import { DateItem } from '@pages/booking/components/date-item/date-item'
 import { DateSelector } from '@pages/booking/components/date-selector/date-selector'
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
+import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
+import { RegionItem } from '@pages/booking/components/region-item/region-item'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
+import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
+import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
 import type { Showtime } from '@pages/booking/types/showtime'
+import type { BookingRegion } from '@pages/booking/types/theater'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -15,6 +20,16 @@ const dateItemGroups = [
   { label: '토요일', day: 28, dayLabel: '토', dayType: 'saturday' },
   { label: '일요일', day: 1, dayLabel: '일', dayType: 'sunday' },
 ] as const
+
+const exampleMovies = [
+  { movieId: 1, title: '최종면접' },
+  { movieId: 2, title: '하트 오브 비스트' },
+  { movieId: 3, title: '낮과 밤은 서로에게' },
+  { movieId: 4, title: '스크롤 확인용 1' },
+  { movieId: 5, title: '스크롤 확인용 2' },
+  { movieId: 6, title: '스크롤 확인용 3' },
+  { movieId: 7, title: '아주아주아주아주 긴~ 영화 제목이 들어왔을 때 말줄임 테스트..' },
+]
 
 const formatDate = (date: Date) => {
   const year = date.getFullYear()
@@ -54,13 +69,56 @@ const showtimes: Showtime[] = [
   },
 ]
 
+const exampleTheaters = ['가산디지털', '가양', '강동']
+
+const exampleRegions = [
+  { name: 'MY 영화관', theaterCount: 1 },
+  { name: '서울', theaterCount: 21 },
+  { name: '경기/인천', theaterCount: 40 },
+]
+
+const theaterDropdownRegions: BookingRegion[] = [
+  {
+    regionId: 1,
+    regionName: '서울',
+    cinemas: [
+      { cinemaId: 1, cinemaName: '가산디지털' },
+      { cinemaId: 2, cinemaName: '가양' },
+      { cinemaId: 3, cinemaName: '강동' },
+      { cinemaId: 4, cinemaName: '건대입구' },
+      { cinemaId: 5, cinemaName: '김포공항' },
+      { cinemaId: 6, cinemaName: '노원' },
+      { cinemaId: 7, cinemaName: '도곡' },
+      { cinemaId: 8, cinemaName: '독산' },
+      { cinemaId: 9, cinemaName: '서울대입구' },
+    ],
+  },
+  { regionId: 2, regionName: '경기/인천', cinemas: [] },
+  { regionId: 3, regionName: '충청/대전', cinemas: [] },
+  { regionId: 4, regionName: '전라/광주', cinemas: [] },
+  { regionId: 5, regionName: '경북/대구', cinemas: [] },
+  { regionId: 6, regionName: '경남/부산/울산', cinemas: [] },
+  { regionId: 7, regionName: '강원', cinemas: [] },
+  { regionId: 8, regionName: '제주', cinemas: [] },
+]
+
 export const BookingShowcase = () => {
   const [dates] = useState(createDateOptions)
   const [selectedDate, setSelectedDate] = useState(dates[0].date)
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
+  const [clickedTheater, setClickedTheater] = useState<string | null>(null)
+  const [selectedRegion, setSelectedRegion] = useState(exampleRegions[0].name)
 
   return (
     <ShowcaseSection title='Booking'>
+      {/* TheaterDropdown */}
+      <div className='col-span-2 min-h-[360px]'>
+        <TheaterDropdown regions={theaterDropdownRegions} />
+        <p className='mt-3 typo-c2-m text-gray-700'>
+          지역과 영화관 목록을 둘러보는 UI 예시입니다. 영화관 선택은 조회 조건을 변경하지 않습니다.
+        </p>
+      </div>
+
       {/* TheaterTypeTabs */}
       <div className='col-span-2'>
         <TheaterTypeTabs />
@@ -121,6 +179,44 @@ export const BookingShowcase = () => {
           />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieBanner</span>
+      </div>
+
+      {/* TheaterItem: 영화관을 누르면 부모에게 클릭이 전달됨 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <div className='w-[230px] border-t border-gray-200'>
+          {exampleTheaters.map((name) => (
+            <TheaterItem key={name} name={name} onClick={() => setClickedTheater(name)} />
+          ))}
+        </div>
+        <p className='m-0 min-h-4 typo-c2-m text-gray-600' aria-live='polite'>
+          {clickedTheater === null
+            ? '영화관을 눌러 클릭 전달을 확인해보세요.'
+            : `누른 영화관: ${clickedTheater}`}
+        </p>
+      </div>
+
+      {/* RegionItem: 지역을 누르면 선택 상태가 바뀜 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <div className='w-[145px] border-t border-gray-200'>
+          {exampleRegions.map(({ name, theaterCount }) => (
+            <RegionItem
+              key={name}
+              name={name}
+              theaterCount={theaterCount}
+              isSelected={selectedRegion === name}
+              onClick={() => setSelectedRegion(name)}
+            />
+          ))}
+        </div>
+        <p className='m-0 typo-c2-m text-gray-600'>선택된 지역: {selectedRegion}</p>
+      </div>
+
+      {/* MovieDropdown: 영화가 4개 이상이면 목록 스크롤 */}
+      <div className='col-span-2 flex flex-col items-center gap-3'>
+        <div className='flex h-[188px] w-[375px] items-start justify-end bg-gray-700 pt-4 pr-5'>
+          <MovieDropdown movies={exampleMovies} />
+        </div>
+        <span className='text-center typo-c1-r text-gray-700'>MovieDropdown</span>
       </div>
     </ShowcaseSection>
   )
