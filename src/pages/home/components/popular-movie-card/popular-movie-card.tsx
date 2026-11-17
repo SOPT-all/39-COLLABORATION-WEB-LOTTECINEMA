@@ -2,17 +2,17 @@ import { Button } from '@shared/components/button/button'
 import { BadgeAge12Icon, BadgeAge15Icon, BadgeAge19Icon, BadgeAgeAllIcon } from '@shared/icons'
 
 const ageRatingIcons = {
-  all: BadgeAgeAllIcon,
-  '12': BadgeAge12Icon,
-  '15': BadgeAge15Icon,
-  '19': BadgeAge19Icon,
+  전체: BadgeAgeAllIcon,
+  '12세': BadgeAge12Icon,
+  '15세': BadgeAge15Icon,
+  청불: BadgeAge19Icon,
 }
 
 interface PopularMovieCardProps {
   rank: number
   title: string
   posterUrl: string
-  ageRating: 'all' | '12' | '15' | '19'
+  ageRating: keyof typeof ageRatingIcons
   rating?: number
   bookingRate?: number
   releaseDday?: number
@@ -42,21 +42,19 @@ export const PopularMovieCard = ({
 
         <AgeRatingIcon className='absolute top-2 right-2 h-5 w-5' />
 
-        <span className='text-white absolute bottom-[3px] left-2 font-["Roboto"] text-[34px] leading-[40px] font-medium'>
+        <span className='absolute bottom-[3px] left-2 typo-rank text-gray-000 [text-shadow:0_0_12px_#000]'>
           {rank}
         </span>
       </div>
 
-      <div className='flex h-[53px] flex-col gap-2 pt-2'>
-        <h3 className='m-0 truncate text-[14px] leading-[16px] font-medium text-gray-1000'>
-          {title}
-        </h3>
+      <div className='flex flex-col gap-1 pt-2 pb-3'>
+        <h3 className='truncate typo-b1-m text-gray-1000'>{title}</h3>
 
-        <div className='flex items-center gap-2 text-[11px] leading-[13px] font-medium text-gray-600'>
+        <div className='flex items-center gap-1 typo-c2-m text-gray-700'>
           {releaseDday !== undefined ? (
             <span>개봉 {releaseDday === 0 ? 'D-DAY' : `D-${releaseDday}`}</span>
           ) : (
-            <span className='flex items-center gap-1'>
+            <span className='flex items-center gap-0.5'>
               <span aria-hidden='true'>★</span>
               <span>{rating}</span>
             </span>
@@ -64,7 +62,7 @@ export const PopularMovieCard = ({
 
           {bookingRate !== undefined && (
             <>
-              <span className='h-3 w-px shrink-0 bg-[#EEEEEE]' aria-hidden='true' />
+              <span className='h-3 w-px shrink-0 bg-gray-100' aria-hidden='true' />
               <span>예매율 {bookingRate}%</span>
             </>
           )}
