@@ -4,8 +4,12 @@ import { CountStepper } from '@pages/seat-selection/components/count-stepper/cou
 import { HeadcountSelector } from '@pages/seat-selection/components/headcount-selector/headcount-selector'
 import { MiniSeat } from '@pages/seat-selection/components/mini-seat/mini-seat'
 import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-button'
+import { SeatMap } from '@pages/seat-selection/components/seat-map/seat-map'
+import { SeatOverview } from '@pages/seat-selection/components/seat-overview/seat-overview'
 import type { Headcount } from '@pages/seat-selection/types/headcount'
 import type { SeatStatus } from '@pages/seat-selection/types/seat'
+
+import { showtimeSeatsMock } from '@shared/mocks/data/showtime-seats'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -97,6 +101,26 @@ export const SeatSelectionShowcase = () => {
           <HeadcountSelector value={headcount} onChange={setHeadcount} />
         </div>
         <pre className='m-0 typo-c1-r text-gray-700'>{JSON.stringify(headcount)}</pre>
+      </div>
+
+      {/* SeatMap: 실제 응답 형태의 mock(77석)으로 배치 확인 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>SeatMap (width: 375px)</h4>
+        <div className='w-[375px] bg-gray-1000 py-10'>
+          <SeatMap seats={showtimeSeatsMock.seats ?? []} />
+        </div>
+      </div>
+
+      {/* SeatOverview: 상영 정보 바텀시트의 좌석 미리보기 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>SeatOverview (width: 375px)</h4>
+        <div className='w-[375px] bg-gray-050 py-10'>
+          <SeatOverview
+            seats={showtimeSeatsMock.seats ?? []}
+            availableSeatCount={showtimeSeatsMock.availableSeatCount ?? 0}
+            totalSeatCount={showtimeSeatsMock.totalSeatCount ?? 0}
+          />
+        </div>
       </div>
     </ShowcaseSection>
   )
