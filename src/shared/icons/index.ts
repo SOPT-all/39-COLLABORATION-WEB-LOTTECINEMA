@@ -30,10 +30,13 @@ export { default as PlusBrandIcon } from './assets/ic_plus_brand.svg?react'
 export { default as PlusGrayIcon } from './assets/icon-plus-gray.svg?react'
 export { default as ResetIcon } from './assets/ic-reset.svg?react'
 
+// seat legend
+export { default as LegendAccessibleIcon } from './assets/ic-legend-accessible.svg?react'
+export { default as LegendDoorIcon } from './assets/ic-legend-door.svg?react'
+export { default as LegendReclinerIcon } from './assets/ic-legend-recliner.svg?react'
+export { default as SeatArrowBgIcon } from './assets/bg-seat-arrow.svg?react'
+
 // seat
-export { default as Seat3Icon } from './assets/ic-seat3.svg?react'
-export { default as Seat5Icon } from './assets/ic-seat5.svg?react'
-export { default as Seat7Icon } from './assets/ic-seat7.svg?react'
 
 export { default as SeatCompletedLgIcon } from './assets/seat-completed-l.svg?react'
 export { default as SeatCompletedSmIcon } from './assets/seat-completed-s.svg?react'
