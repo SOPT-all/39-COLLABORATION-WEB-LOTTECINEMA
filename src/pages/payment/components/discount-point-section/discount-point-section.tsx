@@ -7,19 +7,16 @@ import { ResetButton } from '../reset-button/reset-button'
 
 interface DiscountPointSectionProps {
   options: DiscountOption[]
-  selectedDiscountId: string | null
   isResetDisabled: boolean
-  /* 선택 시 해당 id, 이미 선택된 항목을 다시 누르면 null */
-  onDiscountChange: (discountId: string | null) => void
+  onLPointLookup: () => void
   onReset: () => void
   className?: string
 }
 
 export const DiscountPointSection = ({
   options,
-  selectedDiscountId,
   isResetDisabled,
-  onDiscountChange,
+  onLPointLookup,
   onReset,
   className,
 }: DiscountPointSectionProps) => {
@@ -34,18 +31,11 @@ export const DiscountPointSection = ({
         <ResetButton disabled={isResetDisabled} onClick={onReset} />
       </div>
 
-      <LPointButtonGroup />
+      <LPointButtonGroup onLookupClick={onLPointLookup} />
 
       <div role='group' aria-label='할인 수단' className='flex w-full gap-3'>
-        {options.map(({ id, label, count, disabled }) => (
-          <DiscountButton
-            key={id}
-            label={label}
-            count={count}
-            disabled={disabled}
-            selected={selectedDiscountId === id}
-            onClick={() => onDiscountChange(selectedDiscountId === id ? null : id)}
-          />
+        {options.map(({ id, label, count }) => (
+          <DiscountButton key={id} label={label} count={count} disabled />
         ))}
       </div>
     </section>
