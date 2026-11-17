@@ -8,7 +8,7 @@ const ageRatingIcons = {
   청불: BadgeAge19Icon,
 }
 
-interface PopularMovieCardProps {
+export interface PopularMovieCardProps {
   rank: number
   title: string
   posterUrl: string
