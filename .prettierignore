@@ -2,3 +2,5 @@ node_modules
 dist
 coverage
 pnpm-lock.yaml
+# 자동 생성 파일
+src/shared/types/__generated__
