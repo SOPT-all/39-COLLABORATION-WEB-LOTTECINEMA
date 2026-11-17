@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { BookingSummaryCard } from '@pages/payment/components/booking-summary-card/booking-summary-card'
+import { DiscountButton } from '@pages/payment/components/discount-button/discount-button'
 import { LPointButtonGroup } from '@pages/payment/components/lpoint-button-group/lpoint-button-group'
 import { PayButton } from '@pages/payment/components/pay-button/pay-button'
 import { PaymentMethodGroup } from '@pages/payment/components/payment-method-group/payment-method-group'
@@ -10,8 +11,16 @@ import type { PaymentMethod } from '@pages/payment/types/payment-method'
 
 import { ShowcaseSection } from './showcase-section'
 
+const DISCOUNT_OPTIONS = [
+  { label: 'VIP', count: 0 },
+  { label: '관람권', count: 1 },
+  { label: '할인권', count: 0 },
+  { label: '제휴포인트/할인' },
+]
+
 export const PaymentShowcase = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
+  const [selectedDiscount, setSelectedDiscount] = useState<string | null>(null)
 
   return (
     <ShowcaseSection title='Payment'>
@@ -44,7 +53,23 @@ export const PaymentShowcase = () => {
         <h4 className='m-0 typo-c2-m text-gray-1000'>LPoint 버튼</h4>
         <LPointButtonGroup />
       </div>
-      {/* L.point 버튼 그룹 */}
+
+      {/* discount 버튼 그룹 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>discount 버튼</h4>
+        <div className='flex gap-3'>
+          {DISCOUNT_OPTIONS.map(({ label, count }) => (
+            <DiscountButton
+              key={label}
+              label={label}
+              count={count}
+              selected={selectedDiscount === label}
+              onClick={() => setSelectedDiscount((prev) => (prev === label ? null : label))}
+            />
+          ))}
+        </div>
+      </div>
+
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>LPoint 버튼</h4>
         <BookingSummaryCard />
