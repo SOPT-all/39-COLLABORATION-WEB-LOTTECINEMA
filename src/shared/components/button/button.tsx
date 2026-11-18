@@ -14,15 +14,15 @@ type ButtonProps = ComponentPropsWithRef<'button'> & {
 const baseStyles = 'inline-flex items-center justify-center'
 
 const variantStyles = {
-  primary: 'bg-gray-000 text-primary border border-primary',
-  secondary: 'bg-gray-000 text-gray-600 border border-gray-600',
-  dark: 'bg-gray-600 text-gray-000 border border-gray-600',
-  cta: 'bg-primary text-gray-000 w-full h-[47px] rounded typo-b2-m',
+  primary: 'border border-primary bg-gray-000 text-primary',
+  secondary: 'border border-gray-600 bg-gray-000 text-gray-600',
+  dark: 'border-[1.5px] border-gray-600 bg-gray-1000/60 text-gray-000',
+  cta: 'h-[47px] w-full rounded bg-primary typo-b2-m text-gray-000 disabled:bg-[#FF7787] disabled:text-[#FFF0F0]',
 }
 
 const sizeStyles = {
-  small: 'h-9 min-w-[74px] px-2 rounded-lg typo-c3-m',
-  medium: 'h-[42px] min-w-[156px] px-3 rounded-lg typo-c3-m',
+  small: 'h-9 min-w-[74px] rounded-lg px-3 typo-c3-m',
+  medium: 'h-[43px] min-w-[156px] rounded-lg px-3 typo-c3-m',
 }
 
 export const Button = ({
