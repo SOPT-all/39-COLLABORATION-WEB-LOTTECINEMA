@@ -6,6 +6,7 @@ import { MiniSeat } from '@pages/seat-selection/components/mini-seat/mini-seat'
 import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-button'
 import { SeatMap } from '@pages/seat-selection/components/seat-map/seat-map'
 import { SeatOverview } from '@pages/seat-selection/components/seat-overview/seat-overview'
+import { ShowtimeInfo } from '@pages/seat-selection/components/showtime-info/showtime-info'
 import type { Headcount } from '@pages/seat-selection/types/headcount'
 import type { SeatStatus } from '@pages/seat-selection/types/seat'
 
@@ -120,6 +121,14 @@ export const SeatSelectionShowcase = () => {
             availableSeatCount={showtimeSeatsMock.availableSeatCount ?? 0}
             totalSeatCount={showtimeSeatsMock.totalSeatCount ?? 0}
           />
+        </div>
+      </div>
+
+      {/* ShowtimeInfo: 바텀시트용 (닫기 버튼 있음) */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>ShowtimeInfo (width: 375px)</h4>
+        <div className='w-[375px]'>
+          <ShowtimeInfo onClose={() => {}} />
         </div>
       </div>
     </ShowcaseSection>
