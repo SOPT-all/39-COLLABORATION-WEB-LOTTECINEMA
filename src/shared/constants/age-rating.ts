@@ -10,4 +10,4 @@ export const AGE_RATINGS = {
 export type AgeRating = keyof typeof AGE_RATINGS
 
 export const isAgeRating = (value: string | undefined): value is AgeRating =>
-  value !== undefined && value in AGE_RATINGS
+  value !== undefined && Object.hasOwn(AGE_RATINGS, value)
