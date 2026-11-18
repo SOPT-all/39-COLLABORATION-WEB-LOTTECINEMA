@@ -230,7 +230,7 @@ export const BookingShowcase = () => {
 
       {/* TheaterSelector: 지역을 고르면 오른쪽 영화관 목록이 바뀜 */}
       <div className='col-span-2 flex flex-col gap-3'>
-        <div className='w-[375px]'>
+        <div className='h-[574px] w-[375px]'>
           <TheaterSelector
             regions={theaterDropdownRegions}
             selectedRegionId={selectedRegionId}
