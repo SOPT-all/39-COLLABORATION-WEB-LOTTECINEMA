@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Header } from '@shared/components/header/header'
+import { cn } from '@shared/utils/cn'
 
 import paymentBenefit from './assets/payment-benefit.png'
 import photoCardGuide from './assets/photo-card-guide.png'
@@ -22,18 +23,22 @@ const DISCOUNT_OPTIONS: DiscountOption[] = [
 const MOCK_TICKET_AMOUNT = 30000
 const LPOINT_DISCOUNT_AMOUNT = 1000
 
+const Divider = ({ className }: { className?: string }) => (
+  <div aria-hidden='true' className={cn('h-[5px] bg-gray-050', className)} />
+)
+
 export const PaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
   const [isResetDisabled, setIsResetDisabled] = useState(true)
   const [discountAmount, setDiscountAmount] = useState(0)
 
   return (
-    <div className='flex min-h-dvh flex-col bg-gray-000 pb-[65px]'>
-      <Header variant='sub' title='주문/결제' className='h-[50px]' />
+    <div className='flex min-h-dvh flex-col bg-gray-000 pb-18'>
+      <Header variant='sub' title='주문/결제' />
 
-      <div aria-hidden='true' className='h-[5px] bg-gray-100' />
+      <Divider className='bg-gray-100' />
       <BookingSummaryCard />
-      <div aria-hidden='true' className='h-[5px] bg-gray-050' />
+      <Divider />
 
       <img
         src={photoCardGuide}
@@ -56,11 +61,13 @@ export const PaymentPage = () => {
         }}
       />
 
-      <div aria-hidden='true' className='h-[5px] bg-gray-050' />
+      <Divider />
 
       <section aria-label='결제 수단' className='px-4.5 py-5'>
         <PaymentMethodGroup value={paymentMethod} onChange={setPaymentMethod} />
       </section>
+
+      <Divider />
 
       <img
         src={paymentBenefit}
@@ -74,7 +81,7 @@ export const PaymentPage = () => {
         ticketAmount={MOCK_TICKET_AMOUNT}
         discountAmount={discountAmount}
         finalAmount={MOCK_TICKET_AMOUNT - discountAmount}
-        className='fixed bottom-0 left-1/2 z-20 h-[65px] w-[375px] -translate-x-1/2'
+        className='fixed bottom-0 left-1/2 z-20 w-[375px] -translate-x-1/2'
       />
     </div>
   )
