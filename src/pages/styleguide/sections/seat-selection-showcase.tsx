@@ -2,11 +2,14 @@ import { useState } from 'react'
 
 import { CountStepper } from '@pages/seat-selection/components/count-stepper/count-stepper'
 import { HeadcountSelector } from '@pages/seat-selection/components/headcount-selector/headcount-selector'
+import { HeadcountSheet } from '@pages/seat-selection/components/headcount-sheet/headcount-sheet'
 import { MiniSeat } from '@pages/seat-selection/components/mini-seat/mini-seat'
 import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-button'
 import { SeatSummarySection } from '@pages/seat-selection/components/seat-summary-section/seat-summary-section'
 import type { Headcount } from '@pages/seat-selection/types/headcount'
 import type { SeatStatus } from '@pages/seat-selection/types/seat'
+
+import { Button } from '@shared/components/button/button'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -19,6 +22,13 @@ export const SeatSelectionShowcase = () => {
   const [adultCount, setAdultCount] = useState(0)
   const [teenCount, setTeenCount] = useState(0)
   const [headcount, setHeadcount] = useState<Headcount>({
+    adult: 0,
+    teen: 0,
+    senior: 0,
+    disabled: 0,
+  })
+  const [isHeadcountSheetOpen, setIsHeadcountSheetOpen] = useState(false)
+  const [sheetHeadcount, setSheetHeadcount] = useState<Headcount>({
     adult: 0,
     teen: 0,
     senior: 0,
@@ -131,6 +141,24 @@ export const SeatSelectionShowcase = () => {
             />
           </div>
         </div>
+      </div>
+
+      {/* HeadcountSheet: 인원 선택 모달 (0명이면 좌석선택 비활성화) */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>HeadcountSheet</h4>
+        <div className='flex items-center gap-3'>
+          <Button variant='dark' size='small' onClick={() => setIsHeadcountSheetOpen(true)}>
+            인원 선택 시트 열기
+          </Button>
+          <pre className='m-0 typo-c1-r text-gray-700'>{JSON.stringify(sheetHeadcount)}</pre>
+        </div>
+        <HeadcountSheet
+          isOpen={isHeadcountSheetOpen}
+          screenInfo='용산 · 4관 리클라이너 · 자막'
+          headcount={sheetHeadcount}
+          onHeadcountChange={setSheetHeadcount}
+          onConfirm={() => setIsHeadcountSheetOpen(false)}
+        />
       </div>
     </ShowcaseSection>
   )
