@@ -2,12 +2,16 @@ import { useState } from 'react'
 
 import { DateItem } from '@pages/booking/components/date-item/date-item'
 import { DateSelector } from '@pages/booking/components/date-selector/date-selector'
+import { MovieBannerSection } from '@pages/booking/components/movie-banner-section/movie-banner-section'
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
 import { RegionItem } from '@pages/booking/components/region-item/region-item'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
+import { ShowtimeGroup } from '@pages/booking/components/showtime-group/showtime-group'
 import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
+import { TheaterFilterBar } from '@pages/booking/components/theater-filter-bar/theater-filter-bar'
 import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
+import { TheaterSelector } from '@pages/booking/components/theater-selector/theater-selector'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
 import type { Showtime } from '@pages/booking/types/showtime'
@@ -69,6 +73,75 @@ const showtimes: Showtime[] = [
   },
 ]
 
+const showtimeGroupExamples: Showtime[] = [
+  {
+    showtimeId: 5101,
+    startAt: '2026-11-18T13:25:00+09:00',
+    endAt: '2026-11-18T15:14:00+09:00',
+    screenName: '1관',
+    formatType: '2D',
+    languageType: 'DUBBED',
+    totalSeatCount: 91,
+    reservedSeatCount: 1,
+    availableSeatCount: 90,
+  },
+  {
+    showtimeId: 5102,
+    startAt: '2026-11-18T15:40:00+09:00',
+    endAt: '2026-11-18T17:29:00+09:00',
+    screenName: '2관',
+    formatType: '2D',
+    languageType: 'DUBBED',
+    totalSeatCount: 91,
+    reservedSeatCount: 24,
+    availableSeatCount: 67,
+  },
+  {
+    showtimeId: 5103,
+    startAt: '2026-11-18T18:00:00+09:00',
+    endAt: '2026-11-18T19:49:00+09:00',
+    screenName: '3관',
+    formatType: '2D',
+    languageType: 'DUBBED',
+    totalSeatCount: 91,
+    reservedSeatCount: 71,
+    availableSeatCount: 20,
+  },
+  {
+    showtimeId: 5104,
+    startAt: '2026-11-18T19:55:00+09:00',
+    endAt: '2026-11-18T21:44:00+09:00',
+    screenName: '1관',
+    formatType: '2D',
+    languageType: 'DUBBED',
+    totalSeatCount: 91,
+    reservedSeatCount: 14,
+    availableSeatCount: 77,
+  },
+  {
+    showtimeId: 5105,
+    startAt: '2026-11-18T21:05:00+09:00',
+    endAt: '2026-11-18T22:54:00+09:00',
+    screenName: '4관',
+    formatType: '2D',
+    languageType: 'DUBBED',
+    totalSeatCount: 77,
+    reservedSeatCount: 0,
+    availableSeatCount: 77,
+  },
+  {
+    showtimeId: 5106,
+    startAt: '2026-11-18T22:15:00+09:00',
+    endAt: '2026-11-19T00:04:00+09:00',
+    screenName: '5관',
+    formatType: '2D',
+    languageType: 'DUBBED',
+    totalSeatCount: 77,
+    reservedSeatCount: 10,
+    availableSeatCount: 67,
+  },
+]
+
 const exampleTheaters = ['가산디지털', '가양', '강동']
 
 const exampleRegions = [
@@ -91,6 +164,12 @@ const theaterDropdownRegions: BookingRegion[] = [
       { cinemaId: 7, cinemaName: '도곡' },
       { cinemaId: 8, cinemaName: '독산' },
       { cinemaId: 9, cinemaName: '서울대입구' },
+      { cinemaId: 10, cinemaName: '수락산' },
+      { cinemaId: 11, cinemaName: '수유' },
+      { cinemaId: 12, cinemaName: '신대방(구로디지털역)' },
+      { cinemaId: 13, cinemaName: '스크롤 확인용 1' },
+      { cinemaId: 14, cinemaName: '스크롤 확인용 2' },
+      { cinemaId: 15, cinemaName: '스크롤 확인용 3' },
     ],
   },
   { regionId: 2, regionName: '경기/인천', cinemas: [] },
@@ -108,6 +187,8 @@ export const BookingShowcase = () => {
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
   const [clickedTheater, setClickedTheater] = useState<string | null>(null)
   const [selectedRegion, setSelectedRegion] = useState(exampleRegions[0].name)
+  const [selectedRegionId, setSelectedRegionId] = useState(theaterDropdownRegions[0].regionId)
+  const [clickedCinemaId, setClickedCinemaId] = useState<number | null>(null)
 
   return (
     <ShowcaseSection title='Booking'>
@@ -117,6 +198,13 @@ export const BookingShowcase = () => {
         <p className='mt-3 typo-c2-m text-gray-700'>
           지역과 영화관 목록을 둘러보는 UI 예시입니다. 영화관 선택은 조회 조건을 변경하지 않습니다.
         </p>
+      </div>
+
+      {/* TheaterFilterBar */}
+      <div className='col-span-2 min-h-[360px]'>
+        <div className='w-[375px] border border-gray-200 bg-gray-000'>
+          <TheaterFilterBar selectedTheaterName='용산' regions={theaterDropdownRegions} />
+        </div>
       </div>
 
       {/* TheaterTypeTabs */}
@@ -166,6 +254,16 @@ export const BookingShowcase = () => {
           ? '상영 시간을 눌러 showtimeId 전달을 확인해보세요.'
           : `선택된 showtimeId: ${selectedShowtimeId}`}
       </p>
+
+      {/* ShowtimeGroup: 375px 너비에서 라벨, 설명, 상영 시간 그리드를 확인 */}
+      <div className='col-span-2 w-[375px] border border-gray-200 bg-gray-000'>
+        <ShowtimeGroup
+          labels={['2D', '더빙']}
+          description='잔여 좌석은 상영 시간 선택 시 확인할 수 있습니다.'
+          showtimes={showtimeGroupExamples}
+          onSelect={setSelectedShowtimeId}
+        />
+      </div>
 
       {/* MovieBanner: action 영역에 영화 변경 드롭다운이 들어갈 자리 */}
       <div className='col-span-2 flex flex-col items-center gap-3'>
@@ -217,6 +315,31 @@ export const BookingShowcase = () => {
           <MovieDropdown movies={exampleMovies} />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieDropdown</span>
+      </div>
+
+      {/* MovieBannerSection: 배너 + 영화 변경 드롭다운 조립 */}
+      <div className='col-span-2 flex flex-col items-center gap-3'>
+        <div className='w-[375px]'>
+          <MovieBannerSection movies={exampleMovies} />
+        </div>
+        <span className='text-center typo-c1-r text-gray-700'>MovieBannerSection</span>
+      </div>
+
+      {/* TheaterSelector: 지역을 고르면 오른쪽 영화관 목록이 바뀜 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <div className='h-[574px] w-[375px]'>
+          <TheaterSelector
+            regions={theaterDropdownRegions}
+            selectedRegionId={selectedRegionId}
+            onRegionSelect={setSelectedRegionId}
+            onTheaterSelect={setClickedCinemaId}
+          />
+        </div>
+        <p className='m-0 min-h-4 typo-c2-m text-gray-600' aria-live='polite'>
+          {clickedCinemaId === null
+            ? '영화관을 눌러 클릭 전달을 확인해보세요.'
+            : `누른 영화관 id: ${clickedCinemaId}`}
+        </p>
       </div>
     </ShowcaseSection>
   )

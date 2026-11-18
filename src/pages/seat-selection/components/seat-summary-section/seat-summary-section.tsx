@@ -35,7 +35,7 @@ export const SeatSummarySection = ({
         {movieTitle} ({formatType})
       </h2>
 
-      <dl className='flex flex-col gap-[15px] px-5.5 py-4 typo-b1-r text-gray-1000'>
+      <dl className='flex flex-col gap-[15px] px-5.5 pt-[15px] pb-4 typo-b1-r text-gray-1000'>
         <div className='flex items-center justify-between'>
           <dt className='typo-c3-m text-gray-1000'>좌석</dt>
           <dd className={cn(selectedSeatCodes.length === 0 && 'typo-c3-m text-gray-400')}>
@@ -66,7 +66,7 @@ export const SeatSummarySection = ({
         {isComplete && (
           <div className='flex items-center justify-between'>
             <span className='typo-c3-m text-gray-1000'>결제금액</span>
-            <p className='flex items-baseline gap-0.5 text-gray-1000'>
+            <p className='flex items-baseline text-gray-1000'>
               <span className='typo-c2-m'>총</span>
               <span className='typo-t1-b'>{totalPrice.toLocaleString()}</span>
               <span className='typo-c2-m'>원</span>
