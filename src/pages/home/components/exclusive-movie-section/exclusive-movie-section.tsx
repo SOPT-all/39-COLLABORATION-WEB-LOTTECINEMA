@@ -1,0 +1,42 @@
+import { useState } from 'react'
+
+import { CurationHelp } from '../curation-help/curation-help'
+import { ExclusiveMovieCard } from '../exclusive-movie-card/exclusive-movie-card'
+import type { ExclusiveMovieCardProps } from '../exclusive-movie-card/exclusive-movie-card'
+import { MovieFilterTabs } from '../movie-filter-tabs/movie-filter-tabs'
+
+interface ExclusiveMovieSectionProps {
+  movies: ExclusiveMovieCardProps[]
+}
+
+export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) => {
+  const [selectedTab, setSelectedTab] = useState('롯시픽')
+
+  const filteredMovies = movies.filter((movie) => {
+    return movie.category === selectedTab
+  })
+
+  return (
+    <section>
+      <div className='mb-4 flex items-center justify-between'>
+        <h2 className='typo-t2-b text-gray-1000'>오직 롯시에서만!</h2>
+
+        <div className='flex items-center gap-1'>
+          <MovieFilterTabs
+            tabs={['롯시픽', '롯시플']}
+            selectedTab={selectedTab}
+            onTabChange={setSelectedTab}
+          />
+
+          <CurationHelp placement='exclusive' />
+        </div>
+      </div>
+
+      <div className='flex [scrollbar-width:none] gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
+        {filteredMovies.map((movie) => (
+          <ExclusiveMovieCard key={movie.posterUrl} {...movie} />
+        ))}
+      </div>
+    </section>
+  )
+}

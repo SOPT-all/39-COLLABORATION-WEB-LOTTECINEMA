@@ -11,9 +11,15 @@ import moviePoster3 from '@pages/home/assets/movie-poster-3.svg'
 import moviePoster4 from '@pages/home/assets/movie-poster-4.svg'
 import moviePoster5 from '@pages/home/assets/movie-poster-5.svg'
 import moviePoster6 from '@pages/home/assets/movie-poster-6.svg'
+import posterPick1 from '@pages/home/assets/poster-pick-1.svg'
+import posterPick2 from '@pages/home/assets/poster-pick-2.svg'
+import posterPick3 from '@pages/home/assets/poster-pick-3.svg'
+import posterPick4 from '@pages/home/assets/poster-pick-4.svg'
+import posterPlay1 from '@pages/home/assets/poster-play-1.svg'
+import posterPlay2 from '@pages/home/assets/poster-play-2.svg'
+import posterPlay3 from '@pages/home/assets/poster-play-3.svg'
 import { BottomNavBar } from '@pages/home/components/bottom-nav-bar/bottom-nav-bar'
-import { CurationHelp } from '@pages/home/components/curation-help/curation-help'
-import { ExclusiveMovieCard } from '@pages/home/components/exclusive-movie-card/exclusive-movie-card'
+import { ExclusiveMovieSection } from '@pages/home/components/exclusive-movie-section/exclusive-movie-section'
 import { HeroCarousel } from '@pages/home/components/hero-carousel/hero-carousel'
 import { MovieFilterTabs } from '@pages/home/components/movie-filter-tabs/movie-filter-tabs'
 import { PopularMovieCard } from '@pages/home/components/popular-movie-card/popular-movie-card'
@@ -74,43 +80,50 @@ const movies = [
 const MOVIES = [
   {
     id: 1,
-    posterUrl: '/poster-1.jpg',
+    posterUrl: posterPick1,
     title: '극장판 마법소녀 마도카 마기카',
     ageRating: '전체',
     category: '롯시픽',
   },
   {
     id: 2,
-    posterUrl: '/poster-2.jpg',
+    posterUrl: posterPick2,
     title: '그대, 별처럼',
     ageRating: '15세',
     category: '롯시픽',
   },
   {
     id: 3,
-    posterUrl: '/poster-3.jpg',
+    posterUrl: posterPick3,
     title: '숀 더 쉽: 공포의 털보 괴물',
     ageRating: '전체',
     category: '롯시픽',
   },
   {
     id: 4,
-    posterUrl: '/poster-4.jpg',
+    posterUrl: posterPick4,
     title: '변이',
     ageRating: '청불',
     category: '롯시픽',
   },
   {
     id: 5,
-    posterUrl: '/poster-5.jpg',
+    posterUrl: posterPlay1,
     title: '엔하이픈 브이알콘서트 : 데스티니',
     ageRating: '전체',
     category: '롯시플',
   },
   {
     id: 6,
-    posterUrl: '/poster-6.jpg',
+    posterUrl: posterPlay2,
     title: 'Stray Kids World Tour RUN IT LIVE VIEWING',
+    ageRating: '전체',
+    category: '롯시플',
+  },
+  {
+    id: 7,
+    posterUrl: posterPlay3,
+    title: 'BTS WORLD TOUR ARIRANG',
     ageRating: '전체',
     category: '롯시플',
   },
@@ -184,20 +197,11 @@ export const HomeShowcase = () => {
       </div>
 
       <div className='col-span-2'>
-        <p className='mb-3 typo-b2-b'>ExclusiveMovieCard</p>
-        <div className='flex [scrollbar-width:none] gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
-          {MOVIES.map((movie) => (
-            <ExclusiveMovieCard key={movie.id} {...movie} />
-          ))}
-        </div>
+        <ExclusiveMovieSection movies={[...MOVIES]} />
       </div>
 
       <div className='col-span-2 max-w-[375px]'>
         <BottomNavBar />
-      </div>
-
-      <div className='col-span-2 mx-auto flex min-h-[180px] w-[375px]'>
-        <CurationHelp />
       </div>
     </ShowcaseSection>
   )
