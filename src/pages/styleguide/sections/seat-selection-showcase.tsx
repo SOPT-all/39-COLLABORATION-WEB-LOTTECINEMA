@@ -8,6 +8,7 @@ import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-bu
 import { SeatLegend } from '@pages/seat-selection/components/seat-legend/seat-legend'
 import { SeatMap } from '@pages/seat-selection/components/seat-map/seat-map'
 import { SeatOverview } from '@pages/seat-selection/components/seat-overview/seat-overview'
+import { SeatSummarySection } from '@pages/seat-selection/components/seat-summary-section/seat-summary-section'
 import type { Headcount } from '@pages/seat-selection/types/headcount'
 import type { SeatStatus } from '@pages/seat-selection/types/seat'
 
@@ -16,6 +17,8 @@ import { showtimeSeatsMock } from '@shared/mocks/data/showtime-seats'
 import { ShowcaseSection } from './showcase-section'
 
 const SEAT_STATUSES: SeatStatus[] = ['default', 'completed', 'selected', 'disabled', 'accessible']
+
+const SUMMARY_HEADCOUNT: Headcount = { adult: 2, teen: 0, senior: 0, disabled: 0 }
 
 export const SeatSelectionShowcase = () => {
   const [isSelected, setIsSelected] = useState(false)
@@ -103,6 +106,37 @@ export const SeatSelectionShowcase = () => {
           <HeadcountSelector value={headcount} onChange={setHeadcount} />
         </div>
         <pre className='m-0 typo-c1-r text-gray-700'>{JSON.stringify(headcount)}</pre>
+      </div>
+
+      {/* SeatSummarySection: 좌석 선택 전 / 선택 완료 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>
+          SeatSummarySection (width: 375px) · 선택 전 / 선택 완료
+        </h4>
+        <div className='flex flex-wrap items-start gap-6'>
+          <div className='w-[375px] border-gray-100'>
+            <SeatSummarySection
+              movieTitle='극장판 치이카와: 인어 섬의 비밀'
+              formatType='2D'
+              selectedSeatCodes={[]}
+              headcount={SUMMARY_HEADCOUNT}
+              totalPrice={30000}
+              onHeadcountChange={() => {}}
+              onPay={() => {}}
+            />
+          </div>
+          <div className='w-[375px] border-gray-100'>
+            <SeatSummarySection
+              movieTitle='극장판 치이카와: 인어 섬의 비밀'
+              formatType='2D'
+              selectedSeatCodes={['E4', 'E5']}
+              headcount={SUMMARY_HEADCOUNT}
+              totalPrice={30000}
+              onHeadcountChange={() => {}}
+              onPay={() => {}}
+            />
+          </div>
+        </div>
       </div>
 
       {/* age-notice */}
