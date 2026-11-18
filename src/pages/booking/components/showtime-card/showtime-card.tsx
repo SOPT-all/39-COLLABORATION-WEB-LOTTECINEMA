@@ -1,8 +1,11 @@
+import { cn } from '@shared/utils/cn'
+
 import type { Showtime } from '../../types/showtime'
 
 interface ShowtimeCardProps {
   showtime: Showtime
   onSelect: (showtimeId: number) => void
+  className?: string
 }
 
 const formatTime = (dateTime: string) => {
@@ -11,7 +14,7 @@ const formatTime = (dateTime: string) => {
   return time?.[1] ?? dateTime
 }
 
-export const ShowtimeCard = ({ showtime, onSelect }: ShowtimeCardProps) => {
+export const ShowtimeCard = ({ showtime, onSelect, className }: ShowtimeCardProps) => {
   const { showtimeId, startAt, endAt, screenName, totalSeatCount, availableSeatCount } = showtime
   const startTime = formatTime(startAt)
   const endTime = formatTime(endAt)
@@ -20,7 +23,10 @@ export const ShowtimeCard = ({ showtime, onSelect }: ShowtimeCardProps) => {
     <button
       type='button'
       onClick={() => onSelect(showtimeId)}
-      className='flex w-fit flex-col items-start rounded border border-gray-200 bg-gray-000 px-3 py-2 text-left active:bg-gray-300'
+      className={cn(
+        'flex w-fit flex-col items-start rounded border border-gray-200 bg-gray-000 px-3 py-2 text-left active:bg-gray-300',
+        className,
+      )}
       aria-label={`${startTime}부터 ${endTime}까지 상영, ${screenName}, 잔여 좌석 ${availableSeatCount}석, 전체 ${totalSeatCount}석`}>
       <span className='flex items-center gap-0.5'>
         <span className='typo-b2-m text-gray-1000'>{startTime}</span>
