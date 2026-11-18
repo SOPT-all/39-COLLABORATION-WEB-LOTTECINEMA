@@ -8,6 +8,7 @@ import { RegionItem } from '@pages/booking/components/region-item/region-item'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { ShowtimeGroup } from '@pages/booking/components/showtime-group/showtime-group'
 import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
+import { TheaterFilterBar } from '@pages/booking/components/theater-filter-bar/theater-filter-bar'
 import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
 import { TheaterSelector } from '@pages/booking/components/theater-selector/theater-selector'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
@@ -196,6 +197,13 @@ export const BookingShowcase = () => {
         <p className='mt-3 typo-c2-m text-gray-700'>
           지역과 영화관 목록을 둘러보는 UI 예시입니다. 영화관 선택은 조회 조건을 변경하지 않습니다.
         </p>
+      </div>
+
+      {/* TheaterFilterBar */}
+      <div className='col-span-2 min-h-[360px]'>
+        <div className='w-[375px] border border-gray-200 bg-gray-000'>
+          <TheaterFilterBar selectedTheaterName='용산' regions={theaterDropdownRegions} />
+        </div>
       </div>
 
       {/* TheaterTypeTabs */}
