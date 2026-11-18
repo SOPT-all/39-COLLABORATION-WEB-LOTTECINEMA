@@ -26,8 +26,8 @@ export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
 
   return (
     <section>
-      <div className='flex items-center justify-between'>
-        <h2>지금 인기있는</h2>
+      <div className='mb-4 flex items-center justify-between'>
+        <h2 className='typo-t2-b text-gray-1000'>지금 인기있는</h2>
         <MovieFilterTabs
           tabs={['전체', '상영중', '개봉예정']}
           selectedTab={selectedTab}

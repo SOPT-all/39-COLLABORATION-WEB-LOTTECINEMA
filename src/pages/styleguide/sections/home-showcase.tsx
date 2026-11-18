@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import heroBanner1 from '@pages/home/assets/home-hero-1.svg'
 import heroBanner2 from '@pages/home/assets/home-hero-2.svg'
 import heroBanner3 from '@pages/home/assets/home-hero-3.svg'
@@ -15,8 +13,8 @@ import { BottomNavBar } from '@pages/home/components/bottom-nav-bar/bottom-nav-b
 import { CurationHelp } from '@pages/home/components/curation-help/curation-help'
 import { ExclusiveMovieCard } from '@pages/home/components/exclusive-movie-card/exclusive-movie-card'
 import { HeroCarousel } from '@pages/home/components/hero-carousel/hero-carousel'
-import { MovieFilterTabs } from '@pages/home/components/movie-filter-tabs/movie-filter-tabs'
 import { PopularMovieCard } from '@pages/home/components/popular-movie-card/popular-movie-card'
+import { PopularMovieSection } from '@pages/home/components/popular-movie-section/popular-movie-section'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -116,11 +114,7 @@ const MOVIES = [
   },
 ] as const
 
-type PopularTab = '전체' | '상영중' | '개봉예정'
-
 export const HomeShowcase = () => {
-  const [selectedTab, setSelectedTab] = useState<PopularTab>('전체')
-
   return (
     <ShowcaseSection title='Home'>
       <div className='col-span-2 w-full max-w-[375px]'>
@@ -164,23 +158,7 @@ export const HomeShowcase = () => {
       </div>
 
       <div className='col-span-2'>
-        <div className='mb-4 flex items-center justify-between'>
-          <h3 className='typo-t2-b'>지금 인기있는</h3>
-
-          <MovieFilterTabs
-            tabs={['전체', '상영중', '개봉예정']}
-            selectedTab={selectedTab}
-            onTabChange={setSelectedTab}
-          />
-        </div>
-
-        <div className='flex [scrollbar-width:none] gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
-          {movies.map((movie) => (
-            <div key={movie.rank} className='shrink-0'>
-              <PopularMovieCard {...movie} />
-            </div>
-          ))}
-        </div>
+        <PopularMovieSection movies={movies} />
       </div>
 
       <div className='col-span-2'>
