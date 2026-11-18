@@ -17,7 +17,11 @@ export const PriceSummaryCard = ({
   className,
 }: PriceSummaryCardProps) => {
   return (
-    <div className={cn('flex w-fit flex-col gap-2 bg-gray-000 px-[18px] pt-2 pb-3', className)}>
+    <div
+      className={cn(
+        'flex h-[65px] w-fit flex-col gap-2 bg-gray-000 px-[18px] pt-2 pb-3',
+        className,
+      )}>
       <div className='flex items-center gap-1'>
         <div className='flex items-end gap-0.5 whitespace-nowrap'>
           <span className='typo-c2-m text-gray-700'>상품금액</span>
