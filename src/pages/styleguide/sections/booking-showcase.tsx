@@ -8,6 +8,7 @@ import { RegionItem } from '@pages/booking/components/region-item/region-item'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
 import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
+import { TheaterSelector } from '@pages/booking/components/theater-selector/theater-selector'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
 import type { Showtime } from '@pages/booking/types/showtime'
@@ -91,6 +92,12 @@ const theaterDropdownRegions: BookingRegion[] = [
       { cinemaId: 7, cinemaName: '도곡' },
       { cinemaId: 8, cinemaName: '독산' },
       { cinemaId: 9, cinemaName: '서울대입구' },
+      { cinemaId: 10, cinemaName: '수락산' },
+      { cinemaId: 11, cinemaName: '수유' },
+      { cinemaId: 12, cinemaName: '신대방(구로디지털역)' },
+      { cinemaId: 13, cinemaName: '스크롤 확인용 1' },
+      { cinemaId: 14, cinemaName: '스크롤 확인용 2' },
+      { cinemaId: 15, cinemaName: '스크롤 확인용 3' },
     ],
   },
   { regionId: 2, regionName: '경기/인천', cinemas: [] },
@@ -108,6 +115,8 @@ export const BookingShowcase = () => {
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
   const [clickedTheater, setClickedTheater] = useState<string | null>(null)
   const [selectedRegion, setSelectedRegion] = useState(exampleRegions[0].name)
+  const [selectedRegionId, setSelectedRegionId] = useState(theaterDropdownRegions[0].regionId)
+  const [clickedCinemaId, setClickedCinemaId] = useState<number | null>(null)
 
   return (
     <ShowcaseSection title='Booking'>
@@ -217,6 +226,23 @@ export const BookingShowcase = () => {
           <MovieDropdown movies={exampleMovies} />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieDropdown</span>
+      </div>
+
+      {/* TheaterSelector: 지역을 고르면 오른쪽 영화관 목록이 바뀜 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <div className='h-[574px] w-[375px]'>
+          <TheaterSelector
+            regions={theaterDropdownRegions}
+            selectedRegionId={selectedRegionId}
+            onRegionSelect={setSelectedRegionId}
+            onTheaterSelect={setClickedCinemaId}
+          />
+        </div>
+        <p className='m-0 min-h-4 typo-c2-m text-gray-600' aria-live='polite'>
+          {clickedCinemaId === null
+            ? '영화관을 눌러 클릭 전달을 확인해보세요.'
+            : `누른 영화관 id: ${clickedCinemaId}`}
+        </p>
       </div>
     </ShowcaseSection>
   )
