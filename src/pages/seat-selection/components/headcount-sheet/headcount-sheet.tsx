@@ -1,3 +1,5 @@
+import { getTotalHeadcount } from '@pages/seat-selection/utils/get-total-headcount'
+
 import { BottomSheet } from '@shared/components/bottom-sheet/bottom-sheet'
 import { Button } from '@shared/components/button/button'
 
@@ -20,7 +22,7 @@ export const HeadcountSheet = ({
   onHeadcountChange,
   onConfirm,
 }: HeadcountSheetProps) => {
-  const totalHeadcount = Object.values(headcount).reduce((sum, count) => sum + count, 0)
+  const totalHeadcount = getTotalHeadcount(headcount)
 
   return (
     <BottomSheet

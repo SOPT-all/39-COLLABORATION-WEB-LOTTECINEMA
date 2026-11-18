@@ -3,6 +3,7 @@ import { cn } from '@shared/utils/cn'
 import { HEADCOUNT_LABELS, HEADCOUNT_TYPES, MAX_TOTAL_HEADCOUNT } from '../../constants/headcount'
 import type { Headcount } from '../../types/headcount'
 import { formatTicketCounts } from '../../utils/format-ticket-counts'
+import { getTotalHeadcount } from '../../utils/get-total-headcount'
 import { CountStepper } from '../count-stepper/count-stepper'
 
 interface HeadcountSelectorProps {
@@ -18,7 +19,7 @@ export const HeadcountSelector = ({
   maxTotal = MAX_TOTAL_HEADCOUNT,
   className,
 }: HeadcountSelectorProps) => {
-  const total = Object.values(value).reduce((sum, count) => sum + count, 0)
+  const total = getTotalHeadcount(value)
   const remaining = maxTotal - total
   const summary = formatTicketCounts(value)
 

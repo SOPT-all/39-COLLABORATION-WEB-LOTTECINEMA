@@ -1,3 +1,5 @@
+import { getTotalHeadcount } from '@pages/seat-selection/utils/get-total-headcount'
+
 import { Button } from '@shared/components/button/button'
 import tossBanner from '@shared/icons/assets/toss-banner.png'
 import { cn } from '@shared/utils/cn'
@@ -26,7 +28,7 @@ export const SeatSummarySection = ({
   onPay,
   className,
 }: SeatSummarySectionProps) => {
-  const totalHeadcount = Object.values(headcount).reduce((sum, count) => sum + count, 0)
+  const totalHeadcount = getTotalHeadcount(headcount)
   const isComplete = totalHeadcount > 0 && selectedSeatCodes.length === totalHeadcount
 
   return (
