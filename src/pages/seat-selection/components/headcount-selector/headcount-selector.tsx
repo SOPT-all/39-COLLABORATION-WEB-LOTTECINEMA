@@ -1,6 +1,7 @@
 import { cn } from '@shared/utils/cn'
 
 import type { Headcount, HeadcountType } from '../../types/headcount'
+import { formatTicketCounts } from '../../utils/format-ticket-counts'
 import { CountStepper } from '../count-stepper/count-stepper'
 
 const HEADCOUNT_OPTIONS: { type: HeadcountType; label: string }[] = [
@@ -26,9 +27,7 @@ export const HeadcountSelector = ({
 }: HeadcountSelectorProps) => {
   const total = Object.values(value).reduce((sum, count) => sum + count, 0)
   const remaining = maxTotal - total
-  const summary = HEADCOUNT_OPTIONS.filter(({ type }) => value[type] > 0)
-    .map(({ type, label }) => `${label} ${value[type]}`)
-    .join(', ')
+  const summary = formatTicketCounts(value)
 
   return (
     <div className={cn('flex flex-col gap-3 px-5.5 pt-4', className)}>
