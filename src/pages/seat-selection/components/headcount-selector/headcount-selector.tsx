@@ -1,16 +1,9 @@
 import { cn } from '@shared/utils/cn'
 
-import type { Headcount, HeadcountType } from '../../types/headcount'
+import { HEADCOUNT_LABELS, HEADCOUNT_TYPES, MAX_TOTAL_HEADCOUNT } from '../../constants/headcount'
+import type { Headcount } from '../../types/headcount'
 import { formatTicketCounts } from '../../utils/format-ticket-counts'
 import { CountStepper } from '../count-stepper/count-stepper'
-
-const HEADCOUNT_OPTIONS: { type: HeadcountType; label: string }[] = [
-  { type: 'adult', label: '성인' },
-  { type: 'teen', label: '청소년' },
-  { type: 'senior', label: '경로' },
-  { type: 'disabled', label: '장애인' },
-]
-const MAX_TOTAL_HEADCOUNT = 8
 
 interface HeadcountSelectorProps {
   value: Headcount
@@ -39,10 +32,10 @@ export const HeadcountSelector = ({
       </div>
 
       <div className='flex flex-col gap-3'>
-        {HEADCOUNT_OPTIONS.map(({ type, label }) => (
+        {HEADCOUNT_TYPES.map((type) => (
           <CountStepper
             key={type}
-            label={label}
+            label={HEADCOUNT_LABELS[type]}
             count={value[type]}
             max={value[type] + remaining}
             onChange={(next) => onChange({ ...value, [type]: next })} // 한 키만 덮어쓰기
