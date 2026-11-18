@@ -118,6 +118,9 @@ export const SeatSelectionShowcase = () => {
         <h4 className='m-0 typo-c2-m text-gray-1000'>SeatLegend (width: 375px)</h4>
         <div className='w-[375px]'>
           <SeatLegend />
+        </div>
+      </div>
+
       {/* SeatMap: 실제 응답 형태의 mock(77석)으로 배치 확인 */}
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>SeatMap (width: 375px)</h4>
