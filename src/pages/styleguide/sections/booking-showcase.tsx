@@ -5,6 +5,7 @@ import { DateSelector } from '@pages/booking/components/date-selector/date-selec
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
 import { RegionItem } from '@pages/booking/components/region-item/region-item'
+import { ShowtimeBottomSheet } from '@pages/booking/components/showtime-bottom-sheet/showtime-bottom-sheet'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { ShowtimeGroup } from '@pages/booking/components/showtime-group/showtime-group'
 import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
@@ -14,6 +15,8 @@ import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/the
 import type { BookingDate } from '@pages/booking/types/date'
 import type { Showtime } from '@pages/booking/types/showtime'
 import type { BookingRegion } from '@pages/booking/types/theater'
+
+import { Button } from '@shared/components/button/button'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -187,6 +190,7 @@ export const BookingShowcase = () => {
   const [selectedRegion, setSelectedRegion] = useState(exampleRegions[0].name)
   const [selectedRegionId, setSelectedRegionId] = useState(theaterDropdownRegions[0].regionId)
   const [clickedCinemaId, setClickedCinemaId] = useState<number | null>(null)
+  const [sheetShowtimeId, setSheetShowtimeId] = useState<number | null>(null)
 
   return (
     <ShowcaseSection title='Booking'>
@@ -323,6 +327,20 @@ export const BookingShowcase = () => {
             ? '영화관을 눌러 클릭 전달을 확인해보세요.'
             : `누른 영화관 id: ${clickedCinemaId}`}
         </p>
+      </div>
+
+      {/* ShowtimeBottomSheet: MSW mock 데이터로 회차 1 상영 정보 확인 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>ShowtimeBottomSheet</h4>
+        <div>
+          <Button variant='dark' size='small' onClick={() => setSheetShowtimeId(1)}>
+            회차 1 상영 정보 열기
+          </Button>
+        </div>
+        <ShowtimeBottomSheet
+          showtimeId={sheetShowtimeId}
+          onClose={() => setSheetShowtimeId(null)}
+        />
       </div>
     </ShowcaseSection>
   )
