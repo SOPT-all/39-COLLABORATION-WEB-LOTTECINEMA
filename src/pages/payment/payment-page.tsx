@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Header } from '@shared/components/header/header'
 
+import paymentBenefit from './assets/payment-benefit.png'
 import photoCardGuide from './assets/photo-card-guide.png'
 import { BookingSummaryCard } from './components/booking-summary-card/booking-summary-card'
 import { DiscountPointSection } from './components/discount-point-section/discount-point-section'
@@ -60,6 +61,14 @@ export const PaymentPage = () => {
       <section aria-label='결제 수단' className='px-4.5 py-5'>
         <PaymentMethodGroup value={paymentMethod} onChange={setPaymentMethod} />
       </section>
+
+      <img
+        src={paymentBenefit}
+        alt='결제수단 혜택 안내'
+        width={375}
+        height={113}
+        className='block h-[113px] w-full'
+      />
 
       <PaymentSummaryBar
         ticketAmount={MOCK_TICKET_AMOUNT}
