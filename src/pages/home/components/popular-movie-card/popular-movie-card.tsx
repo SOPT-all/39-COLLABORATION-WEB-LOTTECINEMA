@@ -1,6 +1,8 @@
 import { Button } from '@shared/components/button/button'
 import { BadgeAge12Icon, BadgeAge15Icon, BadgeAge19Icon, BadgeAgeAllIcon } from '@shared/icons'
 
+import ratingStar from '../../assets/rating-star.svg'
+
 const ageRatingIcons = {
   전체: BadgeAgeAllIcon,
   '12세': BadgeAge12Icon,
@@ -47,17 +49,24 @@ export const PopularMovieCard = ({
         </span>
       </div>
 
-      <div className='flex flex-col gap-1 pt-2 pb-3'>
+      <div className='flex h-[53px] flex-col gap-1 pt-2 pb-3'>
         <h3 className='truncate typo-b1-m text-gray-1000'>{title}</h3>
 
         <div className='flex items-center gap-1 typo-c2-m text-gray-700'>
           {releaseDday !== undefined ? (
             <span>개봉 {releaseDday === 0 ? 'D-DAY' : `D-${releaseDday}`}</span>
           ) : (
-            <span className='flex items-center gap-0.5'>
-              <span aria-hidden='true'>★</span>
-              <span>{rating}</span>
-            </span>
+            rating !== undefined && (
+              <span className='flex items-center gap-0.5'>
+                <img
+                  src={ratingStar}
+                  alt=''
+                  aria-hidden='true'
+                  className='h-[7px] w-[7px] shrink-0'
+                />
+                <span>{rating}</span>
+              </span>
+            )
           )}
 
           {bookingRate !== undefined && (
@@ -69,7 +78,7 @@ export const PopularMovieCard = ({
         </div>
       </div>
 
-      <Button variant='primary' size='medium' onClick={onBookingClick} className='w-full'>
+      <Button variant='primary' size='medium' onClick={onBookingClick} className='h-[43px] w-full'>
         예매하기
       </Button>
     </article>

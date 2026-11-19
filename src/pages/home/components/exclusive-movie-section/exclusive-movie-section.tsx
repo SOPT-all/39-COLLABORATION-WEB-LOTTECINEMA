@@ -16,13 +16,11 @@ interface ExclusiveMovieSectionProps {
 export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) => {
   const [selectedTab, setSelectedTab] = useState<ExclusiveTab>('롯시픽')
 
-  const filteredMovies = movies.filter((movie) => {
-    return movie.category === selectedTab
-  })
+  const filteredMovies = movies.filter((movie) => movie.category === selectedTab)
 
   return (
     <section>
-      <div className='mb-4 flex items-center justify-between'>
+      <div className='mb-2 flex items-center justify-between'>
         <h2 className='typo-t2-b text-gray-1000'>오직 롯시에서만!</h2>
 
         <div className='flex items-center gap-1'>
@@ -30,6 +28,7 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
             tabs={EXCLUSIVE_TABS}
             selectedTab={selectedTab}
             onTabChange={setSelectedTab}
+            compact
           />
 
           <CurationHelp placement='exclusive' />

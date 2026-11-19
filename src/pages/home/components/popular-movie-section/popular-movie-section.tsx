@@ -28,9 +28,10 @@ export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
   })
 
   return (
-    <section>
-      <div className='mb-4 flex items-center justify-between'>
+    <section className='w-full overflow-hidden'>
+      <div className='flex h-[53px] items-center justify-between pt-5 pr-3 pl-5'>
         <h2 className='typo-t2-b text-gray-1000'>지금 인기있는</h2>
+
         <MovieFilterTabs
           tabs={POPULAR_TABS}
           selectedTab={selectedTab}
@@ -38,7 +39,7 @@ export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
         />
       </div>
 
-      <div className='flex [scrollbar-width:none] gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
+      <div className='flex h-[337px] [scrollbar-width:none] gap-3 overflow-x-auto px-5 pt-2 pb-3 [&::-webkit-scrollbar]:hidden'>
         {filteredMovies.map((movie) => (
           <PopularMovieCard key={movie.id} {...movie} />
         ))}
