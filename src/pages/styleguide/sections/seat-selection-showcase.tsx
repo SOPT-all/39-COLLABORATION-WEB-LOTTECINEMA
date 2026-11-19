@@ -1,21 +1,39 @@
 import { useState } from 'react'
 
+import { AgeNotice } from '@pages/seat-selection/components/age-notice/age-notice'
 import { CountStepper } from '@pages/seat-selection/components/count-stepper/count-stepper'
 import { HeadcountSelector } from '@pages/seat-selection/components/headcount-selector/headcount-selector'
+import { HeadcountSheet } from '@pages/seat-selection/components/headcount-sheet/headcount-sheet'
 import { MiniSeat } from '@pages/seat-selection/components/mini-seat/mini-seat'
 import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-button'
+import { SeatLegend } from '@pages/seat-selection/components/seat-legend/seat-legend'
+import { SeatMap } from '@pages/seat-selection/components/seat-map/seat-map'
+import { SeatOverview } from '@pages/seat-selection/components/seat-overview/seat-overview'
+import { SeatSummarySection } from '@pages/seat-selection/components/seat-summary-section/seat-summary-section'
 import type { Headcount } from '@pages/seat-selection/types/headcount'
 import type { SeatStatus } from '@pages/seat-selection/types/seat'
+
+import { Button } from '@shared/components/button/button'
+import { showtimeSeatsMock } from '@shared/mocks/data/showtime-seats'
 
 import { ShowcaseSection } from './showcase-section'
 
 const SEAT_STATUSES: SeatStatus[] = ['default', 'completed', 'selected', 'disabled', 'accessible']
+
+const SUMMARY_HEADCOUNT: Headcount = { adult: 2, teen: 0, senior: 0, disabled: 0 }
 
 export const SeatSelectionShowcase = () => {
   const [isSelected, setIsSelected] = useState(false)
   const [adultCount, setAdultCount] = useState(0)
   const [teenCount, setTeenCount] = useState(0)
   const [headcount, setHeadcount] = useState<Headcount>({
+    adult: 0,
+    teen: 0,
+    senior: 0,
+    disabled: 0,
+  })
+  const [isHeadcountSheetOpen, setIsHeadcountSheetOpen] = useState(false)
+  const [sheetHeadcount, setSheetHeadcount] = useState<Headcount>({
     adult: 0,
     teen: 0,
     senior: 0,
@@ -97,6 +115,91 @@ export const SeatSelectionShowcase = () => {
           <HeadcountSelector value={headcount} onChange={setHeadcount} />
         </div>
         <pre className='m-0 typo-c1-r text-gray-700'>{JSON.stringify(headcount)}</pre>
+      </div>
+
+      {/* SeatSummarySection: 좌석 선택 전 / 선택 완료 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>
+          SeatSummarySection (width: 375px) · 선택 전 / 선택 완료
+        </h4>
+        <div className='flex flex-wrap items-start gap-6'>
+          <div className='w-[375px] border-gray-100'>
+            <SeatSummarySection
+              movieTitle='극장판 치이카와: 인어 섬의 비밀'
+              formatType='2D'
+              selectedSeatCodes={[]}
+              headcount={SUMMARY_HEADCOUNT}
+              totalPrice={30000}
+              onHeadcountChange={() => {}}
+              onPay={() => {}}
+            />
+          </div>
+          <div className='w-[375px] border-gray-100'>
+            <SeatSummarySection
+              movieTitle='극장판 치이카와: 인어 섬의 비밀'
+              formatType='2D'
+              selectedSeatCodes={['E4', 'E5']}
+              headcount={SUMMARY_HEADCOUNT}
+              totalPrice={30000}
+              onHeadcountChange={() => {}}
+              onPay={() => {}}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* HeadcountSheet: 인원 선택 모달 (0명이면 좌석선택 비활성화) */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>HeadcountSheet</h4>
+        <div className='flex items-center gap-3'>
+          <Button variant='dark' size='small' onClick={() => setIsHeadcountSheetOpen(true)}>
+            인원 선택 시트 열기
+          </Button>
+          <pre className='m-0 typo-c1-r text-gray-700'>{JSON.stringify(sheetHeadcount)}</pre>
+        </div>
+        <HeadcountSheet
+          isOpen={isHeadcountSheetOpen}
+          screenInfo='용산 · 4관 리클라이너 · 자막'
+          headcount={sheetHeadcount}
+          onHeadcountChange={setSheetHeadcount}
+          onConfirm={() => setIsHeadcountSheetOpen(false)}
+        />
+      </div>
+
+      {/* age-notice */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>age-notice (여기 부분만 배경 어둡게)</h4>
+        <div className='bg-gray-1000 py-2'>
+          <AgeNotice ageRating='전체' />
+        </div>
+      </div>
+
+      {/* SeatLegend: 좌석표 하단 범례 바 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>SeatLegend (width: 375px)</h4>
+        <div className='w-[375px]'>
+          <SeatLegend />
+        </div>
+      </div>
+
+      {/* SeatMap: 실제 응답 형태의 mock(77석)으로 배치 확인 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>SeatMap (width: 375px)</h4>
+        <div className='w-[375px] bg-gray-1000 py-10'>
+          <SeatMap seats={showtimeSeatsMock.seats ?? []} />
+        </div>
+      </div>
+
+      {/* SeatOverview: 상영 정보 바텀시트의 좌석 미리보기 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>SeatOverview (width: 375px)</h4>
+        <div className='w-[375px] bg-gray-050 py-10'>
+          <SeatOverview
+            seats={showtimeSeatsMock.seats ?? []}
+            availableSeatCount={showtimeSeatsMock.availableSeatCount ?? 0}
+            totalSeatCount={showtimeSeatsMock.totalSeatCount ?? 0}
+          />
+        </div>
       </div>
     </ShowcaseSection>
   )
