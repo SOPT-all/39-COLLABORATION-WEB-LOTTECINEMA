@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router'
 
 import { ROUTE_PATH } from '@app/router/path'
 
-import { showtimeSeatsQueryOptions } from '@pages/seat-selection/api/showtime-seats-query'
-import { SeatOverview } from '@pages/seat-selection/components/seat-overview/seat-overview'
-
+import { showtimeSeatsQueryOptions } from '@shared/api/showtime-seats-query'
 import { BottomSheet } from '@shared/components/bottom-sheet/bottom-sheet'
 import { Button } from '@shared/components/button/button'
 import { AGE_RATINGS, isAgeRating } from '@shared/constants/age-rating'
+
+import { SeatOverview } from '../seat-overview/seat-overview'
 
 interface ShowtimeBottomSheetProps {
   // 선택한 상영 회차 ID. null이면 시트가 닫힌 상태
