@@ -1,5 +1,9 @@
 import { useState } from 'react'
 
+import { useNavigate } from 'react-router'
+
+import { ROUTE_PATH } from '@app/router/path'
+
 import type { PopularMovie } from '../../types/popular-movie'
 import { MovieFilterTabs } from '../movie-filter-tabs/movie-filter-tabs'
 import { PopularMovieCard } from '../popular-movie-card/popular-movie-card'
@@ -14,6 +18,7 @@ interface PopularMovieSectionProps {
 
 export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
   const [selectedTab, setSelectedTab] = useState<PopularTab>('전체')
+  const navigate = useNavigate()
 
   const filteredMovies = movies.filter((movie) => {
     if (selectedTab === '상영중') {
@@ -40,7 +45,11 @@ export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
 
       <div className='flex [scrollbar-width:none] gap-3 overflow-x-auto pt-2 [&::-webkit-scrollbar]:hidden'>
         {filteredMovies.map((movie) => (
-          <PopularMovieCard key={movie.id} {...movie} />
+          <PopularMovieCard
+            key={movie.id}
+            {...movie}
+            onBookingClick={movie.rank === 1 ? () => navigate(ROUTE_PATH.BOOKING) : undefined}
+          />
         ))}
       </div>
     </section>
