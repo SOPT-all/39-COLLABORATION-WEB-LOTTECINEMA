@@ -11,6 +11,7 @@ import { ShowtimeGroup } from '@pages/booking/components/showtime-group/showtime
 import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
 import { TheaterFilterBar } from '@pages/booking/components/theater-filter-bar/theater-filter-bar'
 import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
+import { TheaterSelectSection } from '@pages/booking/components/theater-select-section/theater-select-section'
 import { TheaterSelector } from '@pages/booking/components/theater-selector/theater-selector'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
@@ -340,6 +341,14 @@ export const BookingShowcase = () => {
             ? '영화관을 눌러 클릭 전달을 확인해보세요.'
             : `누른 영화관 id: ${clickedCinemaId}`}
         </p>
+      </div>
+
+      {/* TheaterSelectSection: MSW mock 데이터로 영화관 조회 연결 확인 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>TheaterSelectSection (width: 375px)</h4>
+        <div className='h-[574px] w-[375px]'>
+          <TheaterSelectSection movieId={1} />
+        </div>
       </div>
     </ShowcaseSection>
   )
