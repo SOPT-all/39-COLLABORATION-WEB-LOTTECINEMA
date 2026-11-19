@@ -13,7 +13,7 @@ export const TheaterTypeTabs = () => {
   const [selectedType, setSelectedType] = useState<TheaterType>('all')
 
   return (
-    <div role='group' aria-label='영화관 유형' className='inline-flex'>
+    <div role='group' aria-label='영화관 유형' className='flex w-full px-5'>
       {theaterTypes.map(({ id, label }) => {
         const isSelected = selectedType === id
 
