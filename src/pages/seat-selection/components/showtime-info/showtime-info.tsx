@@ -1,6 +1,6 @@
 import { cn } from '@shared/utils/cn'
 
-import poster from '../../assets/chiikawa-poster.png'
+import poster from '../../assets/chiikawa-poster.jpg'
 
 interface ShowtimeInfoProps {
   onClose?: () => void
