@@ -11,18 +11,19 @@ import moviePoster3 from '@pages/home/assets/movie-poster-3.svg'
 import moviePoster4 from '@pages/home/assets/movie-poster-4.svg'
 import moviePoster5 from '@pages/home/assets/movie-poster-5.svg'
 import moviePoster6 from '@pages/home/assets/movie-poster-6.svg'
-import posterPick1 from '@pages/home/assets/poster-pick-1.svg'
-import posterPick2 from '@pages/home/assets/poster-pick-2.svg'
-import posterPick3 from '@pages/home/assets/poster-pick-3.svg'
-import posterPick4 from '@pages/home/assets/poster-pick-4.svg'
-import posterPlay1 from '@pages/home/assets/poster-play-1.svg'
-import posterPlay2 from '@pages/home/assets/poster-play-2.svg'
-import posterPlay3 from '@pages/home/assets/poster-play-3.svg'
+import posterPick1 from '@pages/home/assets/poster-pick-1.jpg'
+import posterPick2 from '@pages/home/assets/poster-pick-2.jpg'
+import posterPick3 from '@pages/home/assets/poster-pick-3.jpg'
+import posterPick4 from '@pages/home/assets/poster-pick-4.jpg'
+import posterPlay1 from '@pages/home/assets/poster-play-1.jpg'
+import posterPlay2 from '@pages/home/assets/poster-play-2.jpg'
+import posterPlay3 from '@pages/home/assets/poster-play-3.jpg'
 import { BottomNavBar } from '@pages/home/components/bottom-nav-bar/bottom-nav-bar'
 import { ExclusiveMovieSection } from '@pages/home/components/exclusive-movie-section/exclusive-movie-section'
 import { HeroCarousel } from '@pages/home/components/hero-carousel/hero-carousel'
 import { MovieFilterTabs } from '@pages/home/components/movie-filter-tabs/movie-filter-tabs'
 import { PopularMovieCard } from '@pages/home/components/popular-movie-card/popular-movie-card'
+import type { ExclusiveMovie } from '@pages/home/types/exclusive-movie'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -127,7 +128,7 @@ const MOVIES = [
     ageRating: '전체',
     category: '롯시플',
   },
-] as const
+] satisfies ExclusiveMovie[]
 
 type PopularTab = '전체' | '상영중' | '개봉예정'
 

@@ -1,16 +1,20 @@
 import { useState } from 'react'
 
+import type { ExclusiveMovie } from '../../types/exclusive-movie'
 import { CurationHelp } from '../curation-help/curation-help'
 import { ExclusiveMovieCard } from '../exclusive-movie-card/exclusive-movie-card'
-import type { ExclusiveMovieCardProps } from '../exclusive-movie-card/exclusive-movie-card'
 import { MovieFilterTabs } from '../movie-filter-tabs/movie-filter-tabs'
 
+const EXCLUSIVE_TABS = ['롯시픽', '롯시플'] as const
+
+type ExclusiveTab = (typeof EXCLUSIVE_TABS)[number]
+
 interface ExclusiveMovieSectionProps {
-  movies: ExclusiveMovieCardProps[]
+  movies: ExclusiveMovie[]
 }
 
 export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) => {
-  const [selectedTab, setSelectedTab] = useState('롯시픽')
+  const [selectedTab, setSelectedTab] = useState<ExclusiveTab>('롯시픽')
 
   const filteredMovies = movies.filter((movie) => {
     return movie.category === selectedTab
@@ -23,7 +27,7 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
 
         <div className='flex items-center gap-1'>
           <MovieFilterTabs
-            tabs={['롯시픽', '롯시플']}
+            tabs={EXCLUSIVE_TABS}
             selectedTab={selectedTab}
             onTabChange={setSelectedTab}
           />
@@ -34,7 +38,7 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
 
       <div className='flex [scrollbar-width:none] gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
         {filteredMovies.map((movie) => (
-          <ExclusiveMovieCard key={movie.posterUrl} {...movie} />
+          <ExclusiveMovieCard key={movie.id} {...movie} />
         ))}
       </div>
     </section>
