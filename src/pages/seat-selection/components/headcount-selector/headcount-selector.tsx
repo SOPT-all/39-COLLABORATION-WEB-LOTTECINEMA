@@ -1,8 +1,8 @@
+import { HEADCOUNT_LABELS, HEADCOUNT_TYPES, MAX_TOTAL_HEADCOUNT } from '@shared/constants/headcount'
+import type { Headcount } from '@shared/types/headcount'
 import { cn } from '@shared/utils/cn'
+import { formatTicketCounts } from '@shared/utils/format-ticket-counts'
 
-import { HEADCOUNT_LABELS, HEADCOUNT_TYPES, MAX_TOTAL_HEADCOUNT } from '../../constants/headcount'
-import type { Headcount } from '../../types/headcount'
-import { formatTicketCounts } from '../../utils/format-ticket-counts'
 import { getTotalHeadcount } from '../../utils/get-total-headcount'
 import { CountStepper } from '../count-stepper/count-stepper'
 

@@ -1,7 +1,6 @@
 // 좌석 범례 및 미리보기 용 작은 좌석
+import type { SeatStatus } from '@shared/types/seat'
 import { cn } from '@shared/utils/cn'
-
-import type { SeatStatus } from '../../types/seat'
 
 type MiniSeatVariant = 'legend' | 'preview'
 

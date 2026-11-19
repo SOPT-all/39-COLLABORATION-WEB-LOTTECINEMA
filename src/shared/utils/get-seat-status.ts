@@ -1,7 +1,6 @@
+import { ACCESSIBLE_SEAT_CODES } from '@shared/constants/seat'
 import type { SeatInfo } from '@shared/types/__generated__/data-contracts'
-
-import { ACCESSIBLE_SEAT_CODES } from '../constants/seat'
-import type { SeatStatus } from '../types/seat'
+import type { SeatStatus } from '@shared/types/seat'
 
 export const getSeatStatus = (seat: SeatInfo): SeatStatus => {
   if (seat.isReserved) return 'completed'

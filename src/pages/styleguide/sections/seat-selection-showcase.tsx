@@ -1,20 +1,20 @@
 import { useState } from 'react'
 
+import { MiniSeat } from '@pages/booking/components/mini-seat/mini-seat'
+import { SeatOverview } from '@pages/booking/components/seat-overview/seat-overview'
 import { AgeNotice } from '@pages/seat-selection/components/age-notice/age-notice'
 import { CountStepper } from '@pages/seat-selection/components/count-stepper/count-stepper'
 import { HeadcountSelector } from '@pages/seat-selection/components/headcount-selector/headcount-selector'
 import { HeadcountSheet } from '@pages/seat-selection/components/headcount-sheet/headcount-sheet'
-import { MiniSeat } from '@pages/seat-selection/components/mini-seat/mini-seat'
 import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-button'
 import { SeatLegend } from '@pages/seat-selection/components/seat-legend/seat-legend'
 import { SeatMap } from '@pages/seat-selection/components/seat-map/seat-map'
-import { SeatOverview } from '@pages/seat-selection/components/seat-overview/seat-overview'
 import { SeatSummarySection } from '@pages/seat-selection/components/seat-summary-section/seat-summary-section'
-import type { Headcount } from '@pages/seat-selection/types/headcount'
-import type { SeatStatus } from '@pages/seat-selection/types/seat'
 
 import { Button } from '@shared/components/button/button'
 import { showtimeSeatsMock } from '@shared/mocks/data/showtime-seats'
+import type { Headcount } from '@shared/types/headcount'
+import type { SeatStatus } from '@shared/types/seat'
 
 import { ShowcaseSection } from './showcase-section'
 
