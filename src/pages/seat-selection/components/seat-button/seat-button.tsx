@@ -1,8 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react'
 
+import type { SeatStatus } from '@shared/types/seat'
 import { cn } from '@shared/utils/cn'
-
-import type { SeatStatus } from '../../types/seat'
 
 interface SeatButtonProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,

@@ -1,6 +1,5 @@
 import type { TicketPrices } from '@shared/types/__generated__/data-contracts'
-
-import type { Headcount } from '../types/headcount'
+import type { Headcount } from '@shared/types/headcount'
 
 export const calcTotalPrice = (headcount: Headcount, prices: TicketPrices) => {
   return (

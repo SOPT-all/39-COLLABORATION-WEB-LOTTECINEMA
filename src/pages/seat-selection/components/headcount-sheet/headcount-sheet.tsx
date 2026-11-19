@@ -1,9 +1,8 @@
-import { getTotalHeadcount } from '@pages/seat-selection/utils/get-total-headcount'
-
 import { BottomSheet } from '@shared/components/bottom-sheet/bottom-sheet'
 import { Button } from '@shared/components/button/button'
+import type { Headcount } from '@shared/types/headcount'
 
-import type { Headcount } from '../../types/headcount'
+import { getTotalHeadcount } from '../../utils/get-total-headcount'
 import { HeadcountSelector } from '../headcount-selector/headcount-selector'
 
 interface HeadcountSheetProps {

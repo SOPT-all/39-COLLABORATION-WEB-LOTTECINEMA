@@ -1,4 +1,4 @@
-import type { HeadcountType } from '../types/headcount'
+import type { HeadcountType } from '@shared/types/headcount'
 
 export const HEADCOUNT_LABELS: Record<HeadcountType, string> = {
   adult: '성인',

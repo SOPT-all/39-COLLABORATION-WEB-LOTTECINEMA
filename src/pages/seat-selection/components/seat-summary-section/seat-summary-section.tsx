@@ -1,11 +1,10 @@
-import { getTotalHeadcount } from '@pages/seat-selection/utils/get-total-headcount'
-
 import { Button } from '@shared/components/button/button'
 import tossBanner from '@shared/icons/assets/toss-banner.png'
+import type { Headcount } from '@shared/types/headcount'
 import { cn } from '@shared/utils/cn'
+import { formatTicketCounts } from '@shared/utils/format-ticket-counts'
 
-import type { Headcount } from '../../types/headcount'
-import { formatTicketCounts } from '../../utils/format-ticket-counts'
+import { getTotalHeadcount } from '../../utils/get-total-headcount'
 
 interface SeatSummarySectionProps {
   movieTitle: string
