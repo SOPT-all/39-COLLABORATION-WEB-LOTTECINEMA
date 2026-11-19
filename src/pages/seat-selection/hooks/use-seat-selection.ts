@@ -41,9 +41,9 @@ export const useSeatSelection = () => {
 
   return {
     headcount,
+    setHeadcount,
     selectedSeatCodes,
     isHeadcountSheetOpen,
-    totalHeadcount,
     isSelectionFull,
     handleSeatClick,
     handleHeadcountConfirm,
