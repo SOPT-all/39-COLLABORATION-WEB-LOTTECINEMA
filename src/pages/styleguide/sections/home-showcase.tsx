@@ -13,13 +13,14 @@ import { BottomNavBar } from '@pages/home/components/bottom-nav-bar/bottom-nav-b
 import { CurationHelp } from '@pages/home/components/curation-help/curation-help'
 import { ExclusiveMovieCard } from '@pages/home/components/exclusive-movie-card/exclusive-movie-card'
 import { HeroCarousel } from '@pages/home/components/hero-carousel/hero-carousel'
-import { PopularMovieCard } from '@pages/home/components/popular-movie-card/popular-movie-card'
 import { PopularMovieSection } from '@pages/home/components/popular-movie-section/popular-movie-section'
+import type { PopularMovie } from '@pages/home/types/popular-movie'
 
 import { ShowcaseSection } from './showcase-section'
 
 const movies = [
   {
+    id: 1,
     rank: 1,
     title: '극장판 치이카와: 인어 섬의 비밀',
     posterUrl: moviePoster1,
@@ -28,6 +29,7 @@ const movies = [
     bookingRate: 20,
   },
   {
+    id: 2,
     rank: 2,
     title: '하트 오브 비스트',
     posterUrl: moviePoster2,
@@ -36,6 +38,7 @@ const movies = [
     bookingRate: 30,
   },
   {
+    id: 3,
     rank: 3,
     title: '최종면접',
     posterUrl: moviePoster3,
@@ -44,6 +47,7 @@ const movies = [
     bookingRate: 25,
   },
   {
+    id: 4,
     rank: 4,
     title: '극장판 마법소녀 마도카 마기카',
     posterUrl: moviePoster4,
@@ -52,6 +56,7 @@ const movies = [
     bookingRate: 17,
   },
   {
+    id: 5,
     rank: 5,
     title: '수능, 출제의 비밀',
     posterUrl: moviePoster5,
@@ -60,6 +65,7 @@ const movies = [
     bookingRate: 11,
   },
   {
+    id: 6,
     rank: 6,
     title: '그대, 별처럼',
     posterUrl: moviePoster6,
@@ -67,7 +73,7 @@ const movies = [
     releaseDday: 1,
     bookingRate: 7,
   },
-] satisfies Array<React.ComponentProps<typeof PopularMovieCard>>
+] satisfies PopularMovie[]
 
 const MOVIES = [
   {
