@@ -124,15 +124,15 @@ export const SeatSelectionShowcase = () => {
         </div>
       </div>
 
-      {/* ShowtimeInfo: 바텀시트용 (닫기 버튼 있음) */}
+      {/* ShowtimeInfo: 바텀시트용 */}
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>ShowtimeInfo (width: 375px)</h4>
-        <div className='w-[375px]'>
-          <ShowtimeInfo onClose={() => {}} />
+        <div className='w-[375px] px-5 py-2.5'>
+          <ShowtimeInfo />
         </div>
       </div>
 
-      {/* ShowtimeInfo: 인원 선택용 (닫기 버튼 없음) */}
+      {/* ShowtimeInfo: 인원 선택용 */}
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>
           ShowtimeInfo · headcount (여기 부분만 배경 어둡게)
