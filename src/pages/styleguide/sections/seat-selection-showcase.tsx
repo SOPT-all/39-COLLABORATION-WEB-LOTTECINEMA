@@ -131,6 +131,29 @@ export const SeatSelectionShowcase = () => {
           <ShowtimeInfo onClose={() => {}} />
         </div>
       </div>
+
+      {/* ShowtimeInfo: 인원 선택용 (닫기 버튼 없음) */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>
+          ShowtimeInfo · headcount (여기 부분만 배경 어둡게)
+        </h4>
+        <div className='flex flex-wrap items-start gap-6'>
+          <div className='flex flex-col items-center gap-2'>
+            <div className='w-[375px] bg-gray-1000 px-5 py-4'>
+              <ShowtimeInfo variant='headcount' />
+            </div>
+            <span className='typo-c1-r text-gray-700'>원래 색</span>
+          </div>
+
+          <div className='flex flex-col items-center gap-2'>
+            <div className='relative w-[375px] bg-gray-1000 px-5 py-4'>
+              <ShowtimeInfo variant='headcount' />
+              <div aria-hidden='true' className='absolute inset-0 bg-gray-1000/60' />
+            </div>
+            <span className='typo-c1-r text-gray-700'>시트 뒷배경(검정 60%) 적용</span>
+          </div>
+        </div>
+      </div>
     </ShowcaseSection>
   )
 }
