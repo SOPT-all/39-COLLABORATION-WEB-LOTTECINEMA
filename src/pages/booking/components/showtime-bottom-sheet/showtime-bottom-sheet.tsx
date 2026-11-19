@@ -8,19 +8,7 @@ import { SeatOverview } from '@pages/seat-selection/components/seat-overview/sea
 
 import { BottomSheet } from '@shared/components/bottom-sheet/bottom-sheet'
 import { Button } from '@shared/components/button/button'
-import { BadgeAge12Icon, BadgeAge15Icon, BadgeAge19Icon, BadgeAgeAllIcon } from '@shared/icons'
-
-// TODO: #119 머지 후 @shared/constants/age-rating의 AGE_RATINGS로 교체
-const AGE_RATING_NOTICES = {
-  전체: { Icon: BadgeAgeAllIcon, label: '전체 관람가' },
-  '12세': { Icon: BadgeAge12Icon, label: '12세 이상 관람가' },
-  '15세': { Icon: BadgeAge15Icon, label: '15세 이상 관람가' },
-  청불: { Icon: BadgeAge19Icon, label: '청소년 관람불가' },
-} as const
-
-// API의 ageRating(string)이 위 매핑에 있는 키인지 확인하는 타입 가드
-const isKnownAgeRating = (value?: string): value is keyof typeof AGE_RATING_NOTICES =>
-  value !== undefined && value in AGE_RATING_NOTICES
+import { AGE_RATINGS, isAgeRating } from '@shared/constants/age-rating'
 
 interface ShowtimeBottomSheetProps {
   // 선택한 상영 회차 ID. null이면 시트가 닫힌 상태
@@ -37,7 +25,7 @@ export const ShowtimeBottomSheet = ({ showtimeId, onClose }: ShowtimeBottomSheet
   })
 
   const ageRating = data?.movie?.ageRating
-  const ageNotice = isKnownAgeRating(ageRating) ? AGE_RATING_NOTICES[ageRating] : null
+  const ageNotice = isAgeRating(ageRating) ? AGE_RATINGS[ageRating] : null
 
   const handleSelectSeat = () => {
     if (showtimeId === null) return
