@@ -71,11 +71,11 @@ export const HomePage = () => {
 
         <section
           aria-label='롯데시네마 추천 및 이벤트'
-          className='relative h-[1405px] w-full overflow-hidden'>
+          className='h-[1405px] w-[375px] overflow-hidden'>
           <img
             src={homeBottomImage}
             alt='쿠폰, 영화 굿즈, 특별관과 롯데시네마 소식'
-            className='absolute top-[-1329px] left-0 h-[2737px] w-full max-w-none'
+            className='block h-[1405px] w-[375px]'
           />
         </section>
       </main>
