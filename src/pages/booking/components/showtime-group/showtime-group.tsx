@@ -1,16 +1,16 @@
 import { Fragment } from 'react'
 
-import type { Showtime } from '../../types/showtime'
+import type { ShowtimeGroupData } from '../../types/showtime'
 import { ShowtimeCard } from '../showtime-card/showtime-card'
 
 interface ShowtimeGroupProps {
-  labels: string[]
-  description: string
-  showtimes: Showtime[]
+  group: ShowtimeGroupData
   onSelect: (showtimeId: number) => void
 }
 
-export const ShowtimeGroup = ({ labels, description, showtimes, onSelect }: ShowtimeGroupProps) => {
+export const ShowtimeGroup = ({ group, onSelect }: ShowtimeGroupProps) => {
+  const { labels, description, showtimes } = group
+
   if (showtimes.length === 0) return null
 
   return (

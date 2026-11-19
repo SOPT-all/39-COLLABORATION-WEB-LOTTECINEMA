@@ -3,9 +3,13 @@ export interface Showtime {
   startAt: string
   endAt: string
   screenName: string
-  formatType: string
-  languageType: string
   totalSeatCount: number
-  reservedSeatCount: number
   availableSeatCount: number
+}
+
+export interface ShowtimeGroupData {
+  key: string
+  labels: string[]
+  description: string
+  showtimes: Showtime[]
 }
