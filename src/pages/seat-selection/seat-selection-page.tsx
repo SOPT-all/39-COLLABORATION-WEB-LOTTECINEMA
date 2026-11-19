@@ -56,6 +56,7 @@ export const SeatSelectionPage = () => {
             selectedSeatCodes={selectedSeatCodes}
             headcount={headcount}
             totalPrice={totalPrice}
+            isComplete={isSelectionFull}
             onHeadcountChange={handleHeadcountReset}
             onPay={() => {}} // 결제 페이지 연결
           />

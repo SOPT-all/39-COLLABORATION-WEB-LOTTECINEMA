@@ -4,14 +4,13 @@ import type { Headcount } from '@shared/types/headcount'
 import { cn } from '@shared/utils/cn'
 import { formatTicketCounts } from '@shared/utils/format-ticket-counts'
 
-import { getTotalHeadcount } from '../../utils/get-total-headcount'
-
 interface SeatSummarySectionProps {
   movieTitle: string
   formatType: string
   selectedSeatCodes: string[]
   headcount: Headcount
   totalPrice: number
+  isComplete: boolean
   onHeadcountChange: () => void
   onPay: () => void
   className?: string
@@ -23,13 +22,11 @@ export const SeatSummarySection = ({
   selectedSeatCodes,
   headcount,
   totalPrice,
+  isComplete,
   onHeadcountChange,
   onPay,
   className,
 }: SeatSummarySectionProps) => {
-  const totalHeadcount = getTotalHeadcount(headcount)
-  const isComplete = totalHeadcount > 0 && selectedSeatCodes.length === totalHeadcount
-
   return (
     <section aria-label='선택 정보' className={cn('bg-gray-000', className)}>
       <h2 className='border-b border-gray-100 px-5.5 py-2.5 typo-b2-m text-gray-1000'>
