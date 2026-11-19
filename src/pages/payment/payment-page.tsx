@@ -29,8 +29,9 @@ const Divider = ({ className }: { className?: string }) => (
 
 export const PaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
-  const [isResetDisabled, setIsResetDisabled] = useState(true)
   const [discountAmount, setDiscountAmount] = useState(0)
+
+  const isResetDisabled = discountAmount === 0
 
   return (
     <div className='flex min-h-dvh flex-col bg-gray-000 pb-18'>
@@ -51,14 +52,8 @@ export const PaymentPage = () => {
       <DiscountPointSection
         options={DISCOUNT_OPTIONS}
         isResetDisabled={isResetDisabled}
-        onLPointLookup={() => {
-          setDiscountAmount(LPOINT_DISCOUNT_AMOUNT)
-          setIsResetDisabled(false)
-        }}
-        onReset={() => {
-          setDiscountAmount(0)
-          setIsResetDisabled(true)
-        }}
+        onLPointLookup={() => setDiscountAmount(LPOINT_DISCOUNT_AMOUNT)}
+        onReset={() => setDiscountAmount(0)}
       />
 
       <Divider />
