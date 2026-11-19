@@ -1,15 +1,10 @@
+import { HEADCOUNT_LABELS, HEADCOUNT_TYPES, MAX_TOTAL_HEADCOUNT } from '@shared/constants/headcount'
+import type { Headcount } from '@shared/types/headcount'
 import { cn } from '@shared/utils/cn'
+import { formatTicketCounts } from '@shared/utils/format-ticket-counts'
 
-import type { Headcount, HeadcountType } from '../../types/headcount'
+import { getTotalHeadcount } from '../../utils/get-total-headcount'
 import { CountStepper } from '../count-stepper/count-stepper'
-
-const HEADCOUNT_OPTIONS: { type: HeadcountType; label: string }[] = [
-  { type: 'adult', label: '성인' },
-  { type: 'teen', label: '청소년' },
-  { type: 'senior', label: '경로' },
-  { type: 'disabled', label: '장애인' },
-]
-const MAX_TOTAL_HEADCOUNT = 8
 
 interface HeadcountSelectorProps {
   value: Headcount
@@ -24,11 +19,9 @@ export const HeadcountSelector = ({
   maxTotal = MAX_TOTAL_HEADCOUNT,
   className,
 }: HeadcountSelectorProps) => {
-  const total = Object.values(value).reduce((sum, count) => sum + count, 0)
+  const total = getTotalHeadcount(value)
   const remaining = maxTotal - total
-  const summary = HEADCOUNT_OPTIONS.filter(({ type }) => value[type] > 0)
-    .map(({ type, label }) => `${label} ${value[type]}`)
-    .join(', ')
+  const summary = formatTicketCounts(value)
 
   return (
     <div className={cn('flex flex-col gap-3 px-5.5 pt-4', className)}>
@@ -40,10 +33,10 @@ export const HeadcountSelector = ({
       </div>
 
       <div className='flex flex-col gap-3'>
-        {HEADCOUNT_OPTIONS.map(({ type, label }) => (
+        {HEADCOUNT_TYPES.map((type) => (
           <CountStepper
             key={type}
-            label={label}
+            label={HEADCOUNT_LABELS[type]}
             count={value[type]}
             max={value[type] + remaining}
             onChange={(next) => onChange({ ...value, [type]: next })} // 한 키만 덮어쓰기

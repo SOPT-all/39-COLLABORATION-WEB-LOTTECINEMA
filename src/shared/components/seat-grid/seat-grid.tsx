@@ -2,8 +2,7 @@ import type { ReactNode } from 'react'
 
 import type { SeatInfo } from '@shared/types/__generated__/data-contracts'
 import { cn } from '@shared/utils/cn'
-
-import { getGridSize } from '../../utils/get-grid-size'
+import { getGridSize } from '@shared/utils/get-grid-size'
 
 interface SeatGridProps {
   seats: SeatInfo[]

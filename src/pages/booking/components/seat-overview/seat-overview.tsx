@@ -1,9 +1,9 @@
+import { SeatGrid } from '@shared/components/seat-grid/seat-grid'
 import type { SeatInfo } from '@shared/types/__generated__/data-contracts'
 import { cn } from '@shared/utils/cn'
+import { getSeatStatus } from '@shared/utils/get-seat-status'
 
-import { getSeatStatus } from '../../utils/get-seat-status'
 import { MiniSeat } from '../mini-seat/mini-seat'
-import { SeatGrid } from '../seat-grid/seat-grid'
 
 interface SeatOverviewProps {
   seats: SeatInfo[]
