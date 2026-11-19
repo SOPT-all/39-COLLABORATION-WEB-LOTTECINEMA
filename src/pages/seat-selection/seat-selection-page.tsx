@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
 
-import { showtimeSeatsQueryOptions } from './api/showtime-seats-query'
+import { showtimeSeatsQueryOptions } from '@shared/api/showtime-seats-query'
+
 import { SeatMap } from './components/seat-map/seat-map'
 
 export const SeatSelectionPage = () => {
