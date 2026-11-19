@@ -5,7 +5,7 @@ import type { Headcount } from '@shared/types/headcount'
 import { getTotalHeadcount } from '../utils/get-total-headcount'
 
 const INITIAL_HEADCOUNT: Headcount = { adult: 0, teen: 0, senior: 0, disabled: 0 }
-
+const compareSeatCode = (a: string, b: string) => a.localeCompare(b, undefined, { numeric: true })
 export const useSeatSelection = () => {
   const [headcount, setHeadcount] = useState(INITIAL_HEADCOUNT)
   const [selectedSeatCodes, setSelectedSeatCodes] = useState<string[]>([])
@@ -26,7 +26,7 @@ export const useSeatSelection = () => {
       setSelectedSeatCodes(selectedSeatCodes.filter((code) => code !== seatCode))
       return
     }
-    setSelectedSeatCodes([...selectedSeatCodes, seatCode])
+    setSelectedSeatCodes([...selectedSeatCodes, seatCode].sort(compareSeatCode))
   }
 
   const handleHeadcountConfirm = () => {
