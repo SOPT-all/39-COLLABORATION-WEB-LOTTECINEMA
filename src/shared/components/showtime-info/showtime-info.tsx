@@ -1,6 +1,6 @@
 import { cn } from '@shared/utils/cn'
 
-import poster from '../../assets/chiikawa-poster.jpg'
+import poster from './chiikawa-poster.jpg'
 
 interface ShowtimeInfoProps {
   variant?: 'sheet' | 'headcount'

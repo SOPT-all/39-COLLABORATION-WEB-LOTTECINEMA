@@ -6,10 +6,10 @@ import { MiniSeat } from '@pages/seat-selection/components/mini-seat/mini-seat'
 import { SeatButton } from '@pages/seat-selection/components/seat-button/seat-button'
 import { SeatMap } from '@pages/seat-selection/components/seat-map/seat-map'
 import { SeatOverview } from '@pages/seat-selection/components/seat-overview/seat-overview'
-import { ShowtimeInfo } from '@pages/seat-selection/components/showtime-info/showtime-info'
 import type { Headcount } from '@pages/seat-selection/types/headcount'
 import type { SeatStatus } from '@pages/seat-selection/types/seat'
 
+import { ShowtimeInfo } from '@shared/components/showtime-info/showtime-info'
 import { showtimeSeatsMock } from '@shared/mocks/data/showtime-seats'
 
 import { ShowcaseSection } from './showcase-section'
