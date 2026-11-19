@@ -14,7 +14,7 @@ const AGE_RATING_ICONS = {
   청불: BadgeAge19Icon,
 }
 
-interface ExclusiveMovieCardProps {
+export interface ExclusiveMovieCardProps {
   posterUrl: string
   title: string
   ageRating: keyof typeof AGE_RATING_ICONS
