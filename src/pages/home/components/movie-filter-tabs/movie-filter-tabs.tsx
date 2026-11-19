@@ -14,13 +14,16 @@ export const MovieFilterTabs = <T extends string>({
   onTabChange,
 }: MovieFilterTabsProps<T>) => {
   return (
-    <div className='flex items-center gap-1'>
+    <div className='flex items-center'>
       {tabs.map((tab, index) => (
         <Fragment key={tab}>
           <button
             type='button'
             aria-pressed={selectedTab === tab}
-            className={cn('typo-c3-m', selectedTab === tab ? 'text-gray-1000' : 'text-gray-700')}
+            className={cn(
+              'p-2 typo-c3-m',
+              selectedTab === tab ? 'text-gray-1000' : 'text-gray-700',
+            )}
             onClick={() => onTabChange(tab)}>
             {tab}
           </button>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { DateItem } from '@pages/booking/components/date-item/date-item'
 import { DateSelector } from '@pages/booking/components/date-selector/date-selector'
+import { MovieBannerSection } from '@pages/booking/components/movie-banner-section/movie-banner-section'
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
 import { RegionItem } from '@pages/booking/components/region-item/region-item'
@@ -9,6 +10,7 @@ import { ShowtimeBottomSheet } from '@pages/booking/components/showtime-bottom-s
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
 import { ShowtimeGroup } from '@pages/booking/components/showtime-group/showtime-group'
 import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
+import { TheaterFilterBar } from '@pages/booking/components/theater-filter-bar/theater-filter-bar'
 import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
 import { TheaterSelector } from '@pages/booking/components/theater-selector/theater-selector'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
@@ -202,6 +204,13 @@ export const BookingShowcase = () => {
         </p>
       </div>
 
+      {/* TheaterFilterBar */}
+      <div className='col-span-2 min-h-[360px]'>
+        <div className='w-[375px] border border-gray-200 bg-gray-000'>
+          <TheaterFilterBar selectedTheaterName='용산' regions={theaterDropdownRegions} />
+        </div>
+      </div>
+
       {/* TheaterTypeTabs */}
       <div className='col-span-2'>
         <TheaterTypeTabs />
@@ -310,6 +319,14 @@ export const BookingShowcase = () => {
           <MovieDropdown movies={exampleMovies} />
         </div>
         <span className='text-center typo-c1-r text-gray-700'>MovieDropdown</span>
+      </div>
+
+      {/* MovieBannerSection: 배너 + 영화 변경 드롭다운 조립 */}
+      <div className='col-span-2 flex flex-col items-center gap-3'>
+        <div className='w-[375px]'>
+          <MovieBannerSection movies={exampleMovies} />
+        </div>
+        <span className='text-center typo-c1-r text-gray-700'>MovieBannerSection</span>
       </div>
 
       {/* TheaterSelector: 지역을 고르면 오른쪽 영화관 목록이 바뀜 */}
