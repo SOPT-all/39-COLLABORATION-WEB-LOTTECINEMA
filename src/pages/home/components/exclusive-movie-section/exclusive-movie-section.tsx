@@ -21,11 +21,11 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
   })
 
   return (
-    <section>
-      <div className='mb-4 flex items-center justify-between'>
+    <section className='flex flex-col py-5 pl-5'>
+      <div className='mb-2 flex items-center justify-between'>
         <h2 className='typo-t2-b text-gray-1000'>오직 롯시에서만!</h2>
 
-        <div className='flex items-center gap-1'>
+        <div className='flex items-center gap-1 px-5'>
           <MovieFilterTabs
             tabs={EXCLUSIVE_TABS}
             selectedTab={selectedTab}
