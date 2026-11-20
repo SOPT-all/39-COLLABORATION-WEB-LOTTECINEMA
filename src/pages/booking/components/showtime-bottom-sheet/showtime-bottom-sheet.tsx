@@ -6,6 +6,7 @@ import { ROUTE_PATH } from '@app/router/path'
 import { showtimeSeatsQueryOptions } from '@shared/api/showtime-seats-query'
 import { BottomSheet } from '@shared/components/bottom-sheet/bottom-sheet'
 import { Button } from '@shared/components/button/button'
+import { ShowtimeInfo } from '@shared/components/showtime-info/showtime-info'
 import { AGE_RATINGS, isAgeRating } from '@shared/constants/age-rating'
 
 import { SeatOverview } from '../seat-overview/seat-overview'
@@ -38,14 +39,14 @@ export const ShowtimeBottomSheet = ({ showtimeId, onClose }: ShowtimeBottomSheet
       isOpen={showtimeId !== null}
       onClose={onClose}
       ariaLabel='상영 정보'
+      className='bg-gray-050'
       header={
-        <div className='flex items-start justify-between gap-3 px-5.5 pt-5'>
-          {/* TODO: ShowtimeInfo 작업 후 교체 */}
-          <div className='min-w-0 flex-1 typo-b1-r text-gray-600'>ShowtimeInfo 자리</div>
+        <div className='flex items-start justify-between gap-4 px-5 py-2.5'>
+          <ShowtimeInfo className='min-w-0 flex-1' />
           <button
             type='button'
             onClick={onClose}
-            className='shrink-0 rounded-full border border-gray-900 px-3 py-1 typo-c3-m text-gray-1000'>
+            className='shrink-0 self-center rounded-full border border-gray-900 px-3 py-1.5 typo-c3-m text-gray-900'>
             닫기
           </button>
         </div>
@@ -66,9 +67,9 @@ export const ShowtimeBottomSheet = ({ showtimeId, onClose }: ShowtimeBottomSheet
       {data && (
         <div className='flex flex-col items-center gap-[73px] pt-4 pb-[25px]'>
           <SeatOverview
-            seats={data.seats ?? []}
-            availableSeatCount={data.availableSeatCount ?? 0}
-            totalSeatCount={data.totalSeatCount ?? 0}
+            seats={data.seats}
+            availableSeatCount={data.availableSeatCount}
+            totalSeatCount={data.totalSeatCount}
           />
 
           {ageNotice && (
