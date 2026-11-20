@@ -131,6 +131,7 @@ export const SeatSelectionShowcase = () => {
               selectedSeatCodes={[]}
               headcount={SUMMARY_HEADCOUNT}
               totalPrice={30000}
+              isComplete={false}
               onHeadcountChange={() => {}}
               onPay={() => {}}
             />
@@ -142,6 +143,7 @@ export const SeatSelectionShowcase = () => {
               selectedSeatCodes={['E4', 'E5']}
               headcount={SUMMARY_HEADCOUNT}
               totalPrice={30000}
+              isComplete={true}
               onHeadcountChange={() => {}}
               onPay={() => {}}
             />

@@ -10,7 +10,7 @@ export const AgeNotice = ({ ageRating }: AgeNoticeProps) => {
   const { Icon, label } = AGE_RATINGS[ageRating]
 
   return (
-    <p className='flex items-center justify-center gap-0.5'>
+    <p className='flex items-center justify-center gap-0.5 bg-linear-to-b from-transparent to-gray-1000/80 pt-3 pb-2'>
       <Icon aria-hidden className='size-4' />
 
       <span className='typo-c3-m text-gray-000'>본 영화는 {label} 입니다.</span>
