@@ -8,4 +8,5 @@ export const showtimeSeatsQueryOptions = (showtimeId: number) =>
   queryOptions({
     queryKey: showtimeQueryKeys.seats(showtimeId),
     queryFn: () => getShowtimeSeats(showtimeId),
+    staleTime: 0,
   })
