@@ -44,36 +44,6 @@ export const BookingPage = () => {
     clearSelectedShowtime()
   }
 
-  const renderTheaterContent = () => {
-    if (!isValidMovieId) return <p>영화 정보가 없어요. 영화를 선택한 뒤 다시 시도해 주세요.</p>
-    if (isCinemaPending) return <p>영화관 정보를 불러오는 중이에요..</p>
-    if (isCinemaError || !cinemaData) return <p>영화관 정보를 불러오지 못했어요..</p>
-
-    return (
-      <TheaterSelectSection
-        regions={cinemaData.regions}
-        myCinemas={cinemaData.myCinemas}
-        onCinemaSelect={handleCinemaSelect}
-      />
-    )
-  }
-
-  const content = selectedCinema ? (
-    <ShowtimeSection
-      cinemaName={selectedCinema.cinemaName}
-      groups={showtimesData ?? []}
-      isLoading={isShowtimesPending}
-      hasError={isShowtimesError}
-      selectedDate={selectedDate}
-      onDateSelect={handleDateSelect}
-      onShowtimeSelect={handleShowtimeSelect}
-      dates={dates}
-      regions={cinemaData?.regions ?? []}
-    />
-  ) : (
-    renderTheaterContent()
-  )
-
   return (
     <div className='flex h-dvh flex-col bg-gray-000'>
       <Header variant='sub' title='영화별 예매' />
@@ -82,7 +52,33 @@ export const BookingPage = () => {
         {/* TODO: 영화 목록 조회 후 MovieBannerSection에 전달 */}
         <MovieBannerSection movies={[]} />
 
-        <div className='min-h-0 flex-1'>{content}</div>
+        <div className='min-h-0 flex-1'>
+          {!isValidMovieId && <p>영화 정보가 없어요. 영화를 선택한 뒤 다시 시도해 주세요.</p>}
+
+          {isValidMovieId && !selectedCinema && (
+            <TheaterSelectSection
+              regions={cinemaData?.regions ?? []}
+              myCinemas={cinemaData?.myCinemas ?? []}
+              isLoading={isCinemaPending}
+              hasError={isCinemaError || !cinemaData}
+              onCinemaSelect={handleCinemaSelect}
+            />
+          )}
+
+          {isValidMovieId && selectedCinema && (
+            <ShowtimeSection
+              cinemaName={selectedCinema.cinemaName}
+              groups={showtimesData ?? []}
+              isLoading={isShowtimesPending}
+              hasError={isShowtimesError}
+              selectedDate={selectedDate}
+              onDateSelect={handleDateSelect}
+              onShowtimeSelect={handleShowtimeSelect}
+              dates={dates}
+              regions={cinemaData?.regions ?? []}
+            />
+          )}
+        </div>
       </main>
 
       <ShowtimeBottomSheet showtimeId={selectedShowtimeId} onClose={clearSelectedShowtime} />
