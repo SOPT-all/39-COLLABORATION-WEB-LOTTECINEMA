@@ -335,7 +335,13 @@ export const BookingShowcase = () => {
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>TheaterSelectSection (width: 375px)</h4>
         <div className='h-[574px] w-[375px]'>
-          <TheaterSelectSection movieId={1} />
+          <TheaterSelectSection
+            regions={theaterDropdownRegions}
+            myCinemas={[{ cinemaId: 1, cinemaName: '가산디지털', hasShowtimes: true }]}
+            isLoading={false}
+            hasError={false}
+            onCinemaSelect={setClickedCinemaId}
+          />
         </div>
       </div>
 
