@@ -36,7 +36,7 @@ export const SeatMap = ({
           // 통로 28px = gap 7px + 통로 열 14px + 7px
           aisleWidth='14px'
           renderSeat={(seat) => {
-            const seatCode = seat.seatCode ?? ''
+            const seatCode = seat.seatCode
             const isSelected = selectedSeatCodes.includes(seatCode)
             const isDisabled = isSelectionFull && !isSelected
 

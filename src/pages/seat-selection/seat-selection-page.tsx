@@ -31,8 +31,8 @@ export const SeatSelectionPage = () => {
 
   if (isError) return <p>불러올 수 없습니다...</p>
 
-  const screenInfo = `${data.cinema?.name ?? ''} · ${data.screen?.name ?? ''}`
-  const totalPrice = data.ticketPrices ? calcTotalPrice(headcount, data.ticketPrices) : 0
+  const screenInfo = `${data.cinema?.name} · ${data.screen?.name}`
+  const totalPrice = calcTotalPrice(headcount, data.ticketPrices)
   return (
     <div className='flex min-h-dvh flex-col bg-gray-950'>
       <Header variant='sub' title='인원 / 좌석선택' />
@@ -42,7 +42,7 @@ export const SeatSelectionPage = () => {
       <SeatMap
         // 값 정확하게 모르겟음
         className='mt-10 flex-1'
-        seats={data.seats ?? []}
+        seats={data.seats}
         selectedSeatCodes={selectedSeatCodes}
         isSelectionFull={isSelectionFull}
         onSeatClick={handleSeatClick}
@@ -51,8 +51,8 @@ export const SeatSelectionPage = () => {
         <div className='flex flex-col'>
           <SeatLegend />
           <SeatSummarySection
-            movieTitle={data.movie?.title ?? ''}
-            formatType={data.formatType ?? ''}
+            movieTitle={data.movie?.title}
+            formatType={data.formatType}
             selectedSeatCodes={selectedSeatCodes}
             headcount={headcount}
             totalPrice={totalPrice}
@@ -68,7 +68,7 @@ export const SeatSelectionPage = () => {
         headcount={headcount}
         onHeadcountChange={setHeadcount}
         onConfirm={handleHeadcountConfirm}
-        ageRating={data.movie?.ageRating}
+        ageRating={data.movie.ageRating}
       />
     </div>
   )
