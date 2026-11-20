@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router'
 
 import { showtimeSeatsQueryOptions } from '@shared/api/showtime-seats-query'
 import { Header } from '@shared/components/header/header'
+import { ShowtimeInfo } from '@shared/components/showtime-info/showtime-info'
+import { cn } from '@shared/utils/cn'
 
 import { HeadcountSheet } from './components/headcount-sheet/headcount-sheet'
 import { SeatLegend } from './components/seat-legend/seat-legend'
@@ -39,14 +41,14 @@ export const SeatSelectionPage = () => {
   const screenInfo = `${data.cinema?.name} · ${data.screen?.name} ${SEAT_TYPE_LABELS[data.screen.seatType]}`
   const totalPrice = calcTotalPrice(headcount, data.ticketPrices)
   return (
-    <div className='flex min-h-dvh flex-col bg-gray-950'>
+    <div className='flex h-dvh flex-col bg-gray-950'>
       <Header variant='sub' title='인원 / 좌석선택' />
-      {/* TODO: ShowtimeInfo (#130) */}
-      {/* TODO: 임시 크기 박스 */}
-      <div className='h-[82px]' />
+      <ShowtimeInfo
+        variant='headcount'
+        className={cn('p-5', !isHeadcountSheetOpen && 'invisible')}
+      />
       <SeatMap
-        // 값 정확하게 모르겟음
-        className='mt-10 flex-1'
+        className='mt-10 min-h-0 flex-1'
         seats={data.seats}
         selectedSeatCodes={selectedSeatCodes}
         isSelectionFull={isSelectionFull}

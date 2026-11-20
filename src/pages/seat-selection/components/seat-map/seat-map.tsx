@@ -24,7 +24,7 @@ export const SeatMap = ({
   className,
 }: SeatMapProps) => {
   return (
-    <section aria-label='좌석표' className={cn('overflow-x-auto', className)}>
+    <section aria-label='좌석표' className={cn('overflow-auto', className)}>
       {/* SCREEN이 좌석표 전체 너비 기준 가운데에 오도록 w-max로 함께 감싼다 */}
       <div className='flex w-max flex-col items-center gap-4.5 px-[35px] pt-0 pb-10'>
         <p className='-mr-[15.6px] font-roboto text-[20px]/[1.3] font-normal tracking-[15.6px] text-gray-700'>
