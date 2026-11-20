@@ -31,7 +31,12 @@ export const SeatSelectionPage = () => {
 
   if (isError) return <p>불러올 수 없습니다...</p>
 
-  const screenInfo = `${data.cinema?.name} · ${data.screen?.name}`
+  const SEAT_TYPE_LABELS = {
+    STANDARD: '일반',
+    RECLINER: '리클라이너',
+  } as const
+
+  const screenInfo = `${data.cinema?.name} · ${data.screen?.name} ${SEAT_TYPE_LABELS[data.screen.seatType]}`
   const totalPrice = calcTotalPrice(headcount, data.ticketPrices)
   return (
     <div className='flex min-h-dvh flex-col bg-gray-950'>
