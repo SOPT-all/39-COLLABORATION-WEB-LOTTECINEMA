@@ -13,10 +13,11 @@ interface TheaterSelectSectionProps {
 }
 
 export const TheaterSelectSection = ({ movieId }: TheaterSelectSectionProps) => {
-  const { data } = useQuery(movieCinemasQueryOptions(movieId))
+  const { data, isPending, isError } = useQuery(movieCinemasQueryOptions(movieId))
   const [selectedRegionId, setSelectedRegionId] = useState(MY_REGION_ID)
 
-  if (!data) return null
+  if (isPending) return <p>영화관 정보를 불러오는 중이에요..</p>
+  if (isError) return <p>영화관 정보를 불러오지 못했어요..</p>
 
   const myRegion: BookingRegion = {
     regionId: MY_REGION_ID,
