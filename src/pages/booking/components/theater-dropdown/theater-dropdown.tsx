@@ -1,15 +1,14 @@
 import { useEffect, useId, useRef, useState } from 'react'
 
 import { ArrowDownIcon } from '@shared/icons'
+import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
 import { cn } from '@shared/utils/cn'
-
-import type { BookingRegion } from '../../types/theater'
 
 type DropdownState =
   { step: 'closed' } | { step: 'regions' } | { step: 'theaters'; regionId: number }
 
 interface TheaterDropdownProps {
-  regions: BookingRegion[]
+  regions: RegionResponse[]
   className?: string
 }
 

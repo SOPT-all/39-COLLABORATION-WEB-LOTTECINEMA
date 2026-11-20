@@ -1,6 +1,7 @@
+import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
+
 import type { BookingDate } from '../../types/date'
 import type { ShowtimeGroupData } from '../../types/showtime'
-import type { BookingRegion } from '../../types/theater'
 import { DateSelector } from '../date-selector/date-selector'
 import { ShowtimeGroup } from '../showtime-group/showtime-group'
 import { TheaterFilterBar } from '../theater-filter-bar/theater-filter-bar'
@@ -13,7 +14,7 @@ interface ShowtimeSectionProps {
   onDateSelect: (date: string) => void
   onShowtimeSelect: (showtimeId: number) => void
   dates: BookingDate[]
-  regions: BookingRegion[]
+  regions: RegionResponse[]
   className?: string
 }
 

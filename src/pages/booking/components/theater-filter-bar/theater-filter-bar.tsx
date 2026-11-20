@@ -1,12 +1,12 @@
 import { LocationIcon } from '@shared/icons'
+import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
 import { cn } from '@shared/utils/cn'
 
-import type { BookingRegion } from '../../types/theater'
 import { TheaterDropdown } from '../theater-dropdown/theater-dropdown'
 
 interface TheaterFilterBarProps {
   selectedTheaterName: string
-  regions: BookingRegion[]
+  regions: RegionResponse[]
   className?: string
 }
 
