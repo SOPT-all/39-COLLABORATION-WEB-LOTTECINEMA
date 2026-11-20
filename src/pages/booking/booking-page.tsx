@@ -1,68 +1,47 @@
-import { useState } from 'react'
-
-import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
 
 import { Header } from '@shared/components/header/header'
-import type { ShowtimeListResponse } from '@shared/types/__generated__/data-contracts'
 
-import { movieCinemasQueryOptions } from './api/movie-cinemas-query'
-import { showtimesQueryOptions } from './api/showtimes-query'
 import { MovieBannerSection } from './components/movie-banner-section/movie-banner-section'
 import { ShowtimeBottomSheet } from './components/showtime-bottom-sheet/showtime-bottom-sheet'
 import { ShowtimeSection } from './components/showtime-section/showtime-section'
 import { TheaterSelectSection } from './components/theater-select-section/theater-select-section'
-import { BOOKING_DATES } from './constants/booking-dates'
-import { groupShowtimes } from './utils/group-showtimes'
-
-const selectShowtimeGroups = (data: ShowtimeListResponse) => groupShowtimes(data.showtimes)
+import { useCinemaSelection } from './hooks/use-cinema-selection'
+import { useShowtimes } from './hooks/use-showtimes'
 
 export const BookingPage = () => {
   const [searchParams] = useSearchParams()
   const movieId = Number(searchParams.get('movieId'))
   const isValidMovieId = Number.isInteger(movieId) && movieId > 0
 
-  const [selectedCinemaId, setSelectedCinemaId] = useState<number | null>(null)
-  const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
-  const [selectedDate, setSelectedDate] = useState(BOOKING_DATES[0].date)
+  const {
+    cinemaData,
+    isCinemaPending,
+    isCinemaError,
+    selectedCinemaId,
+    selectedCinema,
+    selectCinema,
+  } = useCinemaSelection({ movieId, enabled: isValidMovieId })
 
   const {
-    data: cinemaData,
-    isPending: isCinemaPending,
-    isError: isCinemaError,
-  } = useQuery({
-    ...movieCinemasQueryOptions(movieId),
-    enabled: isValidMovieId,
-  })
-
-  // 선택한 ID에 해당하는 영화관 정보를 찾아 아래 화면과 조회에 사용
-  const selectedCinema = cinemaData?.regions
-    .flatMap(({ cinemas }) => cinemas)
-    .find(({ cinemaId }) => cinemaId === selectedCinemaId)
-
-  const {
-    data: showtimesData,
-    isPending: isShowtimesPending,
-    isError: isShowtimesError,
-  } = useQuery({
-    ...showtimesQueryOptions({
-      movieId,
-      cinemaId: selectedCinemaId ?? 0,
-      date: selectedDate,
-    }),
-    select: selectShowtimeGroups,
+    selectedDate,
+    selectedShowtimeId,
+    showtimesData,
+    isShowtimesPending,
+    isShowtimesError,
+    dates,
+    handleDateSelect,
+    handleShowtimeSelect,
+    clearSelectedShowtime,
+  } = useShowtimes({
+    movieId,
+    cinemaId: selectedCinemaId,
     enabled: isValidMovieId && selectedCinema !== undefined,
   })
 
-  // 영화관이나 날짜가 바뀌면 기존 회차 선택 초기화
   const handleCinemaSelect = (cinemaId: number) => {
-    setSelectedCinemaId(cinemaId)
-    setSelectedShowtimeId(null)
-  }
-
-  const handleDateSelect = (date: string) => {
-    setSelectedDate(date)
-    setSelectedShowtimeId(null)
+    selectCinema(cinemaId)
+    clearSelectedShowtime()
   }
 
   const renderTheaterContent = () => {
@@ -87,8 +66,8 @@ export const BookingPage = () => {
       hasError={isShowtimesError}
       selectedDate={selectedDate}
       onDateSelect={handleDateSelect}
-      onShowtimeSelect={setSelectedShowtimeId}
-      dates={BOOKING_DATES}
+      onShowtimeSelect={handleShowtimeSelect}
+      dates={dates}
       regions={cinemaData?.regions ?? []}
     />
   ) : (
@@ -106,10 +85,7 @@ export const BookingPage = () => {
         <div className='min-h-0 flex-1'>{content}</div>
       </main>
 
-      <ShowtimeBottomSheet
-        showtimeId={selectedShowtimeId}
-        onClose={() => setSelectedShowtimeId(null)}
-      />
+      <ShowtimeBottomSheet showtimeId={selectedShowtimeId} onClose={clearSelectedShowtime} />
     </div>
   )
 }
