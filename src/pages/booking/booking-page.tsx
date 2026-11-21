@@ -1,5 +1,7 @@
+import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
 
+import { moviesQueryOptions } from '@shared/api/movies-query'
 import { Header } from '@shared/components/header/header'
 
 import { MovieBannerSection } from './components/movie-banner-section/movie-banner-section'
@@ -8,8 +10,25 @@ import { ShowtimeSection } from './components/showtime-section/showtime-section'
 import { TheaterSelectSection } from './components/theater-select-section/theater-select-section'
 import { useCinemaSelection } from './hooks/use-cinema-selection'
 import { useShowtimes } from './hooks/use-showtimes'
+import type { Movie } from './types/movie'
 
 export const BookingPage = () => {
+  const { data: movieListsData } = useQuery(moviesQueryOptions())
+  const movieList = movieListsData
+    ? [
+        ...movieListsData.popularMovies,
+        ...movieListsData.lotsiPickMovies,
+        ...movieListsData.lotsiPlayMovies,
+      ]
+    : []
+
+  // 영화 목록을 드롭다운용 { movieId, title } 형태로 만들고, movieId 기준으로 중복 제거
+  const movies: Movie[] = [
+    ...new Map(
+      movieList.map(({ movieId, title }) => [movieId, { movieId, title }] as const),
+    ).values(),
+  ]
+
   const [searchParams] = useSearchParams()
   const movieId = Number(searchParams.get('movieId'))
   const isValidMovieId = Number.isInteger(movieId) && movieId > 0
@@ -49,8 +68,7 @@ export const BookingPage = () => {
       <Header variant='sub' title='영화별 예매' />
 
       <main aria-label='영화별 예매' className='flex min-h-0 flex-1 flex-col'>
-        {/* TODO: 영화 목록 조회 후 MovieBannerSection에 전달 */}
-        <MovieBannerSection movies={[]} />
+        <MovieBannerSection movies={movies} />
 
         <div className='min-h-0 flex-1'>
           {!isValidMovieId && <p>영화 정보가 없어요. 영화를 선택한 뒤 다시 시도해 주세요.</p>}
