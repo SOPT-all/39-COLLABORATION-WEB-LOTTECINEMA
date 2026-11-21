@@ -1,12 +1,12 @@
 import chiikawaPoster from '@pages/payment/assets/chiikawa-poster.png'
 
 import { BadgeAgeAllIcon } from '@shared/icons'
-import type { TicketCounts } from '@shared/types/__generated__/data-contracts'
+import type { Headcount } from '@shared/types/headcount'
 import { cn } from '@shared/utils/cn'
 import { formatTicketCounts } from '@shared/utils/format-ticket-counts'
 
 interface BookingSummaryCardProps {
-  headcount: TicketCounts
+  headcount: Headcount
   className?: string
 }
 
