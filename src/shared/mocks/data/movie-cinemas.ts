@@ -1,7 +1,7 @@
 import type { MovieCinemaResponse } from '@shared/types/__generated__/data-contracts'
 
 export const movieCinemasMock: MovieCinemaResponse = {
-  myCinemas: [{ cinemaId: 21, cinemaName: '홍대입구역' }],
+  myCinemas: [{ cinemaId: 21, cinemaName: '홍대입구', hasShowtimes: false }],
   regions: [
     {
       regionId: 1,

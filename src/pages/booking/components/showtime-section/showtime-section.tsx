@@ -1,6 +1,9 @@
+import type { ReactNode } from 'react'
+
+import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
+
 import type { BookingDate } from '../../types/date'
 import type { ShowtimeGroupData } from '../../types/showtime'
-import type { BookingRegion } from '../../types/theater'
 import { DateSelector } from '../date-selector/date-selector'
 import { ShowtimeGroup } from '../showtime-group/showtime-group'
 import { TheaterFilterBar } from '../theater-filter-bar/theater-filter-bar'
@@ -13,9 +16,19 @@ interface ShowtimeSectionProps {
   onDateSelect: (date: string) => void
   onShowtimeSelect: (showtimeId: number) => void
   dates: BookingDate[]
-  regions: BookingRegion[]
+  regions: RegionResponse[]
+  isLoading?: boolean
+  hasError?: boolean
   className?: string
 }
+
+interface ShowtimeMessageProps {
+  children: ReactNode
+}
+
+const ShowtimeMessage = ({ children }: ShowtimeMessageProps) => (
+  <p className='w-full px-5 py-8 text-center typo-b1-r text-gray-600'>{children}</p>
+)
 
 export const ShowtimeSection = ({
   cinemaName,
@@ -25,8 +38,28 @@ export const ShowtimeSection = ({
   onShowtimeSelect,
   dates,
   regions,
+  isLoading = false,
+  hasError = false,
   className,
 }: ShowtimeSectionProps) => {
+  const renderShowtimeList = () => {
+    if (isLoading) {
+      return <ShowtimeMessage>상영 시간표를 불러오는 중이에요..</ShowtimeMessage>
+    }
+
+    if (hasError) {
+      return <ShowtimeMessage>상영 시간표를 불러오지 못했어요..</ShowtimeMessage>
+    }
+
+    if (groups.length === 0) {
+      return <ShowtimeMessage>상영 시간표가 없습니다.</ShowtimeMessage>
+    }
+
+    return groups.map((group) => (
+      <ShowtimeGroup key={group.key} group={group} onSelect={onShowtimeSelect} />
+    ))
+  }
+
   return (
     <section aria-label='상영 시간 선택' className={className}>
       <TheaterFilterBar selectedTheaterName={cinemaName} regions={regions} />
@@ -34,11 +67,7 @@ export const ShowtimeSection = ({
       <DateSelector dates={dates} selectedDate={selectedDate} onDateSelect={onDateSelect} />
       <div className='flex w-full flex-col gap-2'>
         <TheaterTypeTabs />
-        <div className='flex w-full flex-col items-end'>
-          {groups.map((group) => (
-            <ShowtimeGroup key={group.key} group={group} onSelect={onShowtimeSelect} />
-          ))}
-        </div>
+        <div className='flex w-full flex-col items-end'>{renderShowtimeList()}</div>
       </div>
     </section>
   )

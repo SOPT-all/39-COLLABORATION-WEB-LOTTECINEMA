@@ -29,7 +29,6 @@ export const StyleguidePage = () => (
             <BookingShowcase />
             <SeatSelectionShowcase />
             <PaymentShowcase />
-            <HomeShowcase />
           </div>
         </section>
       </div>

@@ -17,9 +17,9 @@ import { TheaterSelector } from '@pages/booking/components/theater-selector/thea
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
 import type { Showtime, ShowtimeGroupData } from '@pages/booking/types/showtime'
-import type { BookingRegion } from '@pages/booking/types/theater'
 
 import { Button } from '@shared/components/button/button'
+import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -134,26 +134,26 @@ const exampleRegions = [
   { name: '경기/인천', theaterCount: 40 },
 ]
 
-const theaterDropdownRegions: BookingRegion[] = [
+const theaterDropdownRegions: RegionResponse[] = [
   {
     regionId: 1,
     regionName: '서울',
     cinemas: [
-      { cinemaId: 1, cinemaName: '가산디지털' },
-      { cinemaId: 2, cinemaName: '가양' },
-      { cinemaId: 3, cinemaName: '강동' },
-      { cinemaId: 4, cinemaName: '건대입구' },
-      { cinemaId: 5, cinemaName: '김포공항' },
-      { cinemaId: 6, cinemaName: '노원' },
-      { cinemaId: 7, cinemaName: '도곡' },
-      { cinemaId: 8, cinemaName: '독산' },
-      { cinemaId: 9, cinemaName: '서울대입구' },
-      { cinemaId: 10, cinemaName: '수락산' },
-      { cinemaId: 11, cinemaName: '수유' },
-      { cinemaId: 12, cinemaName: '신대방(구로디지털역)' },
-      { cinemaId: 13, cinemaName: '스크롤 확인용 1' },
-      { cinemaId: 14, cinemaName: '스크롤 확인용 2' },
-      { cinemaId: 15, cinemaName: '스크롤 확인용 3' },
+      { cinemaId: 1, cinemaName: '가산디지털', hasShowtimes: true },
+      { cinemaId: 2, cinemaName: '가양', hasShowtimes: true },
+      { cinemaId: 3, cinemaName: '강동', hasShowtimes: true },
+      { cinemaId: 4, cinemaName: '건대입구', hasShowtimes: true },
+      { cinemaId: 5, cinemaName: '김포공항', hasShowtimes: true },
+      { cinemaId: 6, cinemaName: '노원', hasShowtimes: true },
+      { cinemaId: 7, cinemaName: '도곡', hasShowtimes: true },
+      { cinemaId: 8, cinemaName: '독산', hasShowtimes: true },
+      { cinemaId: 9, cinemaName: '서울대입구', hasShowtimes: true },
+      { cinemaId: 10, cinemaName: '수락산', hasShowtimes: true },
+      { cinemaId: 11, cinemaName: '수유', hasShowtimes: true },
+      { cinemaId: 12, cinemaName: '신대방(구로디지털역)', hasShowtimes: true },
+      { cinemaId: 13, cinemaName: '스크롤 확인용 1', hasShowtimes: true },
+      { cinemaId: 14, cinemaName: '스크롤 확인용 2', hasShowtimes: true },
+      { cinemaId: 15, cinemaName: '스크롤 확인용 3', hasShowtimes: true },
     ],
   },
   { regionId: 2, regionName: '경기/인천', cinemas: [] },
@@ -335,7 +335,13 @@ export const BookingShowcase = () => {
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>TheaterSelectSection (width: 375px)</h4>
         <div className='h-[574px] w-[375px]'>
-          <TheaterSelectSection movieId={1} />
+          <TheaterSelectSection
+            regions={theaterDropdownRegions}
+            myCinemas={[{ cinemaId: 1, cinemaName: '가산디지털', hasShowtimes: true }]}
+            isLoading={false}
+            hasError={false}
+            onCinemaSelect={setClickedCinemaId}
+          />
         </div>
       </div>
 
