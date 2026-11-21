@@ -5,8 +5,10 @@ import type { SuccessResponseMovieListsResponse } from '@shared/types/__generate
 
 import { moviesMock } from './data/movies'
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL
+
 export const movieHandlers = [
-  http.get(API_ENDPOINTS.movies.list, () => {
+  http.get(`${BASE_URL}${API_ENDPOINTS.movies.list}`, () => {
     return HttpResponse.json<SuccessResponseMovieListsResponse>({
       status: 200,
       message: 'OK',

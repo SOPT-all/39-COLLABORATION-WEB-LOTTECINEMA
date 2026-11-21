@@ -19,8 +19,8 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
   const filteredMovies = movies.filter((movie) => movie.category === selectedTab)
 
   return (
-    <section>
-      <div className='mb-2 flex items-center justify-between'>
+    <section className='pt-5'>
+      <div className='flex items-center justify-between px-5'>
         <h2 className='typo-t2-b text-gray-1000'>오직 롯시에서만!</h2>
 
         <div className='flex items-center gap-1'>
@@ -35,7 +35,7 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
         </div>
       </div>
 
-      <div className='flex [scrollbar-width:none] gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
+      <div className='flex [scrollbar-width:none] gap-[10px] overflow-x-auto px-5 py-2 [&::-webkit-scrollbar]:hidden'>
         {filteredMovies.map((movie) => (
           <ExclusiveMovieCard key={movie.id} {...movie} />
         ))}
