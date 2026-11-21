@@ -178,7 +178,7 @@ export const HomeShowcase = () => {
       </div>
 
       <div className='col-span-2'>
-        <PopularMovieSection movies={movies} />
+        <PopularMovieSection movies={movies} onBookingClick={() => {}} />
       </div>
 
       <div className='col-span-2'>
