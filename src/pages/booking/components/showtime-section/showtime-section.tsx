@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
 
 import type { BookingDate } from '../../types/date'
@@ -20,6 +22,14 @@ interface ShowtimeSectionProps {
   className?: string
 }
 
+interface ShowtimeMessageProps {
+  children: ReactNode
+}
+
+const ShowtimeMessage = ({ children }: ShowtimeMessageProps) => (
+  <p className='w-full px-5 py-8 text-center typo-b1-r text-gray-600'>{children}</p>
+)
+
 export const ShowtimeSection = ({
   cinemaName,
   groups,
@@ -34,27 +44,15 @@ export const ShowtimeSection = ({
 }: ShowtimeSectionProps) => {
   const renderShowtimeList = () => {
     if (isLoading) {
-      return (
-        <p className='w-full px-5 py-8 text-center typo-b1-r text-gray-600'>
-          상영 시간표를 불러오는 중이에요..
-        </p>
-      )
+      return <ShowtimeMessage>상영 시간표를 불러오는 중이에요..</ShowtimeMessage>
     }
 
     if (hasError) {
-      return (
-        <p className='w-full px-5 py-8 text-center typo-b1-r text-gray-600'>
-          상영 시간표를 불러오지 못했어요..
-        </p>
-      )
+      return <ShowtimeMessage>상영 시간표를 불러오지 못했어요..</ShowtimeMessage>
     }
 
     if (groups.length === 0) {
-      return (
-        <p className='w-full px-5 py-8 text-center typo-b1-r text-gray-600'>
-          상영 시간표가 없습니다.
-        </p>
-      )
+      return <ShowtimeMessage>상영 시간표가 없습니다.</ShowtimeMessage>
     }
 
     return groups.map((group) => (
