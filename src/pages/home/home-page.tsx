@@ -1,4 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
+import { useNavigate } from 'react-router'
+
+import { ROUTE_PATH } from '@app/router/path'
 
 import { Header } from '@shared/components/header/header'
 
@@ -13,7 +16,12 @@ import { heroSlides } from './constants/hero-slides'
 import { toExclusiveMovies, toPopularMovies } from './utils/movie-mapper'
 
 export const HomePage = () => {
+  const navigate = useNavigate()
   const { data, isPending, isError } = useQuery(moviesQueryOptions())
+
+  const handleBookingClick = (movieId: number) => {
+    navigate(`${ROUTE_PATH.BOOKING}?movieId=${movieId}`)
+  }
 
   const popularMovies = data ? toPopularMovies(data.popularMovies) : []
 
@@ -40,7 +48,7 @@ export const HomePage = () => {
             영화 목록을 불러오지 못했습니다.
           </p>
         ) : (
-          <PopularMovieSection movies={popularMovies} />
+          <PopularMovieSection movies={popularMovies} onBookingClick={handleBookingClick} />
         )}
 
         <img src={homeGoods} alt='굿즈 소개' className='block h-auto w-full' />

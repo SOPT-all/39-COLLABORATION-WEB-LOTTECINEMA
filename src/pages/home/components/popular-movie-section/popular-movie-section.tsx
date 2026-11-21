@@ -10,9 +10,10 @@ type PopularTab = (typeof POPULAR_TABS)[number]
 
 interface PopularMovieSectionProps {
   movies: PopularMovie[]
+  onBookingClick: (movieId: number) => void
 }
 
-export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
+export const PopularMovieSection = ({ movies, onBookingClick }: PopularMovieSectionProps) => {
   const [selectedTab, setSelectedTab] = useState<PopularTab>('전체')
 
   const filteredMovies = movies.filter((movie) => {
@@ -41,7 +42,11 @@ export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
 
       <div className='flex [scrollbar-width:none] gap-3 overflow-x-auto px-5 py-2 [&::-webkit-scrollbar]:hidden'>
         {filteredMovies.map((movie) => (
-          <PopularMovieCard key={movie.id} {...movie} />
+          <PopularMovieCard
+            key={movie.id}
+            {...movie}
+            onBookingClick={() => onBookingClick(movie.id)}
+          />
         ))}
       </div>
     </section>
