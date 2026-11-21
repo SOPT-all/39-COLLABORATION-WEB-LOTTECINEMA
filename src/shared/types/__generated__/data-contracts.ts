@@ -246,6 +246,7 @@ export interface MyCinemaResponse {
   /** @format int64 */
   cinemaId: number;
   cinemaName: string;
+  hasShowtimes: boolean;
 }
 
 export interface RegionResponse {

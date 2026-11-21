@@ -12,6 +12,7 @@ interface BottomSheetProps {
   isBackdropClosable?: boolean
   className?: string
   ariaLabel: string
+  topContent?: ReactNode
 }
 
 export const BottomSheet = ({
@@ -23,6 +24,7 @@ export const BottomSheet = ({
   isBackdropClosable = true,
   className,
   ariaLabel,
+  topContent,
 }: BottomSheetProps) => {
   const dialogRef = useRef<HTMLDivElement>(null)
 
@@ -57,6 +59,8 @@ export const BottomSheet = ({
       ) : (
         <div aria-hidden='true' className='absolute inset-0 bg-gray-1000/60' />
       )}
+
+      {topContent && <div className='relative'>{topContent}</div>}
       <div
         ref={dialogRef}
         role='dialog'

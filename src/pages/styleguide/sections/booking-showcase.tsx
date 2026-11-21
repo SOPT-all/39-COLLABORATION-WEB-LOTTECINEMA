@@ -6,16 +6,20 @@ import { MovieBannerSection } from '@pages/booking/components/movie-banner-secti
 import { MovieBanner } from '@pages/booking/components/movie-banner/movie-banner'
 import { MovieDropdown } from '@pages/booking/components/movie-dropdown/movie-dropdown'
 import { RegionItem } from '@pages/booking/components/region-item/region-item'
+import { ShowtimeBottomSheet } from '@pages/booking/components/showtime-bottom-sheet/showtime-bottom-sheet'
 import { ShowtimeCard } from '@pages/booking/components/showtime-card/showtime-card'
-import { ShowtimeGroup } from '@pages/booking/components/showtime-group/showtime-group'
+import { ShowtimeSection } from '@pages/booking/components/showtime-section/showtime-section'
 import { TheaterDropdown } from '@pages/booking/components/theater-dropdown/theater-dropdown'
 import { TheaterFilterBar } from '@pages/booking/components/theater-filter-bar/theater-filter-bar'
 import { TheaterItem } from '@pages/booking/components/theater-item/theater-item'
+import { TheaterSelectSection } from '@pages/booking/components/theater-select-section/theater-select-section'
 import { TheaterSelector } from '@pages/booking/components/theater-selector/theater-selector'
 import { TheaterTypeTabs } from '@pages/booking/components/theater-type-tabs/theater-type-tabs'
 import type { BookingDate } from '@pages/booking/types/date'
-import type { Showtime } from '@pages/booking/types/showtime'
-import type { BookingRegion } from '@pages/booking/types/theater'
+import type { Showtime, ShowtimeGroupData } from '@pages/booking/types/showtime'
+
+import { Button } from '@shared/components/button/button'
+import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
 
 import { ShowcaseSection } from './showcase-section'
 
@@ -65,80 +69,60 @@ const showtimes: Showtime[] = [
     startAt: '2026-11-09T13:25:00+09:00',
     endAt: '2026-11-09T15:14:00+09:00',
     screenName: '1관',
-    formatType: '2D',
-    languageType: 'DUBBED',
     totalSeatCount: 91,
-    reservedSeatCount: 1,
     availableSeatCount: 90,
   },
 ]
 
-const showtimeGroupExamples: Showtime[] = [
+const showtimeScheduleDates: BookingDate[] = [
+  { date: '2026-10-27', day: 27, dayLabel: '오늘', dayType: 'weekday' },
+  { date: '2026-10-28', day: 28, dayLabel: '수', dayType: 'weekday' },
+  { date: '2026-10-29', day: 29, dayLabel: '목', dayType: 'weekday' },
+  { date: '2026-10-30', day: 30, dayLabel: '금', dayType: 'weekday' },
+  { date: '2026-10-31', day: 31, dayLabel: '토', dayType: 'saturday' },
+  { date: '2026-11-01', day: 1, dayLabel: '일', dayType: 'sunday' },
+  { date: '2026-11-02', day: 2, dayLabel: '월', dayType: 'weekday' },
+]
+
+const createShowtime = (
+  showtimeId: number,
+  startTime: string,
+  endTime: string,
+  screenName: string,
+  totalSeatCount: number,
+  availableSeatCount: number,
+): Showtime => ({
+  showtimeId,
+  startAt: `2026-10-27T${startTime}:00+09:00`,
+  endAt: `2026-10-27T${endTime}:00+09:00`,
+  screenName,
+  totalSeatCount,
+  availableSeatCount,
+})
+
+const showtimeScheduleGroups: ShowtimeGroupData[] = [
   {
-    showtimeId: 5101,
-    startAt: '2026-11-18T13:25:00+09:00',
-    endAt: '2026-11-18T15:14:00+09:00',
-    screenName: '1관',
-    formatType: '2D',
-    languageType: 'DUBBED',
-    totalSeatCount: 91,
-    reservedSeatCount: 1,
-    availableSeatCount: 90,
+    key: '2d-dubbed-recliner',
+    labels: ['2D', '더빙', '리클라이너'],
+    description: '팔과 다리를 쭈~욱 펴고 힐링하면서 영화보면 즐거움이 두배!',
+    showtimes: [
+      createShowtime(6101, '13:25', '15:14', '1관', 91, 90),
+      createShowtime(6102, '15:35', '17:24', '1관', 91, 88),
+      createShowtime(6103, '17:45', '19:34', '1관', 91, 89),
+      createShowtime(6104, '19:55', '21:44', '1관', 91, 77),
+    ],
   },
   {
-    showtimeId: 5102,
-    startAt: '2026-11-18T15:40:00+09:00',
-    endAt: '2026-11-18T17:29:00+09:00',
-    screenName: '2관',
-    formatType: '2D',
-    languageType: 'DUBBED',
-    totalSeatCount: 91,
-    reservedSeatCount: 24,
-    availableSeatCount: 67,
-  },
-  {
-    showtimeId: 5103,
-    startAt: '2026-11-18T18:00:00+09:00',
-    endAt: '2026-11-18T19:49:00+09:00',
-    screenName: '3관',
-    formatType: '2D',
-    languageType: 'DUBBED',
-    totalSeatCount: 91,
-    reservedSeatCount: 71,
-    availableSeatCount: 20,
-  },
-  {
-    showtimeId: 5104,
-    startAt: '2026-11-18T19:55:00+09:00',
-    endAt: '2026-11-18T21:44:00+09:00',
-    screenName: '1관',
-    formatType: '2D',
-    languageType: 'DUBBED',
-    totalSeatCount: 91,
-    reservedSeatCount: 14,
-    availableSeatCount: 77,
-  },
-  {
-    showtimeId: 5105,
-    startAt: '2026-11-18T21:05:00+09:00',
-    endAt: '2026-11-18T22:54:00+09:00',
-    screenName: '4관',
-    formatType: '2D',
-    languageType: 'DUBBED',
-    totalSeatCount: 77,
-    reservedSeatCount: 0,
-    availableSeatCount: 77,
-  },
-  {
-    showtimeId: 5106,
-    startAt: '2026-11-18T22:15:00+09:00',
-    endAt: '2026-11-19T00:04:00+09:00',
-    screenName: '5관',
-    formatType: '2D',
-    languageType: 'DUBBED',
-    totalSeatCount: 77,
-    reservedSeatCount: 10,
-    availableSeatCount: 67,
+    key: '2d-subtitled-recliner',
+    labels: ['2D', '자막', '리클라이너'],
+    description: '팔과 다리를 쭈~욱 펴고 힐링하면서 영화보면 즐거움이 두배!',
+    showtimes: [
+      createShowtime(6201, '13:55', '15:44', '5관', 79, 72),
+      createShowtime(6202, '14:25', '16:14', '4관', 77, 75),
+      createShowtime(6203, '16:35', '18:24', '4관', 77, 75),
+      createShowtime(6204, '18:45', '20:34', '4관', 77, 67),
+      createShowtime(6205, '21:05', '22:54', '4관', 77, 77),
+    ],
   },
 ]
 
@@ -150,26 +134,26 @@ const exampleRegions = [
   { name: '경기/인천', theaterCount: 40 },
 ]
 
-const theaterDropdownRegions: BookingRegion[] = [
+const theaterDropdownRegions: RegionResponse[] = [
   {
     regionId: 1,
     regionName: '서울',
     cinemas: [
-      { cinemaId: 1, cinemaName: '가산디지털' },
-      { cinemaId: 2, cinemaName: '가양' },
-      { cinemaId: 3, cinemaName: '강동' },
-      { cinemaId: 4, cinemaName: '건대입구' },
-      { cinemaId: 5, cinemaName: '김포공항' },
-      { cinemaId: 6, cinemaName: '노원' },
-      { cinemaId: 7, cinemaName: '도곡' },
-      { cinemaId: 8, cinemaName: '독산' },
-      { cinemaId: 9, cinemaName: '서울대입구' },
-      { cinemaId: 10, cinemaName: '수락산' },
-      { cinemaId: 11, cinemaName: '수유' },
-      { cinemaId: 12, cinemaName: '신대방(구로디지털역)' },
-      { cinemaId: 13, cinemaName: '스크롤 확인용 1' },
-      { cinemaId: 14, cinemaName: '스크롤 확인용 2' },
-      { cinemaId: 15, cinemaName: '스크롤 확인용 3' },
+      { cinemaId: 1, cinemaName: '가산디지털', hasShowtimes: true },
+      { cinemaId: 2, cinemaName: '가양', hasShowtimes: true },
+      { cinemaId: 3, cinemaName: '강동', hasShowtimes: true },
+      { cinemaId: 4, cinemaName: '건대입구', hasShowtimes: true },
+      { cinemaId: 5, cinemaName: '김포공항', hasShowtimes: true },
+      { cinemaId: 6, cinemaName: '노원', hasShowtimes: true },
+      { cinemaId: 7, cinemaName: '도곡', hasShowtimes: true },
+      { cinemaId: 8, cinemaName: '독산', hasShowtimes: true },
+      { cinemaId: 9, cinemaName: '서울대입구', hasShowtimes: true },
+      { cinemaId: 10, cinemaName: '수락산', hasShowtimes: true },
+      { cinemaId: 11, cinemaName: '수유', hasShowtimes: true },
+      { cinemaId: 12, cinemaName: '신대방(구로디지털역)', hasShowtimes: true },
+      { cinemaId: 13, cinemaName: '스크롤 확인용 1', hasShowtimes: true },
+      { cinemaId: 14, cinemaName: '스크롤 확인용 2', hasShowtimes: true },
+      { cinemaId: 15, cinemaName: '스크롤 확인용 3', hasShowtimes: true },
     ],
   },
   { regionId: 2, regionName: '경기/인천', cinemas: [] },
@@ -184,11 +168,13 @@ const theaterDropdownRegions: BookingRegion[] = [
 export const BookingShowcase = () => {
   const [dates] = useState(createDateOptions)
   const [selectedDate, setSelectedDate] = useState(dates[0].date)
+  const [selectedScheduleDate, setSelectedScheduleDate] = useState(showtimeScheduleDates[0].date)
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
   const [clickedTheater, setClickedTheater] = useState<string | null>(null)
   const [selectedRegion, setSelectedRegion] = useState(exampleRegions[0].name)
   const [selectedRegionId, setSelectedRegionId] = useState(theaterDropdownRegions[0].regionId)
   const [clickedCinemaId, setClickedCinemaId] = useState<number | null>(null)
+  const [sheetShowtimeId, setSheetShowtimeId] = useState<number | null>(null)
 
   return (
     <ShowcaseSection title='Booking'>
@@ -255,13 +241,16 @@ export const BookingShowcase = () => {
           : `선택된 showtimeId: ${selectedShowtimeId}`}
       </p>
 
-      {/* ShowtimeGroup: 375px 너비에서 라벨, 설명, 상영 시간 그리드를 확인 */}
-      <div className='col-span-2 w-[375px] border border-gray-200 bg-gray-000'>
-        <ShowtimeGroup
-          labels={['2D', '더빙']}
-          description='잔여 좌석은 상영 시간 선택 시 확인할 수 있습니다.'
-          showtimes={showtimeGroupExamples}
-          onSelect={setSelectedShowtimeId}
+      {/* ShowtimeSection: 이미지와 같은 예매 시간표 화면 */}
+      <div className='col-span-2 w-[375px] overflow-hidden border border-gray-200 bg-gray-000'>
+        <ShowtimeSection
+          cinemaName='용산'
+          groups={showtimeScheduleGroups}
+          selectedDate={selectedScheduleDate}
+          onDateSelect={setSelectedScheduleDate}
+          onShowtimeSelect={setSelectedShowtimeId}
+          dates={showtimeScheduleDates}
+          regions={theaterDropdownRegions}
         />
       </div>
 
@@ -340,6 +329,34 @@ export const BookingShowcase = () => {
             ? '영화관을 눌러 클릭 전달을 확인해보세요.'
             : `누른 영화관 id: ${clickedCinemaId}`}
         </p>
+      </div>
+
+      {/* TheaterSelectSection: MSW mock 데이터로 영화관 조회 연결 확인 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>TheaterSelectSection (width: 375px)</h4>
+        <div className='h-[574px] w-[375px]'>
+          <TheaterSelectSection
+            regions={theaterDropdownRegions}
+            myCinemas={[{ cinemaId: 1, cinemaName: '가산디지털', hasShowtimes: true }]}
+            isLoading={false}
+            hasError={false}
+            onCinemaSelect={setClickedCinemaId}
+          />
+        </div>
+      </div>
+
+      {/* ShowtimeBottomSheet: MSW mock 데이터로 회차 1 상영 정보 확인 */}
+      <div className='col-span-2 flex flex-col gap-3'>
+        <h4 className='m-0 typo-c2-m text-gray-1000'>ShowtimeBottomSheet</h4>
+        <div>
+          <Button variant='dark' size='small' onClick={() => setSheetShowtimeId(1)}>
+            회차 1 상영 정보 열기
+          </Button>
+        </div>
+        <ShowtimeBottomSheet
+          showtimeId={sheetShowtimeId}
+          onClose={() => setSheetShowtimeId(null)}
+        />
       </div>
     </ShowcaseSection>
   )

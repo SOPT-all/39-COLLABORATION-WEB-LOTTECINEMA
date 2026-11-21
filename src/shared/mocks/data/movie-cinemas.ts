@@ -1,0 +1,41 @@
+import type { MovieCinemaResponse } from '@shared/types/__generated__/data-contracts'
+
+export const movieCinemasMock: MovieCinemaResponse = {
+  myCinemas: [{ cinemaId: 21, cinemaName: '홍대입구', hasShowtimes: false }],
+  regions: [
+    {
+      regionId: 1,
+      regionName: '서울',
+      cinemas: [
+        { cinemaId: 1, cinemaName: '가산디지털', hasShowtimes: false },
+        { cinemaId: 2, cinemaName: '가양', hasShowtimes: false },
+        { cinemaId: 3, cinemaName: '강동', hasShowtimes: false },
+        { cinemaId: 4, cinemaName: '건대입구', hasShowtimes: false },
+        { cinemaId: 5, cinemaName: '김포공항', hasShowtimes: false },
+        { cinemaId: 6, cinemaName: '노원', hasShowtimes: false },
+        { cinemaId: 7, cinemaName: '도곡', hasShowtimes: false },
+        { cinemaId: 8, cinemaName: '독산', hasShowtimes: false },
+        { cinemaId: 9, cinemaName: '서울대입구', hasShowtimes: false },
+        { cinemaId: 10, cinemaName: '수락산', hasShowtimes: false },
+        { cinemaId: 11, cinemaName: '수유', hasShowtimes: false },
+        { cinemaId: 12, cinemaName: '신대방(구로디지털역)', hasShowtimes: false },
+        { cinemaId: 13, cinemaName: '신도림', hasShowtimes: false },
+        { cinemaId: 14, cinemaName: '신림', hasShowtimes: false },
+        { cinemaId: 15, cinemaName: '영등포', hasShowtimes: false },
+        { cinemaId: 16, cinemaName: '용산', hasShowtimes: true },
+        { cinemaId: 17, cinemaName: '월드타워', hasShowtimes: false },
+        { cinemaId: 18, cinemaName: '은평(롯데몰)', hasShowtimes: false },
+        { cinemaId: 19, cinemaName: '청량리', hasShowtimes: false },
+        { cinemaId: 20, cinemaName: '합정', hasShowtimes: false },
+        { cinemaId: 21, cinemaName: '홍대입구', hasShowtimes: false },
+      ],
+    },
+    { regionId: 2, regionName: '경기/인천', cinemas: [] },
+    { regionId: 3, regionName: '충청/대전', cinemas: [] },
+    { regionId: 4, regionName: '전라/광주', cinemas: [] },
+    { regionId: 5, regionName: '경북/대구', cinemas: [] },
+    { regionId: 6, regionName: '경남/부산/울산', cinemas: [] },
+    { regionId: 7, regionName: '강원', cinemas: [] },
+    { regionId: 8, regionName: '제주', cinemas: [] },
+  ],
+}
