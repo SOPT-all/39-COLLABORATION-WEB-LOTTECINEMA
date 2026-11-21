@@ -1,6 +1,11 @@
 import { useState } from 'react'
 
+import { Navigate, useLocation } from 'react-router'
+
+import { ROUTE_PATH } from '@app/router/path'
+
 import { Header } from '@shared/components/header/header'
+import type { ReservationResponse } from '@shared/types/__generated__/data-contracts'
 import { cn } from '@shared/utils/cn'
 
 import paymentBenefit from './assets/payment-benefit.png'
@@ -19,8 +24,6 @@ const DISCOUNT_OPTIONS: DiscountOption[] = [
   { id: 'partner', label: '제휴포인트/할인', disabled: true },
 ]
 
-// TODO: 좌석 예매 POST 연결 후 응답의 data.totalAmount로 교체
-const MOCK_TICKET_AMOUNT = 30000
 const LPOINT_DISCOUNT_AMOUNT = 1000
 
 const Divider = ({ className }: { className?: string }) => (
@@ -31,6 +34,13 @@ export const PaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
   const [discountAmount, setDiscountAmount] = useState(0)
 
+  const location = useLocation()
+  const reservation = location.state as ReservationResponse | null
+
+  if (!reservation) {
+    return <Navigate to={ROUTE_PATH.BOOKING} replace />
+  }
+
   const isResetDisabled = discountAmount === 0
 
   return (
@@ -38,7 +48,7 @@ export const PaymentPage = () => {
       <Header variant='sub' title='주문/결제' />
 
       <Divider className='bg-gray-100' />
-      <BookingSummaryCard />
+      <BookingSummaryCard headcount={reservation.ticketCounts} />
       <Divider />
 
       <img
@@ -73,9 +83,9 @@ export const PaymentPage = () => {
       />
 
       <PaymentSummaryBar
-        ticketAmount={MOCK_TICKET_AMOUNT}
+        ticketAmount={reservation.totalAmount}
         discountAmount={discountAmount}
-        finalAmount={MOCK_TICKET_AMOUNT - discountAmount}
+        finalAmount={reservation.totalAmount - discountAmount}
         className='fixed bottom-0 left-1/2 z-20 w-[375px] -translate-x-1/2'
       />
     </div>
