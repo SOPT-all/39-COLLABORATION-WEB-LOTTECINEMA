@@ -1,20 +1,14 @@
 import { Button } from '@shared/components/button/button'
-import { BadgeAge12Icon, BadgeAge15Icon, BadgeAge19Icon, BadgeAgeAllIcon } from '@shared/icons'
+import { AGE_RATINGS } from '@shared/constants/age-rating'
+import type { AgeRating } from '@shared/constants/age-rating'
 
 import ratingStar from '../../assets/rating-star.svg'
-
-const ageRatingIcons = {
-  전체: BadgeAgeAllIcon,
-  '12세': BadgeAge12Icon,
-  '15세': BadgeAge15Icon,
-  청불: BadgeAge19Icon,
-}
 
 interface PopularMovieCardProps {
   rank: number
   title: string
   posterUrl: string
-  ageRating: keyof typeof ageRatingIcons
+  ageRating: AgeRating | undefined
   rating?: number
   bookingRate?: number
   releaseDday?: number
@@ -31,7 +25,7 @@ export const PopularMovieCard = ({
   releaseDday,
   onBookingClick,
 }: PopularMovieCardProps) => {
-  const AgeRatingIcon = ageRatingIcons[ageRating]
+  const AgeRatingIcon = ageRating ? AGE_RATINGS[ageRating].Icon : undefined
 
   return (
     <article className='w-[156px] shrink-0'>
@@ -42,14 +36,14 @@ export const PopularMovieCard = ({
           className='h-full w-full rounded-lg object-cover'
         />
 
-        <AgeRatingIcon className='absolute top-2 right-2 h-5 w-5' />
+        {AgeRatingIcon && <AgeRatingIcon className='absolute top-2 right-2 h-5 w-5' />}
 
         <span className='absolute bottom-[3px] left-2 typo-rank text-gray-000 [text-shadow:0_0_12px_#000]'>
           {rank}
         </span>
       </div>
 
-      <div className='flex h-[53px] flex-col gap-1 pt-2 pb-3'>
+      <div className='flex flex-col gap-1 pt-2 pb-3'>
         <h3 className='truncate typo-b1-m text-gray-1000'>{title}</h3>
 
         <div className='flex items-center gap-1 typo-c2-m text-gray-700'>

@@ -1,20 +1,12 @@
+import { isAgeRating } from '@shared/constants/age-rating'
+import type { AgeRating } from '@shared/constants/age-rating'
 import type { MovieListResponse } from '@shared/types/__generated__/data-contracts'
 
 import type { ExclusiveMovie } from '../types/exclusive-movie'
-import type { AgeRating, PopularMovie } from '../types/popular-movie'
+import type { PopularMovie } from '../types/popular-movie'
 
-const toAgeRating = (ageRating: string): AgeRating => {
-  if (
-    ageRating === '전체' ||
-    ageRating === '12세' ||
-    ageRating === '15세' ||
-    ageRating === '청불'
-  ) {
-    return ageRating
-  }
-
-  return '전체'
-}
+const toAgeRating = (ageRating: string): AgeRating | undefined =>
+  isAgeRating(ageRating) ? ageRating : undefined
 
 export const toPopularMovies = (movies: MovieListResponse[]): PopularMovie[] =>
   movies.map((movie, index) => ({

@@ -1,23 +1,11 @@
-import {
-  BadgeAge12Icon,
-  BadgeAge15Icon,
-  BadgeAge19Icon,
-  BadgeAgeAllIcon,
-  BadgeLottePickIcon,
-  BadgeLottePlIcon,
-} from '@shared/icons'
-
-const AGE_RATING_ICONS = {
-  전체: BadgeAgeAllIcon,
-  '12세': BadgeAge12Icon,
-  '15세': BadgeAge15Icon,
-  청불: BadgeAge19Icon,
-}
+import { AGE_RATINGS } from '@shared/constants/age-rating'
+import type { AgeRating } from '@shared/constants/age-rating'
+import { BadgeLottePickIcon, BadgeLottePlIcon } from '@shared/icons'
 
 export interface ExclusiveMovieCardProps {
   posterUrl: string
   title: string
-  ageRating: keyof typeof AGE_RATING_ICONS
+  ageRating: AgeRating | undefined
   category: '롯시픽' | '롯시플'
 }
 
@@ -27,7 +15,7 @@ export const ExclusiveMovieCard = ({
   ageRating,
   category,
 }: ExclusiveMovieCardProps) => {
-  const AgeRatingIcon = AGE_RATING_ICONS[ageRating]
+  const AgeRatingIcon = ageRating ? AGE_RATINGS[ageRating].Icon : undefined
 
   return (
     <div className='relative h-[172px] w-[120px] shrink-0 overflow-hidden rounded-[5px]'>
@@ -46,7 +34,7 @@ export const ExclusiveMovieCard = ({
         )}
 
         <div className='flex items-center justify-center gap-1'>
-          <AgeRatingIcon className='h-[14px] w-[14px] shrink-0' />
+          {AgeRatingIcon && <AgeRatingIcon className='h-[14px] w-[14px] shrink-0' />}
           <span className='min-w-0 truncate typo-b1-r text-gray-000'>{title}</span>
         </div>
       </div>
