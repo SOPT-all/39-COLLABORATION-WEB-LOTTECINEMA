@@ -1,13 +1,16 @@
 import chiikawaPoster from '@pages/payment/assets/chiikawa-poster.png'
 
 import { BadgeAgeAllIcon } from '@shared/icons'
+import type { TicketCounts } from '@shared/types/__generated__/data-contracts'
 import { cn } from '@shared/utils/cn'
+import { formatTicketCounts } from '@shared/utils/format-ticket-counts'
 
 interface BookingSummaryCardProps {
+  headcount: TicketCounts
   className?: string
 }
 
-export const BookingSummaryCard = ({ className }: BookingSummaryCardProps) => {
+export const BookingSummaryCard = ({ headcount, className }: BookingSummaryCardProps) => {
   return (
     <section
       aria-label='예매 정보'
@@ -31,7 +34,7 @@ export const BookingSummaryCard = ({ className }: BookingSummaryCardProps) => {
           <p>용산 4관, 리클라이너 - 자막</p>
         </div>
 
-        <p className='typo-c3-m text-gray-1000'>성인2</p>
+        <p className='typo-c3-m text-gray-1000'>{formatTicketCounts(headcount)}</p>
       </div>
     </section>
   )

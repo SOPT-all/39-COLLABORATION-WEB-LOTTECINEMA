@@ -92,7 +92,7 @@ export const PaymentShowcase = () => {
 
       <div className='col-span-2 flex flex-col gap-3'>
         <h4 className='m-0 typo-c2-m text-gray-1000'>예매 정보 카드</h4>
-        <BookingSummaryCard />
+        <BookingSummaryCard headcount={{ adult: 2, teen: 0, senior: 2, disabled: 0 }} />
       </div>
     </ShowcaseSection>
   )
