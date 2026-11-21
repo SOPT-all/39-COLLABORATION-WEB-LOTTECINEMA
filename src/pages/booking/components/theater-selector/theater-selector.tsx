@@ -24,7 +24,7 @@ export const TheaterSelector = ({
       <div
         role='group'
         aria-label='지역 선택'
-        className='w-[145px] shrink-0 [scrollbar-width:none] overflow-y-auto border-t border-gray-200 bg-gray-000 [&::-webkit-scrollbar]:hidden'>
+        className='scrollbar-hide w-[145px] shrink-0 overflow-y-auto border-t border-gray-200 bg-gray-000'>
         {regions.map(({ regionId, regionName, cinemas }) => (
           <RegionItem
             key={regionId}
@@ -41,7 +41,7 @@ export const TheaterSelector = ({
         key={selectedRegionId}
         role='group'
         aria-label='영화관 선택'
-        className='flex-1 [scrollbar-width:none] overflow-y-auto border-t border-gray-200 bg-gray-100 [&::-webkit-scrollbar]:hidden'>
+        className='scrollbar-hide flex-1 overflow-y-auto border-t border-gray-200 bg-gray-100'>
         {selectedRegion?.cinemas.map(({ cinemaId, cinemaName }) => (
           <TheaterItem key={cinemaId} name={cinemaName} onClick={() => onTheaterSelect(cinemaId)} />
         ))}

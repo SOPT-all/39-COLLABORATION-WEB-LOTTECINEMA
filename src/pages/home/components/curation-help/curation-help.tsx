@@ -1,5 +1,6 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 
+import { useClickOutside } from '@shared/hooks/use-click-outside'
 import { BadgeLottePickIcon, BadgeLottePlIcon, TooltipIcon } from '@shared/icons'
 import { cn } from '@shared/utils/cn'
 
@@ -30,25 +31,7 @@ export const CurationHelp = ({ placement = 'default' }: CurationHelpProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipId = useId()
 
-  useEffect(() => {
-    if (!isOpen) {
-      return
-    }
-
-    const handleOutside = (event: Event) => {
-      if (event.target instanceof Node && !containerRef.current?.contains(event.target)) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('pointerdown', handleOutside)
-    document.addEventListener('focusin', handleOutside)
-
-    return () => {
-      document.removeEventListener('pointerdown', handleOutside)
-      document.removeEventListener('focusin', handleOutside)
-    }
-  }, [isOpen])
+  useClickOutside(containerRef, () => setIsOpen(false), isOpen)
 
   return (
     <div ref={containerRef} className='relative inline-flex h-fit shrink-0'>
