@@ -35,7 +35,7 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
         </div>
       </div>
 
-      <div className='flex [scrollbar-width:none] gap-[10px] overflow-x-auto px-5 py-2 [&::-webkit-scrollbar]:hidden'>
+      <div className='scrollbar-hide flex gap-[10px] overflow-x-auto px-5 py-2'>
         {filteredMovies.map((movie) => (
           <ExclusiveMovieCard key={movie.id} {...movie} />
         ))}
