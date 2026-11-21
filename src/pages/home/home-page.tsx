@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router'
 
 import { ROUTE_PATH } from '@app/router/path'
 
+import { moviesQueryOptions } from '@shared/api/movies-query'
 import { Header } from '@shared/components/header/header'
 
-import { moviesQueryOptions } from './api/movies-query'
 import homeBottom from './assets/home-bottom.jpg'
 import homeGoods from './assets/home-goods.jpg'
 import { BottomNavBar } from './components/bottom-nav-bar/bottom-nav-bar'
