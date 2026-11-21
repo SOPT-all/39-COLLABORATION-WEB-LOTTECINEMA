@@ -10,6 +10,6 @@ export interface Showtime {
 export interface ShowtimeGroupData {
   key: string
   labels: string[]
-  description: string
+  description?: string
   showtimes: Showtime[]
 }

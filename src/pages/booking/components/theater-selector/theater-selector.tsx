@@ -1,9 +1,10 @@
-import type { BookingRegion } from '../../types/theater'
+import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
+
 import { RegionItem } from '../region-item/region-item'
 import { TheaterItem } from '../theater-item/theater-item'
 
 interface TheaterSelectorProps {
-  regions: BookingRegion[]
+  regions: RegionResponse[]
   selectedRegionId: number
   onRegionSelect: (regionId: number) => void
   onTheaterSelect: (cinemaId: number) => void
