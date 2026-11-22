@@ -20,7 +20,7 @@ export const Header = (props: HeaderProps) => {
   return (
     <header
       className={cn(
-        'sticky top-0 z-10 w-full text-gray-1000',
+        'sticky top-0 z-100 w-full text-gray-1000',
         // main은 배경 없이, sub는 흰 배경
         props.variant === 'sub' && 'bg-gray-000',
         props.className,
