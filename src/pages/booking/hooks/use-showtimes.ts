@@ -19,6 +19,13 @@ interface UseShowtimesParams {
 export const useShowtimes = ({ movieId, cinemaId, enabled }: UseShowtimesParams) => {
   const [selectedDate, setSelectedDate] = useState(BOOKING_DATES[0].date)
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
+  const currentKey = `${movieId}-${cinemaId}`
+  const [previousKey, setPreviousKey] = useState(currentKey)
+
+  if (previousKey !== currentKey) {
+    setPreviousKey(currentKey)
+    setSelectedShowtimeId(null)
+  }
 
   const {
     data: showtimesData,
