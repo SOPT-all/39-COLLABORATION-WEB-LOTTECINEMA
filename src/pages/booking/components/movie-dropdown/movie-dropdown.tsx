@@ -1,7 +1,8 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 
 import type { Movie } from '@pages/booking/types/movie'
 
+import { useClickOutside } from '@shared/hooks/use-click-outside'
 import { ArrowDownIcon } from '@shared/icons'
 import { cn } from '@shared/utils/cn'
 
@@ -53,18 +54,7 @@ export const MovieDropdown = ({
 
   const wrapperRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    if (!isOpen) return
-
-    const handlePointerDown = (e: PointerEvent) => {
-      if (!wrapperRef.current?.contains(e.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('pointerdown', handlePointerDown)
-    return () => document.removeEventListener('pointerdown', handlePointerDown)
-  }, [isOpen])
+  useClickOutside(wrapperRef, () => setIsOpen(false), isOpen)
 
   return (
     <div ref={wrapperRef} className={cn('relative inline-flex', className)}>
