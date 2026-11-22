@@ -13,7 +13,11 @@ import { useShowtimes } from './hooks/use-showtimes'
 import type { Movie } from './types/movie'
 
 export const BookingPage = () => {
-  const { data: movieListsData } = useQuery(moviesQueryOptions())
+  const {
+    data: movieListsData,
+    isPending: isMovieListPending,
+    isError: isMovieListError,
+  } = useQuery(moviesQueryOptions())
   const movieList = movieListsData
     ? [
         ...movieListsData.popularMovies,
@@ -68,7 +72,11 @@ export const BookingPage = () => {
       <Header variant='sub' title='영화별 예매' />
 
       <main aria-label='영화별 예매' className='flex min-h-0 flex-1 flex-col'>
-        <MovieBannerSection movies={movies} />
+        <MovieBannerSection
+          movies={movies}
+          isLoading={isMovieListPending}
+          hasError={isMovieListError}
+        />
 
         <div className='min-h-0 flex-1'>
           {!isValidMovieId && <p>영화 정보가 없어요. 영화를 선택한 뒤 다시 시도해 주세요.</p>}
