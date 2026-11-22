@@ -12,7 +12,11 @@
   --color-gray-700: #666666;
   --color-gray-800: #494949;
   --color-gray-900: #333333;
+  --color-gray-950: #231f20;
   --color-gray-1000: #000000;
+
+  /* Text */
+  --color-text-link: #2aa3fe;
 
   /* Brand */
   --color-primary: #ff243e;
@@ -29,4 +33,5 @@
   /* Font */
   --font-noto-sans: 'Noto Sans', 'Noto Sans KR', sans-serif;
   --font-noto-sans-kr: 'Noto Sans KR', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
 }

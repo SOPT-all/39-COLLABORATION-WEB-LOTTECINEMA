@@ -4,6 +4,7 @@
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string
   readonly VITE_ENABLE_MSW: string
+  readonly VITE_ENABLE_STYLEGUIDE: string
 }
 
 interface ImportMeta {

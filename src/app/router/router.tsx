@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
           return { Component: PaymentPage }
         },
       },
-      ...(import.meta.env.DEV
+      ...(import.meta.env.DEV || import.meta.env.VITE_ENABLE_STYLEGUIDE === 'true'
         ? [
             {
               path: ROUTE_PATH.STYLEGUIDE,
