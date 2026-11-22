@@ -1,5 +1,6 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 
+import { useClickOutside } from '@shared/hooks/use-click-outside'
 import { ArrowDownIcon } from '@shared/icons'
 import type { RegionResponse } from '@shared/types/__generated__/data-contracts'
 import { cn } from '@shared/utils/cn'
@@ -14,7 +15,7 @@ interface TheaterDropdownProps {
 
 const CLOSED_STATE: DropdownState = { step: 'closed' }
 const PANEL_CLASS =
-  'pointer-events-auto w-[166px] [scrollbar-width:none] overflow-x-hidden overflow-y-auto rounded-[10px] bg-gray-000 shadow-[0_0_4px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'
+  'scrollbar-hide pointer-events-auto w-[166px] overflow-x-hidden overflow-y-auto rounded-[10px] bg-gray-000 shadow-[0_0_4px_rgba(0,0,0,0.25)]'
 
 interface DropdownItemProps {
   children: string
@@ -46,23 +47,7 @@ export const TheaterDropdown = ({ regions, className }: TheaterDropdownProps) =>
   const selectedRegionId = dropdown.step === 'theaters' ? dropdown.regionId : undefined
   const activeRegion = regions.find(({ regionId }) => regionId === selectedRegionId)
 
-  useEffect(() => {
-    if (!isOpen) return
-
-    const handleOutside = (event: Event) => {
-      if (event.target instanceof Node && !rootRef.current?.contains(event.target)) {
-        setDropdown(CLOSED_STATE)
-      }
-    }
-
-    document.addEventListener('pointerdown', handleOutside)
-    document.addEventListener('focusin', handleOutside)
-
-    return () => {
-      document.removeEventListener('pointerdown', handleOutside)
-      document.removeEventListener('focusin', handleOutside)
-    }
-  }, [isOpen])
+  useClickOutside(rootRef, () => setDropdown(CLOSED_STATE), isOpen)
 
   const handleToggleClick = () => {
     setDropdown((current) => (current.step === 'closed' ? { step: 'regions' } : CLOSED_STATE))

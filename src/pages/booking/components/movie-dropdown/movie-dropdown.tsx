@@ -1,7 +1,8 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 
 import type { Movie } from '@pages/booking/types/movie'
 
+import { useClickOutside } from '@shared/hooks/use-click-outside'
 import { ArrowDownIcon } from '@shared/icons'
 import { cn } from '@shared/utils/cn'
 
@@ -16,18 +17,7 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
 
   const wrapperRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    if (!isOpen) return
-
-    const handlePointerDown = (e: PointerEvent) => {
-      if (!wrapperRef.current?.contains(e.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('pointerdown', handlePointerDown)
-    return () => document.removeEventListener('pointerdown', handlePointerDown)
-  }, [isOpen])
+  useClickOutside(wrapperRef, () => setIsOpen(false), isOpen)
 
   return (
     <div ref={wrapperRef} className={cn('relative inline-flex', className)}>
@@ -47,7 +37,7 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
       {isOpen && (
         <ul
           id={listId}
-          className='absolute top-full right-0 z-10 mt-1 max-h-[99px] w-[165px] [scrollbar-width:none] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'>
+          className='absolute top-full right-0 z-10 mt-1 scrollbar-hide max-h-[99px] w-[165px] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)]'>
           {movies.map(({ movieId, title }) => (
             <li
               key={movieId}

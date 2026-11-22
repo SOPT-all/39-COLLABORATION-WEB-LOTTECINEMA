@@ -2,6 +2,14 @@
 @import './theme.css';
 @import './typography.css';
 
+@utility scrollbar-hide {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @layer base {
   html {
     -webkit-tap-highlight-color: transparent;

@@ -39,7 +39,7 @@ export const PopularMovieSection = ({ movies }: PopularMovieSectionProps) => {
         />
       </div>
 
-      <div className='flex [scrollbar-width:none] gap-3 overflow-x-auto px-5 py-2 [&::-webkit-scrollbar]:hidden'>
+      <div className='scrollbar-hide flex gap-3 overflow-x-auto px-5 py-2'>
         {filteredMovies.map((movie) => (
           <PopularMovieCard key={movie.id} {...movie} />
         ))}
