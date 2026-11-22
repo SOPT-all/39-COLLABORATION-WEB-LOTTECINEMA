@@ -23,17 +23,19 @@ export const ExclusiveMovieCard = ({
 
       <div
         aria-hidden='true'
-        className='absolute inset-0 bg-[linear-gradient(to_top,#000_0%,#000_30%,transparent_100%)] opacity-50'
+        className='absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_43.64%,rgba(0,0,0,1)_83.09%)] opacity-50'
       />
 
-      <div className='absolute inset-0 flex flex-col justify-between px-1.5 pt-1.5 pb-2'>
-        {category === '롯시픽' ? (
-          <BadgeLottePickIcon className='h-[20px] w-[36px]' />
-        ) : (
-          <BadgeLottePlIcon className='h-[20px] w-[36px]' />
-        )}
+      <div className='absolute inset-0 flex flex-col justify-between'>
+        <div className='px-1.5 pt-1.5'>
+          {category === '롯시픽' ? (
+            <BadgeLottePickIcon className='h-[20px] w-[36px]' />
+          ) : (
+            <BadgeLottePlIcon className='h-[20px] w-[36px]' />
+          )}
+        </div>
 
-        <div className='flex items-center justify-center gap-1'>
+        <div className='flex items-center justify-start gap-1 p-2'>
           {AgeRatingIcon && <AgeRatingIcon className='h-[14px] w-[14px] shrink-0' />}
           <span className='min-w-0 truncate typo-b1-r text-gray-000'>{title}</span>
         </div>
