@@ -9,9 +9,46 @@ import { cn } from '@shared/utils/cn'
 interface MovieDropdownProps {
   movies: Movie[]
   className?: string
+  isLoading?: boolean
+  hasError?: boolean
 }
 
-export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
+const MovieDropdownMessage = ({ message }: { message: string }) => (
+  <li className='px-[15px] py-2 typo-b1-r text-gray-400'>{message}</li>
+)
+
+interface MovieDropdownContentProps {
+  movies: Movie[]
+  isLoading: boolean
+  hasError: boolean
+}
+
+const MovieDropdownContent = ({ movies, isLoading, hasError }: MovieDropdownContentProps) => {
+  if (isLoading) {
+    return <MovieDropdownMessage message='영화 목록을 불러오는 중...' />
+  }
+
+  if (hasError && movies.length === 0) {
+    return <MovieDropdownMessage message='영화 목록을 불러오지 못했어요.' />
+  }
+
+  if (movies.length === 0) {
+    return <MovieDropdownMessage message='선택할 영화가 없어요.' />
+  }
+
+  return movies.map(({ movieId, title }) => (
+    <li key={movieId} className='flex h-[33px] items-center px-[15px] typo-b1-r text-gray-000'>
+      <span className='truncate'>{title}</span>
+    </li>
+  ))
+}
+
+export const MovieDropdown = ({
+  movies,
+  className,
+  isLoading = false,
+  hasError = false,
+}: MovieDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const listId = useId()
 
@@ -37,14 +74,8 @@ export const MovieDropdown = ({ movies, className }: MovieDropdownProps) => {
       {isOpen && (
         <ul
           id={listId}
-          className='absolute top-full right-0 z-10 mt-1 scrollbar-hide max-h-[99px] w-[165px] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)]'>
-          {movies.map(({ movieId, title }) => (
-            <li
-              key={movieId}
-              className='flex h-[33px] items-center px-[15px] typo-b1-r text-gray-000'>
-              <span className='truncate'>{title}</span>
-            </li>
-          ))}
+          className='absolute top-full right-0 z-10 mt-1 max-h-[99px] w-[165px] [scrollbar-width:none] overflow-y-auto rounded-[10px] bg-gray-1000/60 shadow-[0_0_4px_rgba(0,0,0,0.25)] [&::-webkit-scrollbar]:hidden'>
+          <MovieDropdownContent movies={movies} isLoading={isLoading} hasError={hasError} />
         </ul>
       )}
     </div>
