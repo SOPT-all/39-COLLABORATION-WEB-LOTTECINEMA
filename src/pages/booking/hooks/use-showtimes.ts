@@ -12,7 +12,7 @@ const selectShowtimeGroups = (data: ShowtimeListResponse) => groupShowtimes(data
 
 interface UseShowtimesParams {
   movieId: number
-  cinemaId: number | null
+  cinemaId: number
   enabled: boolean
 }
 
@@ -27,11 +27,11 @@ export const useShowtimes = ({ movieId, cinemaId, enabled }: UseShowtimesParams)
   } = useQuery({
     ...showtimesQueryOptions({
       movieId,
-      cinemaId: cinemaId ?? 0,
+      cinemaId,
       date: selectedDate,
     }),
     select: selectShowtimeGroups,
-    enabled: enabled && cinemaId !== null,
+    enabled,
   })
 
   const handleDateSelect = (date: string) => {
