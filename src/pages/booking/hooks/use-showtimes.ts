@@ -12,13 +12,20 @@ const selectShowtimeGroups = (data: ShowtimeListResponse) => groupShowtimes(data
 
 interface UseShowtimesParams {
   movieId: number
-  cinemaId: number | null
+  cinemaId: number
   enabled: boolean
 }
 
 export const useShowtimes = ({ movieId, cinemaId, enabled }: UseShowtimesParams) => {
   const [selectedDate, setSelectedDate] = useState(BOOKING_DATES[0].date)
   const [selectedShowtimeId, setSelectedShowtimeId] = useState<number | null>(null)
+  const currentKey = `${movieId}-${cinemaId}`
+  const [previousKey, setPreviousKey] = useState(currentKey)
+
+  if (previousKey !== currentKey) {
+    setPreviousKey(currentKey)
+    setSelectedShowtimeId(null)
+  }
 
   const {
     data: showtimesData,
@@ -27,11 +34,11 @@ export const useShowtimes = ({ movieId, cinemaId, enabled }: UseShowtimesParams)
   } = useQuery({
     ...showtimesQueryOptions({
       movieId,
-      cinemaId: cinemaId ?? 0,
+      cinemaId,
       date: selectedDate,
     }),
     select: selectShowtimeGroups,
-    enabled: enabled && cinemaId !== null,
+    enabled,
   })
 
   const handleDateSelect = (date: string) => {

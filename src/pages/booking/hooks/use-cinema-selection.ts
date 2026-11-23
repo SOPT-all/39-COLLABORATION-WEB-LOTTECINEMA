@@ -1,17 +1,14 @@
-import { useState } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 
 import { movieCinemasQueryOptions } from '../api/movie-cinemas-query'
 
 interface UseCinemaSelectionParams {
   movieId: number
+  cinemaId: number
   enabled: boolean
 }
 
-export const useCinemaSelection = ({ movieId, enabled }: UseCinemaSelectionParams) => {
-  const [selectedCinemaId, setSelectedCinemaId] = useState<number | null>(null)
-
+export const useCinemaSelection = ({ movieId, cinemaId, enabled }: UseCinemaSelectionParams) => {
   const {
     data: cinemaData,
     isPending: isCinemaPending,
@@ -21,16 +18,15 @@ export const useCinemaSelection = ({ movieId, enabled }: UseCinemaSelectionParam
     enabled,
   })
 
-  const selectedCinema = cinemaData?.regions
-    .flatMap(({ cinemas }) => cinemas)
-    .find(({ cinemaId }) => cinemaId === selectedCinemaId)
+  const selectedCinema = [
+    ...(cinemaData?.myCinemas ?? []),
+    ...(cinemaData?.regions.flatMap(({ cinemas }) => cinemas) ?? []),
+  ].find(({ cinemaId: id }) => id === cinemaId)
 
   return {
     cinemaData,
     isCinemaPending,
     isCinemaError,
-    selectedCinemaId,
     selectedCinema,
-    selectCinema: setSelectedCinemaId,
   }
 }

@@ -40,7 +40,7 @@ export const PopularMovieSection = ({ movies, onBookingClick }: PopularMovieSect
         />
       </div>
 
-      <div className='scrollbar-hide flex gap-3 overflow-x-auto px-5 py-2'>
+      <div className='scrollbar-hide flex gap-3 overflow-x-auto px-5 pt-2 pb-3'>
         {filteredMovies.map((movie) => (
           <PopularMovieCard
             key={movie.id}
