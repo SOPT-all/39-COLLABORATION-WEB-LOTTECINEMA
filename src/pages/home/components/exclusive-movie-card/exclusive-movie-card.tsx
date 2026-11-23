@@ -23,7 +23,7 @@ export const ExclusiveMovieCard = ({
 
       <div
         aria-hidden='true'
-        className='absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_43.64%,rgba(0,0,0,1)_83.09%)] opacity-50'
+        className='absolute inset-0 rounded-[5px] bg-[linear-gradient(180deg,rgba(255,255,255,0)_43.64%,rgba(0,0,0,0.5)_83.09%)]'
       />
 
       <div className='absolute inset-0 flex flex-col justify-between'>
