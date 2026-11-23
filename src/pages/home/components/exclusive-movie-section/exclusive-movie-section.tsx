@@ -31,7 +31,7 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
             compact
           />
 
-          <CurationHelp placement='exclusive' />
+          <CurationHelp />
         </div>
       </div>
 
