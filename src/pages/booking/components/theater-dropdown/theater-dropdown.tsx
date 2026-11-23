@@ -108,7 +108,11 @@ export const TheaterDropdown = ({ regions, className }: TheaterDropdownProps) =>
                   </DropdownItem>
                 ))
               ) : (
-                <li className='px-4 py-3 typo-b1-r text-gray-600'>해당 지역의 영화관이 없습니다</li>
+                <li className='px-4 py-3 typo-b1-r text-gray-600'>
+                  해당 지역의
+                  <br />
+                  영화관이 없습니다
+                </li>
               )}
             </ul>
           )}
