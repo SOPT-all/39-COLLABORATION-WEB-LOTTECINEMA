@@ -34,6 +34,7 @@ const DropdownItem = ({ children, onClick, selected = false, disabled }: Dropdow
       className={cn(
         'flex min-h-[33px] w-full items-center px-4 py-2 typo-b1-r text-gray-700',
         selected ? 'bg-gray-100' : 'bg-gray-000 active:bg-gray-100',
+        disabled && 'text-gray-300 active:bg-gray-000',
       )}>
       <span className='truncate'>{children}</span>
     </button>
