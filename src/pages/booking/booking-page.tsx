@@ -33,18 +33,17 @@ export const BookingPage = () => {
     ).values(),
   ]
 
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const movieId = Number(searchParams.get('movieId'))
   const isValidMovieId = Number.isInteger(movieId) && movieId > 0
+  const cinemaId = Number(searchParams.get('cinemaId'))
+  const isValidCinemaId = Number.isInteger(cinemaId) && cinemaId > 0
 
-  const {
-    cinemaData,
-    isCinemaPending,
-    isCinemaError,
-    selectedCinemaId,
-    selectedCinema,
-    selectCinema,
-  } = useCinemaSelection({ movieId, enabled: isValidMovieId })
+  const { cinemaData, isCinemaPending, isCinemaError, selectedCinema } = useCinemaSelection({
+    movieId,
+    cinemaId,
+    enabled: isValidMovieId,
+  })
 
   const {
     selectedDate,
@@ -58,12 +57,16 @@ export const BookingPage = () => {
     clearSelectedShowtime,
   } = useShowtimes({
     movieId,
-    cinemaId: selectedCinemaId,
-    enabled: isValidMovieId && selectedCinema !== undefined,
+    cinemaId,
+    enabled: isValidMovieId && isValidCinemaId && selectedCinema !== undefined,
   })
 
   const handleCinemaSelect = (cinemaId: number) => {
-    selectCinema(cinemaId)
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev)
+      next.set('cinemaId', String(cinemaId))
+      return next
+    })
     clearSelectedShowtime()
   }
 
