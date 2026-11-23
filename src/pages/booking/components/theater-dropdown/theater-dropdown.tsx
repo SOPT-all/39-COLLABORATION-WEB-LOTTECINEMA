@@ -21,17 +21,20 @@ interface DropdownItemProps {
   children: string
   onClick: () => void
   selected?: boolean
+  disabled?: boolean
 }
 
-const DropdownItem = ({ children, onClick, selected = false }: DropdownItemProps) => (
+const DropdownItem = ({ children, onClick, selected = false, disabled }: DropdownItemProps) => (
   <li>
     <button
       type='button'
       aria-current={selected ? 'true' : undefined}
       onClick={onClick}
+      disabled={disabled}
       className={cn(
         'flex min-h-[33px] w-full items-center px-4 py-2 typo-b1-r text-gray-700',
         selected ? 'bg-gray-100' : 'bg-gray-000 active:bg-gray-100',
+        disabled && 'text-gray-300 active:bg-gray-000',
       )}>
       <span className='truncate'>{children}</span>
     </button>
@@ -93,9 +96,10 @@ export const TheaterDropdown = ({ regions, className }: TheaterDropdownProps) =>
               aria-label={`${activeRegion?.regionName ?? '선택한 지역'} 영화관`}
               className={cn(PANEL_CLASS, 'max-h-[214px]')}>
               {activeRegion && activeRegion.cinemas.length > 0 ? (
-                activeRegion.cinemas.map(({ cinemaId, cinemaName }) => (
+                activeRegion.cinemas.map(({ cinemaId, cinemaName, hasShowtimes }) => (
                   <DropdownItem
                     key={cinemaId}
+                    disabled={!hasShowtimes}
                     onClick={() => {
                       triggerRef.current?.focus()
                       setDropdown(CLOSED_STATE)
@@ -104,7 +108,11 @@ export const TheaterDropdown = ({ regions, className }: TheaterDropdownProps) =>
                   </DropdownItem>
                 ))
               ) : (
-                <li className='px-4 py-3 typo-b1-r text-gray-600'>해당 지역의 영화관이 없습니다</li>
+                <li className='px-4 py-3 typo-b1-r text-gray-600'>
+                  해당 지역의
+                  <br />
+                  영화관이 없습니다
+                </li>
               )}
             </ul>
           )}

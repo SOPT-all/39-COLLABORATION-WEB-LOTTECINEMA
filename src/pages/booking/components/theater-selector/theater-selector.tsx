@@ -42,8 +42,13 @@ export const TheaterSelector = ({
         role='group'
         aria-label='영화관 선택'
         className='scrollbar-hide flex-1 overflow-y-auto border-t border-gray-200 bg-gray-100'>
-        {selectedRegion?.cinemas.map(({ cinemaId, cinemaName }) => (
-          <TheaterItem key={cinemaId} name={cinemaName} onClick={() => onTheaterSelect(cinemaId)} />
+        {selectedRegion?.cinemas.map(({ cinemaId, cinemaName, hasShowtimes }) => (
+          <TheaterItem
+            key={cinemaId}
+            name={cinemaName}
+            disabled={!hasShowtimes}
+            onClick={() => onTheaterSelect(cinemaId)}
+          />
         ))}
       </div>
     </div>
