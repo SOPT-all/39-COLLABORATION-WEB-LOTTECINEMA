@@ -28,7 +28,6 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
             tabs={EXCLUSIVE_TABS}
             selectedTab={selectedTab}
             onTabChange={setSelectedTab}
-            compact
           />
 
           <CurationHelp />
