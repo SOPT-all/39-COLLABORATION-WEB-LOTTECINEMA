@@ -31,7 +31,7 @@ export const ShowtimeInfo = ({ variant = 'sheet', className }: ShowtimeInfoProps
 
       <div className='flex min-w-0 flex-1 flex-col gap-0.5'>
         <h2 className='truncate typo-b2-m text-gray-1000'>극장판 치이카와: 인어섬의 비밀(2D)</h2>
-        <p className='typo-c2-m text-gray-700'>26. 10.27(화) · 14:25 ~ 16:14 (109분)</p>
+        <p className='typo-c2-m text-gray-700'>26.10.27(화) · 14:25 ~ 16:14 (109분)</p>
         <p className='typo-c2-m text-gray-700'>용산 · 4관 리클라이너(4층)</p>
       </div>
     </div>

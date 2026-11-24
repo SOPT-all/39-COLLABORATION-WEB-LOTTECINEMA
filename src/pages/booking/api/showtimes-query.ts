@@ -9,4 +9,5 @@ export const showtimesQueryOptions = (params: FindShowtimesParams) =>
   queryOptions({
     queryKey: showtimeQueryKeys.list(params),
     queryFn: () => getShowtimes(params),
+    staleTime: 0,
   })
