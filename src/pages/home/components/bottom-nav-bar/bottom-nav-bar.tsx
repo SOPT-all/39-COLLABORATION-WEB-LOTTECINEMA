@@ -20,7 +20,7 @@ const featuredClassName = 'flex shrink-0 items-center justify-center px-1'
 const NavItem = ({ label, Icon, featured = false }: NavItemConfig) => (
   <button type='button' disabled className={featured ? featuredClassName : navItemClassName}>
     {featured ? (
-      <span className='flex size-12 items-center justify-center rounded-full bg-primary typo-t1-b text-gray-000 shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.12),0_3px_5px_0_rgba(255,36,62,0.20)]'>
+      <span className='flex size-12 items-center justify-center rounded-full bg-primary typo-t1-b text-gray-000 shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.12),0_3px_5px_0_rgba(255,36,62,0.20)] [text-shadow:0_1px_1px_rgba(0,0,0,0.25)]'>
         {label}
       </span>
     ) : (
