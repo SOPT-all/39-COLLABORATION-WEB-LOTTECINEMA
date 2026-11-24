@@ -35,7 +35,7 @@ const NavItem = ({ label, Icon, featured = false }: NavItemConfig) => (
 export const BottomNavBar = () => (
   <nav
     aria-label='홈 메뉴'
-    className='flex w-full items-center gap-1.5 bg-gray-000 px-5 pt-2 pb-3 shadow-[0_-2px_8px_0_rgba(0,0,0,0.05)]'>
+    className='fixed bottom-0 left-1/2 z-50 flex w-full max-w-[375px] -translate-x-1/2 items-center gap-1.5 bg-gray-000 px-5 pt-2 pb-3 shadow-[0_-2px_8px_0_rgba(0,0,0,0.05)]'>
     {navItems.map((item) => (
       <NavItem key={item.label} {...item} />
     ))}
