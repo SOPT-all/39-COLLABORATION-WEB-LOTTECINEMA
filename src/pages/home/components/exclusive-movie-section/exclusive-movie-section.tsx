@@ -23,7 +23,7 @@ export const ExclusiveMovieSection = ({ movies }: ExclusiveMovieSectionProps) =>
       <div className='flex items-center justify-between px-5'>
         <h2 className='typo-t2-b text-gray-1000'>오직 롯시에서만!</h2>
 
-        <div className='flex items-center gap-1'>
+        <div className='flex items-center'>
           <MovieFilterTabs
             tabs={EXCLUSIVE_TABS}
             selectedTab={selectedTab}
