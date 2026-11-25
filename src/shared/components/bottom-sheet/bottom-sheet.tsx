@@ -35,11 +35,14 @@ export const BottomSheet = ({
 
     const previousFocusedElement =
       document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const previousBodyOverflow = document.body.style.overflow
 
     dialogRef.current?.focus()
+    document.body.style.overflow = 'hidden'
 
     return () => {
       previousFocusedElement?.focus()
+      document.body.style.overflow = previousBodyOverflow
     }
   }, [isOpen])
 
