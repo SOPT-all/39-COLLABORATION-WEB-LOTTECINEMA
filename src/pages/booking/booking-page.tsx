@@ -54,7 +54,6 @@ export const BookingPage = () => {
     dates,
     handleDateSelect,
     handleShowtimeSelect,
-    clearSelectedShowtime,
   } = useShowtimes({
     movieId,
     cinemaId,
@@ -67,7 +66,6 @@ export const BookingPage = () => {
       next.set('cinemaId', String(cinemaId))
       return next
     })
-    clearSelectedShowtime()
   }
 
   return (
@@ -110,7 +108,10 @@ export const BookingPage = () => {
         </div>
       </main>
 
-      <ShowtimeBottomSheet showtimeId={selectedShowtimeId} onClose={clearSelectedShowtime} />
+      <ShowtimeBottomSheet
+        showtimeId={selectedShowtimeId}
+        onClose={() => handleShowtimeSelect(null)}
+      />
     </div>
   )
 }
