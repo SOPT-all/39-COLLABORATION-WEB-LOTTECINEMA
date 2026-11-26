@@ -51,7 +51,7 @@ export const BottomSheet = ({
   }
 
   return (
-    <div className='fixed inset-0 z-50 mx-auto flex w-[375px] flex-col justify-end'>
+    <div className='fixed inset-0 z-50 mx-auto flex w-full max-w-mobile flex-col justify-end'>
       {isBackdropClosable ? (
         <button
           type='button'
