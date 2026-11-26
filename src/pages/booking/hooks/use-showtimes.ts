@@ -46,8 +46,6 @@ export const useShowtimes = ({ movieId, cinemaId, enabled }: UseShowtimesParams)
     setSelectedShowtimeId(null)
   }
 
-  const clearSelectedShowtime = () => setSelectedShowtimeId(null)
-
   return {
     dates: BOOKING_DATES,
     selectedDate,
@@ -57,6 +55,5 @@ export const useShowtimes = ({ movieId, cinemaId, enabled }: UseShowtimesParams)
     isShowtimesError,
     handleDateSelect,
     handleShowtimeSelect: setSelectedShowtimeId,
-    clearSelectedShowtime,
   }
 }
