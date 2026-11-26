@@ -22,7 +22,7 @@
   }
 
   #root {
-    width: 375px;
+    width: var(--container-mobile);
     min-height: 100dvh;
     margin: 0 auto;
     background-color: var(--color-gray-100);
