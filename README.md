@@ -63,25 +63,25 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
 
 ---
 
-<img width="1920" height="1080" alt="11" src="https://github.com/user-attachments/assets/8b2c790c-8742-4bac-9f01-3d10790fb273" />
+<img width="1920" height="1080" alt="채원 구현 요소" src="https://github.com/user-attachments/assets/8b2c790c-8742-4bac-9f01-3d10790fb273" />
 
 ### 🦕 기훈
 
 ---
 
-<img width="1920" height="1080" alt="13" src="https://github.com/user-attachments/assets/027b7d42-6bb6-489d-ab0a-0997be350847" />
+<img width="1920" height="1080" alt="기훈 구현 요소" src="https://github.com/user-attachments/assets/027b7d42-6bb6-489d-ab0a-0997be350847" />
 
 ### 🦦 시은
 
 ---
 
-<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/95824f4f-cc1b-4622-8aa2-c107cc58c1a6" />
+<img width="1920" height="1080" alt="시은 구현 요소" src="https://github.com/user-attachments/assets/95824f4f-cc1b-4622-8aa2-c107cc58c1a6" />
 
 ### 🐒 지민
 
 ---
 
-<img width="1920" height="1080" alt="17" src="https://github.com/user-attachments/assets/7dda2566-7a66-4856-9059-576ba865ada2" />
+<img width="1920" height="1080" alt="지민 구현 요소" src="https://github.com/user-attachments/assets/7dda2566-7a66-4856-9059-576ba865ada2" />
 
 ## 🚀 Tech Stack
 
