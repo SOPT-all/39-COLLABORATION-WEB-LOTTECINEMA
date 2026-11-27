@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import type { PopularMovie } from '../../types/popular-movie'
+import type { MovieListResponse } from '@shared/types/__generated__/data-contracts'
+
 import { MovieFilterTabs } from '../movie-filter-tabs/movie-filter-tabs'
 import { PopularMovieCard } from '../popular-movie-card/popular-movie-card'
 
@@ -9,20 +10,25 @@ const POPULAR_TABS = ['전체', '상영중', '개봉예정'] as const
 type PopularTab = (typeof POPULAR_TABS)[number]
 
 interface PopularMovieSectionProps {
-  movies: PopularMovie[]
+  movies: MovieListResponse[]
   onBookingClick: (movieId: number) => void
 }
 
 export const PopularMovieSection = ({ movies, onBookingClick }: PopularMovieSectionProps) => {
   const [selectedTab, setSelectedTab] = useState<PopularTab>('전체')
 
-  const filteredMovies = movies.filter((movie) => {
+  const rankedMovies = movies.map((movie, index) => ({
+    ...movie,
+    popularityRank: movie.popularityRank ?? index + 1,
+  }))
+
+  const filteredMovies = rankedMovies.filter((movie) => {
     if (selectedTab === '상영중') {
-      return movie.releaseDday === undefined
+      return movie.dDay === null
     }
 
     if (selectedTab === '개봉예정') {
-      return movie.releaseDday !== undefined
+      return movie.dDay !== null
     }
 
     return true
@@ -43,9 +49,15 @@ export const PopularMovieSection = ({ movies, onBookingClick }: PopularMovieSect
       <div className='scrollbar-hide flex gap-3 overflow-x-auto px-5 pt-2 pb-3'>
         {filteredMovies.map((movie) => (
           <PopularMovieCard
-            key={movie.id}
-            {...movie}
-            onBookingClick={() => onBookingClick(movie.id)}
+            key={movie.movieId}
+            rank={movie.popularityRank}
+            title={movie.title}
+            posterUrl={movie.posterUrl ?? ''}
+            ageRating={movie.ageRating}
+            rating={movie.movieRating}
+            bookingRate={movie.bookingRate}
+            releaseDday={movie.dDay}
+            onBookingClick={() => onBookingClick(movie.movieId)}
           />
         ))}
       </div>

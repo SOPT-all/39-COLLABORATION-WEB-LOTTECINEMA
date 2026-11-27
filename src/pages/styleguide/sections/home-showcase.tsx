@@ -20,119 +20,144 @@ import { BottomNavBar } from '@pages/home/components/bottom-nav-bar/bottom-nav-b
 import { ExclusiveMovieSection } from '@pages/home/components/exclusive-movie-section/exclusive-movie-section'
 import { HeroCarousel } from '@pages/home/components/hero-carousel/hero-carousel'
 import { PopularMovieSection } from '@pages/home/components/popular-movie-section/popular-movie-section'
-import type { ExclusiveMovie } from '@pages/home/types/exclusive-movie'
-import type { PopularMovie } from '@pages/home/types/popular-movie'
+
+import type { MovieListResponse } from '@shared/types/__generated__/data-contracts'
 
 import { ShowcaseSection } from './showcase-section'
 
+const defaultMovieFields = {
+  genre: '',
+  runtimeMinutes: 0,
+  releaseDate: '',
+  curationType: null,
+  curationOrder: null,
+  popularityRank: null,
+  bookingRate: null,
+  movieRating: null,
+  dDay: null,
+}
+
 const movies = [
   {
-    id: 1,
-    rank: 1,
+    ...defaultMovieFields,
+    movieId: 1,
+    popularityRank: 1,
     title: '극장판 치이카와: 인어 섬의 비밀',
     posterUrl: moviePoster1,
     ageRating: '전체',
-    rating: 9.3,
+    movieRating: 9.3,
     bookingRate: 20,
   },
   {
-    id: 2,
-    rank: 2,
+    ...defaultMovieFields,
+    movieId: 2,
+    popularityRank: 2,
     title: '하트 오브 비스트',
     posterUrl: moviePoster2,
     ageRating: '12세',
-    releaseDday: 1,
+    dDay: 1,
     bookingRate: 30,
   },
   {
-    id: 3,
-    rank: 3,
+    ...defaultMovieFields,
+    movieId: 3,
+    popularityRank: 3,
     title: '최종면접',
     posterUrl: moviePoster3,
     ageRating: '15세',
-    releaseDday: 8,
+    dDay: 8,
     bookingRate: 25,
   },
   {
-    id: 4,
-    rank: 4,
+    ...defaultMovieFields,
+    movieId: 4,
+    popularityRank: 4,
     title: '극장판 마법소녀 마도카 마기카',
     posterUrl: moviePoster4,
     ageRating: '15세',
-    releaseDday: 3,
+    dDay: 3,
     bookingRate: 17,
   },
   {
-    id: 5,
-    rank: 5,
+    ...defaultMovieFields,
+    movieId: 5,
+    popularityRank: 5,
     title: '수능, 출제의 비밀',
     posterUrl: moviePoster5,
     ageRating: '12세',
-    releaseDday: 8,
+    dDay: 8,
     bookingRate: 11,
   },
   {
-    id: 6,
-    rank: 6,
+    ...defaultMovieFields,
+    movieId: 6,
+    popularityRank: 6,
     title: '그대, 별처럼',
     posterUrl: moviePoster6,
     ageRating: '15세',
-    releaseDday: 1,
+    dDay: 1,
     bookingRate: 7,
   },
-] satisfies PopularMovie[]
+] satisfies MovieListResponse[]
 
 const MOVIES = [
   {
-    id: 1,
+    ...defaultMovieFields,
+    movieId: 1,
     posterUrl: posterPick1,
     title: '극장판 마법소녀 마도카 마기카',
     ageRating: '전체',
-    category: '롯시픽',
+    curationType: 'LOTSI_PICK',
   },
   {
-    id: 2,
+    ...defaultMovieFields,
+    movieId: 2,
     posterUrl: posterPick2,
     title: '그대, 별처럼',
     ageRating: '15세',
-    category: '롯시픽',
+    curationType: 'LOTSI_PICK',
   },
   {
-    id: 3,
+    ...defaultMovieFields,
+    movieId: 3,
     posterUrl: posterPick3,
     title: '숀 더 쉽: 공포의 털보 괴물',
     ageRating: '전체',
-    category: '롯시픽',
+    curationType: 'LOTSI_PICK',
   },
   {
-    id: 4,
+    ...defaultMovieFields,
+    movieId: 4,
     posterUrl: posterPick4,
     title: '변이',
     ageRating: '청불',
-    category: '롯시픽',
+    curationType: 'LOTSI_PICK',
   },
   {
-    id: 5,
+    ...defaultMovieFields,
+    movieId: 5,
     posterUrl: posterPlay1,
     title: '엔하이픈 브이알콘서트 : 데스티니',
     ageRating: '전체',
-    category: '롯시플',
+    curationType: 'LOTSI_PLAY',
   },
   {
-    id: 6,
+    ...defaultMovieFields,
+    movieId: 6,
     posterUrl: posterPlay2,
     title: 'Stray Kids World Tour RUN IT LIVE VIEWING',
     ageRating: '전체',
-    category: '롯시플',
+    curationType: 'LOTSI_PLAY',
   },
   {
-    id: 7,
+    ...defaultMovieFields,
+    movieId: 7,
     posterUrl: posterPlay3,
     title: 'BTS WORLD TOUR ARIRANG',
     ageRating: '전체',
-    category: '롯시플',
+    curationType: 'LOTSI_PLAY',
   },
-] satisfies ExclusiveMovie[]
+] satisfies MovieListResponse[]
 
 export const HomeShowcase = () => {
   return (

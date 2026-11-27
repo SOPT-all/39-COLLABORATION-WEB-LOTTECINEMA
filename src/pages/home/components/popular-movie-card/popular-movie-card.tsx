@@ -1,6 +1,5 @@
 import { Button } from '@shared/components/button/button'
-import { AGE_RATINGS } from '@shared/constants/age-rating'
-import type { AgeRating } from '@shared/constants/age-rating'
+import { AGE_RATINGS, isAgeRating } from '@shared/constants/age-rating'
 
 import ratingStar from '../../assets/rating-star.svg'
 
@@ -8,10 +7,10 @@ interface PopularMovieCardProps {
   rank: number
   title: string
   posterUrl: string
-  ageRating: AgeRating | undefined
-  rating?: number
-  bookingRate?: number
-  releaseDday?: number
+  ageRating: string
+  rating?: number | null
+  bookingRate?: number | null
+  releaseDday?: number | null
   onBookingClick?: () => void
 }
 
@@ -25,7 +24,7 @@ export const PopularMovieCard = ({
   releaseDday,
   onBookingClick,
 }: PopularMovieCardProps) => {
-  const AgeRatingIcon = ageRating ? AGE_RATINGS[ageRating].Icon : undefined
+  const AgeRatingIcon = isAgeRating(ageRating) ? AGE_RATINGS[ageRating].Icon : undefined
 
   return (
     <article className='w-[156px] shrink-0'>
@@ -47,10 +46,10 @@ export const PopularMovieCard = ({
         <h3 className='truncate typo-b1-m text-gray-1000'>{title}</h3>
 
         <div className='flex items-center gap-1 typo-c2-m text-gray-700'>
-          {releaseDday !== undefined ? (
+          {releaseDday != null ? (
             <span>개봉 {releaseDday === 0 ? 'D-DAY' : `D-${releaseDday}`}</span>
           ) : (
-            rating !== undefined && (
+            rating != undefined && (
               <span className='flex items-center gap-0.5'>
                 <img
                   src={ratingStar}
@@ -63,7 +62,7 @@ export const PopularMovieCard = ({
             )
           )}
 
-          {bookingRate !== undefined && (
+          {bookingRate != null && (
             <>
               <span className='h-3 w-px shrink-0 bg-gray-100' aria-hidden='true' />
               <span>예매율 {bookingRate}%</span>
