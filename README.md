@@ -4,6 +4,15 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
 
 <br/>
 
+## 🎬 롯데시네마 리디자인 포인트
+<img width="1920" height="1080" alt="리디자인 포인트 1" src="https://github.com/user-attachments/assets/5943fd21-9105-4622-86b2-49a4d02c7b78" />
+<img width="1920" height="1080" alt="리디자인 포인트 2" src="https://github.com/user-attachments/assets/df3d93a9-48c1-4579-8582-6f3eb4cfe4ad" />
+<img width="1920" height="1080" alt="리디자인 포인트 3" src="https://github.com/user-attachments/assets/3cc70410-78ec-40c6-bc6d-0a3a6f236a8c" />
+<img width="1920" height="1080" alt="리디자인 포인트 4" src="https://github.com/user-attachments/assets/5b76188d-a3d1-4860-84b7-37ee598b47a6" />
+<img width="1920" height="1080" alt="리디자인 포인트 5" src="https://github.com/user-attachments/assets/add374af-97c5-48d4-86c1-63f3471fd690" />
+
+<br/>
+
 ## 👥 팀원 소개
 
 <table align="center">
@@ -45,11 +54,32 @@ PLAY SOPT 39기 합동세미나 모바일 웹 2조 롯데시네마 🎬
 
 <br/>
 
+## 💥 팀원별 구현 요소
+<img width="1920" height="1080" alt="API 분배" src="https://github.com/user-attachments/assets/fedc5271-0117-4502-b853-55006a3998e3" />
+
+### 🐅 채원
+---
+<img width="1920" height="1080" alt="11" src="https://github.com/user-attachments/assets/8b2c790c-8742-4bac-9f01-3d10790fb273" />
+
+### 🦕 기훈
+---
+<img width="1920" height="1080" alt="13" src="https://github.com/user-attachments/assets/027b7d42-6bb6-489d-ab0a-0997be350847" />
+
+### 🦦 시은
+---
+<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/95824f4f-cc1b-4622-8aa2-c107cc58c1a6" />
+
+### 🐒 지민
+---
+<img width="1920" height="1080" alt="17" src="https://github.com/user-attachments/assets/7dda2566-7a66-4856-9059-576ba865ada2" />
+
+
 ## 🚀 Tech Stack
 
 ### TypeScript 버전 안내
 
-프로젝트 빌드는 TypeScript 7(`tsc -b`)을 사용하고, TypeScript 6은 현재 `typescript-eslint` 호환을 위해서만 사용합니다. `typescript-eslint`가 TypeScript 7을 지원하면 TS6 의존성을 정리할 수 있습니다.
+프로젝트 빌드는 TypeScript 7(`tsc -b`)을 사용하고, TypeScript 6은 현재 `typescript-eslint` 호환을 위해서만 사용합니다. <br />
+`typescript-eslint`가 TypeScript 7을 지원하면 TS6 의존성을 정리할 수 있습니다.
 
 | 카테고리                    | 기술 스택                                                                                                                                                                                                                                                                                                         |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
