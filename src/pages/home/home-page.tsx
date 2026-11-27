@@ -13,7 +13,6 @@ import { ExclusiveMovieSection } from './components/exclusive-movie-section/excl
 import { HeroCarousel } from './components/hero-carousel/hero-carousel'
 import { PopularMovieSection } from './components/popular-movie-section/popular-movie-section'
 import { heroSlides } from './constants/hero-slides'
-import { toExclusiveMovies, toPopularMovies } from './utils/movie-mapper'
 
 export const HomePage = () => {
   const navigate = useNavigate()
@@ -23,14 +22,9 @@ export const HomePage = () => {
     navigate(`${ROUTE_PATH.BOOKING}?movieId=${movieId}`)
   }
 
-  const popularMovies = data ? toPopularMovies(data.popularMovies) : []
+  const popularMovies = data?.popularMovies ?? []
 
-  const exclusiveMovies = data
-    ? [
-        ...toExclusiveMovies(data.lotsiPickMovies, '롯시픽'),
-        ...toExclusiveMovies(data.lotsiPlayMovies, '롯시플'),
-      ]
-    : []
+  const exclusiveMovies = data ? [...data.lotsiPickMovies, ...data.lotsiPlayMovies] : []
 
   return (
     <>

@@ -35,11 +35,14 @@ export const BottomSheet = ({
 
     const previousFocusedElement =
       document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const previousBodyOverflow = document.body.style.overflow
 
     dialogRef.current?.focus()
+    document.body.style.overflow = 'hidden'
 
     return () => {
       previousFocusedElement?.focus()
+      document.body.style.overflow = previousBodyOverflow
     }
   }, [isOpen])
 
@@ -48,7 +51,7 @@ export const BottomSheet = ({
   }
 
   return (
-    <div className='fixed inset-0 z-50 mx-auto flex w-[375px] flex-col justify-end'>
+    <div className='fixed inset-0 z-50 mx-auto flex w-full max-w-mobile flex-col justify-end'>
       {isBackdropClosable ? (
         <button
           type='button'

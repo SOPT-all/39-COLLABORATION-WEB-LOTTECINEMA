@@ -1,21 +1,21 @@
-import { AGE_RATINGS } from '@shared/constants/age-rating'
-import type { AgeRating } from '@shared/constants/age-rating'
+import { AGE_RATINGS, isAgeRating } from '@shared/constants/age-rating'
 import { BadgeLottePickIcon, BadgeLottePlIcon } from '@shared/icons'
+import type { MovieListResponse } from '@shared/types/__generated__/data-contracts'
 
-export interface ExclusiveMovieCardProps {
+interface ExclusiveMovieCardProps {
   posterUrl: string
   title: string
-  ageRating: AgeRating | undefined
-  category: '롯시픽' | '롯시플'
+  ageRating: string
+  curationType: MovieListResponse['curationType']
 }
 
 export const ExclusiveMovieCard = ({
   posterUrl,
   title,
   ageRating,
-  category,
+  curationType,
 }: ExclusiveMovieCardProps) => {
-  const AgeRatingIcon = ageRating ? AGE_RATINGS[ageRating].Icon : undefined
+  const AgeRatingIcon = isAgeRating(ageRating) ? AGE_RATINGS[ageRating].Icon : undefined
 
   return (
     <div className='relative h-[172px] w-[120px] shrink-0 overflow-hidden rounded-[5px]'>
@@ -28,11 +28,8 @@ export const ExclusiveMovieCard = ({
 
       <div className='absolute inset-0 flex flex-col justify-between'>
         <div className='px-1.5 pt-1.5'>
-          {category === '롯시픽' ? (
-            <BadgeLottePickIcon className='h-[20px] w-[36px]' />
-          ) : (
-            <BadgeLottePlIcon className='h-[20px] w-[36px]' />
-          )}
+          {curationType === 'LOTSI_PICK' && <BadgeLottePickIcon className='h-[20px] w-[36px]' />}
+          {curationType === 'LOTSI_PLAY' && <BadgeLottePlIcon className='h-[20px] w-[36px]' />}
         </div>
 
         <div className='flex items-center justify-start gap-1 p-2'>
