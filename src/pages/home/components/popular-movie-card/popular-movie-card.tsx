@@ -46,10 +46,10 @@ export const PopularMovieCard = ({
         <h3 className='truncate typo-b1-m text-gray-1000'>{title}</h3>
 
         <div className='flex items-center gap-1 typo-c2-m text-gray-700'>
-          {releaseDday !== null ? (
+          {releaseDday != null ? (
             <span>개봉 {releaseDday === 0 ? 'D-DAY' : `D-${releaseDday}`}</span>
           ) : (
-            rating !== undefined && (
+            rating != undefined && (
               <span className='flex items-center gap-0.5'>
                 <img
                   src={ratingStar}
@@ -62,7 +62,7 @@ export const PopularMovieCard = ({
             )
           )}
 
-          {bookingRate !== null && (
+          {bookingRate != null && (
             <>
               <span className='h-3 w-px shrink-0 bg-gray-100' aria-hidden='true' />
               <span>예매율 {bookingRate}%</span>
